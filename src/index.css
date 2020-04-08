@@ -9,6 +9,11 @@ body {
   height: 100vh;
 }
 
+.cardBG {
+  background-color: #2d3436;
+  color: whitesmoke !important;
+}
+
 .bg-table-in-vintage-restaurant::after {
   content: "";
   position: fixed;
@@ -142,12 +147,7 @@ body {
   }
 }
 
-/* ==============================MENU============================== */
 
-.card {
-  /* margin: auto; */
-  color: #2d3436;
-}
 
 /* ==============================APPETIZER-PREVIEW-PAGE==============================*/
 

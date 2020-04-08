@@ -31,7 +31,6 @@ const OrderContextProvider = props => {
       .catch(err => alert(err));
   }, []);
 
-  useEffect(() => {}, []);
 
   const viewOneAppetizer = id => {
     let item = products.filter(product => {
@@ -115,8 +114,8 @@ const OrderContextProvider = props => {
       openCheckState.tax,
       openCheckState.grandTotal
     )
-      .then(res => setOpenCheckState({}))
-      .then(res => setOrderState(initialState))
+      .then(() => setOpenCheckState({}))
+      .then(() => setOrderState(initialState))
       .catch(err => alert(err));
   };
 

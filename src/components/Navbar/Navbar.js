@@ -57,17 +57,15 @@ const goBackBtn = () => {
 };
 
 function Navbar() {
-  const { orderState } = useContext(OrderContext);
+  const { orderState, openCheckState } = useContext(OrderContext);
   let sum = 0;
 
   const addQuantity = () => {
-    orderState.items.filter(num => {
+    orderState.items.filter((num) => {
       sum += num.quantity;
-      console.log(num.quantity)
-      console.log(sum);
       return sum;
-    })
-  }
+    });
+  };
 
   addQuantity();
 
@@ -92,13 +90,18 @@ function Navbar() {
             <FontAwesomeIcon icon={faShoppingCart} />
           )}
         </Link>
-        <Link
-          className="navbar-brand icon"
-          id="creditcard-icon"
-          to="/view-check"
-        >
+        {openCheckState.items ? (
+          <Link
+            className="navbar-brand icon"
+            id="creditcard-icon"
+            to="/card-info"
+          >
+            <FontAwesomeIcon icon={faCreditCard} />
+          </Link>
+        ) : (
           <FontAwesomeIcon icon={faCreditCard} />
-        </Link>
+        )}
+
         <NavLinks />
       </div>
     </nav>

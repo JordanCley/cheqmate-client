@@ -16,8 +16,8 @@ function MenuList() {
         defaultActiveKey="#Appetizers"
       >
         <Row>
-          <Col sm={4}>
-            <ListGroup>
+          <Col sm={4} >
+            <ListGroup >
               <ListGroup.Item action href="#Appetizers">
                 Appetizers
               </ListGroup.Item>

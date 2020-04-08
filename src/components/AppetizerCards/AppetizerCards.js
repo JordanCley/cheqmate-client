@@ -4,12 +4,13 @@ import Spinner from "react-bootstrap/Spinner";
 import { OrderContext } from "../../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import "./AppetizerCards.css";
+import "../../index.css";
 
 function AppetizerCards(props) {
   const {
     products,
     addItemToCart,
-    decrementQuantity,
     removeItemFromCart,
     viewOneAppetizer
   } = useContext(OrderContext);
@@ -28,30 +29,24 @@ function AppetizerCards(props) {
             // clicking on the card itself will make the page change to the
             // preview
             <Card
+            className={"cardBG"}
+              bg={"Secondary"}
               style={{ width: "18rem" }}
               onClick={() => viewOneAppetizer(appetizer._id)}
               key={appetizer._id}
             >
               {/* just basic bootstrap card */}
               <Card.Img variant="top" src={appetizer.imageURL} />
-              <Card.Body>
+              <Card.Body >
                 <Card.Title>{appetizer.productName}</Card.Title>
                 <Card.Text>${appetizer.price}</Card.Text>
-                <Link to="/app-preview"> View {appetizer.productName}</Link>
-
+                <Link to="/app-preview"> View Item </Link>
+                <br />
                 <Button onClick={() => addItemToCart(appetizer._id)}>
-                  Add to item list
-                </Button>
-                <Button onClick={() => decrementQuantity(appetizer._id)}>
-                  {" "}
-                  -{" "}
-                </Button>
-                <Button onClick={() => addItemToCart(appetizer._id)}>
-                  {" "}
-                  +{" "}
+                  Add to cart
                 </Button>
                 <Button onClick={() => removeItemFromCart(appetizer._id)}>
-                  Remove item from list
+                  Remove from cart
                 </Button>
               </Card.Body>
             </Card>

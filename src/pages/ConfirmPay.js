@@ -6,12 +6,15 @@ import { OrderContext } from "../utils/context/OrderContext";
 
 function ConfirmPay() {
   const history = useHistory();
-  const { openCheckState, updateIsOrderPaidClick } = useContext(OrderContext);
+  const { openCheckState, updateIsOrderPaidClick, orderState } = useContext(
+    OrderContext
+  );
   const [isLoading, setIsLoading] = useState(false);
-
+    console.log(orderState);
   const handlePayClick = () => {
     setIsLoading(true);
     updateIsOrderPaidClick().then(() => history.push("/thank-you"));
+    console.log(orderState);
   };
   if (isLoading) {
     return <div>Loading...</div>;
@@ -45,7 +48,6 @@ function ConfirmPay() {
       <Col lg={4}>
         <span>Grand Total: ${openCheckState.grandTotal.toFixed(2)}</span>
       </Col>
-      {/*<ConfirmPaymentCard /> */}
       <div className="confirm-pay-buttons"></div>
       <Link to="/card-info">
         <Button className="left-button">Cancel</Button>

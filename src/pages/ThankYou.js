@@ -4,7 +4,9 @@ const ThankYou = () => {
 
   return (
     <div>
-      <h1>Thank You!</h1>
+      <br />
+      <h1>Thank you for your visit.</h1>
+      <h2>See you next time!</h2>
     </div>
   );
 };
