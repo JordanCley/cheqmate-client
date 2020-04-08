@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
-import logo from "./cheqmate-logo.svg";
+import logo from "../../assets/cheqmate-logo.svg";
 import "../../index.css";
 
 const createLink = ({ text, to, ...rest }) => {

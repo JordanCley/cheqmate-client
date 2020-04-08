@@ -49,7 +49,7 @@
     background-size: cover;
     opacity: 0.5;
     z-index: -1;
-    background-image: url("./table-in-vintage-restaurant-6267.jpg");
+    background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     font-size: medium;
@@ -78,7 +78,9 @@
     padding-right: 2%;
     padding-left: 2%;
   }
+}
 
-  
+.App::after {
+  background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
 }
 

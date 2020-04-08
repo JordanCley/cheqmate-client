@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import API from './../utils/API';
+import API from './../utils/API/API';
 import {useAuth} from '../utils/auth'
 import '../index.css';
 
