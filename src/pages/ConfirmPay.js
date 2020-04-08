@@ -10,7 +10,7 @@ function ConfirmPay() {
     OrderContext
   );
   const [isLoading, setIsLoading] = useState(false);
-    console.log(orderState);
+  console.log(orderState);
   const handlePayClick = () => {
     setIsLoading(true);
     updateIsOrderPaidClick().then(() => history.push("/thank-you"));
@@ -50,10 +50,12 @@ function ConfirmPay() {
       </Col>
       <div className="confirm-pay-buttons"></div>
       <Link to="/card-info">
-        <Button className="left-button">Cancel</Button>
+        <Button className="button">Cancel</Button>
       </Link>
       <Link>
-        <Button onClick={handlePayClick}>Pay</Button>
+        <Button onClick={handlePayClick}>
+          Pay
+        </Button>
       </Link>
     </Container>
   );

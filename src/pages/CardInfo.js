@@ -43,10 +43,10 @@ function CardInfo() {
         </form>
       </div>
       <Link to="/view-check">
-        <Button>Back</Button>
+        <Button className={"button"} >Back</Button>
       </Link>
       <Link to="/add-tip">
-        <Button>Continue</Button>
+        <Button >Continue</Button>
       </Link>
     </div>
   );

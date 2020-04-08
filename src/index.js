@@ -22,7 +22,6 @@ import TableNumber from "./pages/TableNumber";
 import Menu from "./pages/Menu";
 import Checkout from "./pages/Checkout";
 import AppetizerPreview from "./pages/AppetizerPreview";
-import AppetizerList from "./pages/AppetizerList";
 import ViewCart from "./pages/ViewCart";
 import ViewCheck from "./pages/ViewCheck";
 import CardInfo from "./pages/CardInfo";
@@ -33,6 +32,8 @@ import ThankYou from "./pages/ThankYou"
 
 //Our Components
 import Navbar from "./components/Navbar";
+import PastOrders from "./pages/PastOrders";
+import PastOrder from "./pages/PastOrder";
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem("id_token")) {
@@ -82,9 +83,6 @@ ReactDOM.render(
             <ProtectedRoute exact path="/app-preview">
               <AppetizerPreview />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/appetizer-list">
-              <AppetizerList />
-            </ProtectedRoute>
             <ProtectedRoute exact path="/my-orders">
               <ViewCart />
             </ProtectedRoute>
@@ -102,6 +100,12 @@ ReactDOM.render(
             </ProtectedRoute>
             <ProtectedRoute exact path="/thank-you">
               <ThankYou />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/past-orders">
+              <PastOrders />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/past-order">
+              <PastOrder />
             </ProtectedRoute>
           </Switch>
         </div>

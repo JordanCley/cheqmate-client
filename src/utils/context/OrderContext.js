@@ -17,6 +17,8 @@ const OrderContextProvider = props => {
   const [tipMethodState, setTipMethodState] = useState({
     tipMethod: "radioTip"
   });
+  const [pastOrderState, setPastOrderState] = useState([]);
+  const [viewPastOrderState, setViewPastOrderState] = useState({});
 
   const [products, setProducts] = useState([]);
   const [viewAppetizerState, setViewAppetizerState] = useState({});
@@ -39,6 +41,15 @@ const OrderContextProvider = props => {
     item = item[0];
     setViewAppetizerState(item);
   };
+
+  const viewOnePastOrder = id => {
+    let item = pastOrderState.filter(order => {
+      return order._id === id;
+    });
+    item = item[0];
+    setViewPastOrderState(item);
+  };
+
 
   const resetTipMethod = () => {
     setTipMethodState({ tipMethod: "radioTip" });
@@ -157,7 +168,7 @@ const OrderContextProvider = props => {
   // viewing all past orders for user
   const viewAllOrdersClick = () => {
     return API.viewAllOrders()
-      .then(res => console.log(res.data))
+      .then(res => setPastOrderState(res.data))
       .catch(err => alert(err));
   };
 
@@ -191,10 +202,13 @@ const OrderContextProvider = props => {
     <OrderContext.Provider
       value={{
         orderState,
+        pastOrderState,
         createOrderClick,
         viewOrderToPayClick,
         viewAllOrdersClick,
         updateIsOrderPaidClick,
+        viewPastOrderState,
+        viewOnePastOrder,
         products,
         addItemToCart,
         removeItemFromCart,

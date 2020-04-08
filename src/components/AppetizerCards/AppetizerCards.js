@@ -4,7 +4,6 @@ import Spinner from "react-bootstrap/Spinner";
 import { OrderContext } from "../../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import "./AppetizerCards.css";
 import "../../index.css";
 
 function AppetizerCards(props) {
@@ -12,7 +11,7 @@ function AppetizerCards(props) {
     products,
     addItemToCart,
     removeItemFromCart,
-    viewOneAppetizer
+    viewOneAppetizer,
   } = useContext(OrderContext);
 
   return (
@@ -24,12 +23,12 @@ function AppetizerCards(props) {
         </Spinner>
       ) : (
         //mapping through the array of info I got from the API call
-        products.map(appetizer => {
+        products.map((appetizer) => {
           return (
             // clicking on the card itself will make the page change to the
             // preview
             <Card
-            className={"cardBG"}
+              className={"cardBG"}
               bg={"Secondary"}
               style={{ width: "18rem" }}
               onClick={() => viewOneAppetizer(appetizer._id)}
@@ -37,15 +36,20 @@ function AppetizerCards(props) {
             >
               {/* just basic bootstrap card */}
               <Card.Img variant="top" src={appetizer.imageURL} />
-              <Card.Body >
+              <Card.Body>
                 <Card.Title>{appetizer.productName}</Card.Title>
                 <Card.Text>${appetizer.price}</Card.Text>
                 <Link to="/app-preview"> View Item </Link>
                 <br />
-                <Button onClick={() => addItemToCart(appetizer._id)}>
+                <Button
+                  onClick={() => addItemToCart(appetizer._id)}
+                >
                   Add to cart
                 </Button>
-                <Button onClick={() => removeItemFromCart(appetizer._id)}>
+                <Button
+                  className={"button"}
+                  onClick={() => removeItemFromCart(appetizer._id)}
+                >
                   Remove from cart
                 </Button>
               </Card.Body>

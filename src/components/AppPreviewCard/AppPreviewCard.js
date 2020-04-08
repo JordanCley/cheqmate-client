@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Row } from "react-bootstrap";
 import { OrderContext } from "../../utils/context/OrderContext";
 
-function IndividualCardRender() {
+function AppPreviewCard() {
   const { viewAppetizerState, addItemToCart } = useContext(OrderContext);
 
   return (
@@ -38,4 +38,4 @@ function IndividualCardRender() {
   );
 }
 
-export default IndividualCardRender;
+export default AppPreviewCard;
