@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../../utils/context/OrderContext.js";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./OrderField.css";
@@ -12,34 +12,32 @@ function OrderField() {
 
   return (
     <Container fluid className="orderfield-container">
-      {orderState.items.map(product => (
-        <Row className="text-center mt-4 mb-4 list-orders" key={product._id}>
-          <div className="order-item">
-            <span>{product.productName}</span>
-          </div>
-          <div className="order-item">
-          <div className="order-item">
-            <span>${product.quantity * product.price}</span>
-          </div>
-            <button
+      {orderState.items.map((product) => (
+      <Table striped bordered hover variant="dark">
+        <tbody>
+          <tr key={product._id}>
+            <td>{product.productName}</td>
+            <td>
+              <button onClick={() => decrementQuantity(product._id)}>
+              <FontAwesomeIcon icon={faAngleDown} />
+              </button>
+            </td>
+            <td>
+              <button
               onClick={() => addItemToCart(product._id)}
               className="left-button"
-            >
-              <FontAwesomeIcon icon={faAngleUp} />
-            </button>
-            <span>{product.quantity}</span>
-            <button onClick={() => decrementQuantity(product._id)}>
-              <FontAwesomeIcon icon={faAngleDown} />
-            </button>
-          </div>
-        </Row>
+              >
+                <FontAwesomeIcon icon={faAngleUp} />
+              </button>
+            </td>
+            <td>{product.quantity}</td>
+            <td>${product.quantity * product.price}</td>
+          </tr>
+        </tbody>
+      </Table>
       ))}
-
-      <Col lg={4}>
-        <span>Total: ${orderState.total}</span>
-      </Col>
     </Container>
-  );
+  )
 }
 
 export default OrderField;

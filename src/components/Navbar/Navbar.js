@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import { OrderContext } from "../../utils/context/OrderContext";
 import logo from "../../assets/cheqmate-logo.svg";
 import "../../index.css";
 
@@ -56,19 +57,40 @@ const goBackBtn = () => {
 };
 
 function Navbar() {
+  const { orderState } = useContext(OrderContext);
+  let sum = 0;
+
+  const addQuantity = () => {
+    orderState.items.filter(num => {
+      sum += num.quantity;
+      console.log(num.quantity)
+      console.log(sum);
+      return sum;
+    })
+  }
+
+  addQuantity();
+
   return (
     <nav className="navbar nav-sign-up navbar-expand navbar-dark bg-primary">
       <div className="container inner-nav-container">
-        {/* <Link> */}
-          <span id="left-arrow-icon" onClick={goBackBtn}>
-            <FontAwesomeIcon icon={faChevronCircleLeft} />
-          </span>
-        {/* </Link> */}
+        <span id="left-arrow-icon" onClick={goBackBtn}>
+          <FontAwesomeIcon icon={faChevronCircleLeft} />
+        </span>
+
         <Link className="navbar-brand" to="/">
           <img src={logo} className="cheqmate-logo" alt="cheqmate logo" />
         </Link>
-        <Link className="navbar-brand icon" id="shopping-cart-icon" to="/my-orders">
-          <FontAwesomeIcon icon={faShoppingCart} />
+        <Link
+          className="navbar-brand icon"
+          id="shopping-cart-icon"
+          to="/my-orders"
+        >
+          {orderState.items.length !== 0 ? (
+            <div>{sum}</div>
+          ) : (
+            <FontAwesomeIcon icon={faShoppingCart} />
+          )}
         </Link>
         <Link
           className="navbar-brand icon"

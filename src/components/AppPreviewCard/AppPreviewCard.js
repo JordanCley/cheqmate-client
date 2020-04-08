@@ -5,7 +5,6 @@ import { OrderContext } from "../../utils/context/OrderContext";
 
 function IndividualCardRender() {
   const { viewAppetizerState, addItemToCart } = useContext(OrderContext);
-  console.log(viewAppetizerState);
 
   return (
     <div className="appetizer-preview-card">

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Container, Col, Table } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "../index.css";
 import { OrderContext } from "../utils/context/OrderContext";
@@ -7,28 +7,29 @@ import { OrderContext } from "../utils/context/OrderContext";
 function ConfirmPay() {
   const history = useHistory();
   const { openCheckState, updateIsOrderPaidClick } = useContext(OrderContext);
-  const [isLoading, setIsLoading] = useState(false)
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const handlePayClick = () => {
     setIsLoading(true);
-    updateIsOrderPaidClick()
-      .then(() => history.push("/thank-you"))
-  }
+    updateIsOrderPaidClick().then(() => history.push("/thank-you"));
+  };
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
   return (
-    <div className="confirm-pay-page bg-table-in-vintage-restaurant confirm-pay">
+    <Container fluid className="orderfield-container">
       {openCheckState.items.length ? (
-        <div>
-          {openCheckState.items.map(product => (
-            <Row key={product._id} className="receipt-items">
-              <p>{product.productName}</p>
-              <p>{product.quantity}</p>
-              <p>{product.price}</p>
-            </Row>
-          ))}
-        </div>
+        openCheckState.items.map((product) => (
+          <Table striped bordered hover variant="dark">
+            <tbody>
+              <tr key={product._id}>
+                <td>{product.productName}</td>
+                <td>{product.quantity}</td>
+                <td>{product.price}</td>
+              </tr>
+            </tbody>
+          </Table>
+        ))
       ) : (
         <p>No items in cart</p>
       )}
@@ -49,12 +50,10 @@ function ConfirmPay() {
       <Link to="/card-info">
         <Button className="left-button">Cancel</Button>
       </Link>
-      <Link >
-        <Button onClick={handlePayClick}>
-          Pay
-        </Button>
+      <Link>
+        <Button onClick={handlePayClick}>Pay</Button>
       </Link>
-    </div>
+    </Container>
   );
 }
 
