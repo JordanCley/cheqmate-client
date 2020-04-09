@@ -104,12 +104,12 @@ body {
   }
 
   #shopping-cart-icon {
-    margin-left: -5%;
-    padding-right: 5%;
+    margin-left: 1%;
+    padding-right: -3%;
   }
 
-  #creditcard-icon {
-    margin-right: 3px;
+  #numberCart {
+    margin-left: -4%;
   }
 
   .card {

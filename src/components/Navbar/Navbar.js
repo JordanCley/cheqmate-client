@@ -4,7 +4,7 @@ import { useAuth } from "../../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+// import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { OrderContext } from "../../utils/context/OrderContext";
 import logo from "../../assets/cheqmate-logo.svg";
 import "../../index.css";
@@ -57,7 +57,7 @@ const goBackBtn = () => {
 };
 
 function Navbar() {
-  const { orderState, openCheckState } = useContext(OrderContext);
+  const { orderState } = useContext(OrderContext);
   let sum = 0;
 
   const addQuantity = () => {
@@ -79,28 +79,22 @@ function Navbar() {
         <Link className="navbar-brand" to="/">
           <img src={logo} className="cheqmate-logo" alt="cheqmate logo" />
         </Link>
+
+        {orderState.items.length !== 0 ? (
+            <div id={"numberCart"}>{`(${sum})`}</div>) : (``)}
+
         <Link
           className="navbar-brand icon"
           id="shopping-cart-icon"
           to="/my-orders"
         >
-          {orderState.items.length !== 0 ? (
-            <div>{sum}</div>
-          ) : (
-            <FontAwesomeIcon icon={faShoppingCart} />
-          )}
+          <FontAwesomeIcon icon={faShoppingCart} />
         </Link>
-        {openCheckState.items ? (
-          <Link
-            className="navbar-brand icon"
-            id="creditcard-icon"
-            to="/card-info"
-          >
-            <FontAwesomeIcon icon={faCreditCard} />
-          </Link>
-        ) : (
+
+       
+        {/* <Link className="navbar-brand icon creditcard-icon" to="/card-info">
           <FontAwesomeIcon icon={faCreditCard} />
-        )}
+        </Link> */}
 
         <NavLinks />
       </div>

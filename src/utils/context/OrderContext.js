@@ -3,7 +3,7 @@ import API from "../API/API";
 
 export const OrderContext = createContext();
 
-const OrderContextProvider = props => {
+const OrderContextProvider = (props) => {
   const initialState = {
     items: [],
     totalItems: 0,
@@ -11,12 +11,12 @@ const OrderContextProvider = props => {
     tableNum: 0,
     gratuity: 0,
     tax: 9.9,
-    grandTotal: 0
+    grandTotal: 0,
   };
 
   const [openCheckState, setOpenCheckState] = useState({});
   const [tipMethodState, setTipMethodState] = useState({
-    tipMethod: "radioTip"
+    tipMethod: "radioTip",
   });
   const [pastOrderState, setPastOrderState] = useState([]);
   const [viewPastOrderState, setViewPastOrderState] = useState({});
@@ -28,37 +28,35 @@ const OrderContextProvider = props => {
   // added another useEffect hook to grab appetizers from db
   useEffect(() => {
     API.getProducts()
-      .then(res => {
+      .then((res) => {
         setProducts(res.data);
       })
-      .catch(err => alert(err));
+      .catch((err) => alert(err));
   }, []);
 
-
-  const viewOneAppetizer = id => {
-    let item = products.filter(product => {
+  const viewOneAppetizer = (id) => {
+    let item = products.filter((product) => {
       return product._id === id;
     });
     item = item[0];
     setViewAppetizerState(item);
   };
 
-  const viewOnePastOrder = id => {
-    let item = pastOrderState.filter(order => {
+  const viewOnePastOrder = (id) => {
+    let item = pastOrderState.filter((order) => {
       return order._id === id;
     });
     item = item[0];
     setViewPastOrderState(item);
   };
 
-
   const resetTipMethod = () => {
     setTipMethodState({ tipMethod: "radioTip" });
   };
 
   // Add item to cart or increment quantity of product
-  const addItemToCart = id => {
-    let item = products.filter(product => {
+  const addItemToCart = (id) => {
+    let item = products.filter((product) => {
       return product._id === id;
     });
     item = item[0];
@@ -67,25 +65,25 @@ const OrderContextProvider = props => {
     } else {
       item.quantity++;
     }
-    let arr = orderState.items.filter(listItem => {
+    let arr = orderState.items.filter((listItem) => {
       return listItem._id !== id;
     });
     setOrderState({ ...orderState, items: [...arr, item] });
   };
 
   // Remove item from cart
-  const removeItemFromCart = id => {
+  const removeItemFromCart = (id) => {
     if (!orderState.items.length) {
       alert("There are no items in cart");
     } else {
-      let item = products.filter(product => {
+      let item = products.filter((product) => {
         return product._id === id;
       });
       item = item[0];
 
       item.quantity = 0;
 
-      let arr = orderState.items.filter(listItem => {
+      let arr = orderState.items.filter((listItem) => {
         return listItem._id !== id;
       });
       setOrderState({ ...orderState, items: [...arr] });
@@ -93,8 +91,8 @@ const OrderContextProvider = props => {
   };
 
   // decrement item quantity
-  const decrementQuantity = id => {
-    let item = products.filter(product => {
+  const decrementQuantity = (id) => {
+    let item = products.filter((product) => {
       return product._id === id;
     });
     item = item[0];
@@ -104,15 +102,14 @@ const OrderContextProvider = props => {
       item.quantity--;
     }
 
-    let arr = orderState.items.filter(listItem => {
+    let arr = orderState.items.filter((listItem) => {
       return listItem._id !== id;
     });
     setOrderState({ ...orderState, items: [...arr, item] });
   };
 
   // viewing current check
-  const viewOrderToPayClick = () => {
-  };
+  const viewOrderToPayClick = () => {};
 
   //  click event updating isPaid to true after payment
   const updateIsOrderPaidClick = () => {
@@ -127,40 +124,42 @@ const OrderContextProvider = props => {
       openCheckState.grandTotal
     )
       .then(() => setOpenCheckState({}))
-      .then(() => setOrderState(initialState))
-      .catch(err => alert(err));
+      .then(() => setOrderState({ items: [], ...initialState }))
+      .catch((err) => alert(err));
   };
 
   // click event to create new order
   const createOrderClick = () => {
-    return API.createOrder(
-      orderState.items,
-      orderState.tableNum,
-      orderState.totalItems,
-      orderState.total,
-      orderState.gratuity,
-      orderState.tax,
-      orderState.grandTotal
-    )
-      .then(res => {
-        // setting openCheckState with newly created order
-        setOpenCheckState(res.data);
-      })
-      // .then(() => setOrderState(initialState))
-      .catch(err => alert(err));
+    return (
+      API.createOrder(
+        orderState.items,
+        orderState.tableNum,
+        orderState.totalItems,
+        orderState.total,
+        orderState.gratuity,
+        orderState.tax,
+        orderState.grandTotal
+      )
+        .then((res) => {
+          // setting openCheckState with newly created order
+          setOpenCheckState(res.data);
+        })
+        // .then(() => setOrderState(initialState))
+        .catch((err) => alert(err))
+    );
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setOrderState({ ...orderState, [name]: value });
   };
 
-  const handleTipChange = event => {
+  const handleTipChange = (event) => {
     const { name, value } = event.target;
     setOpenCheckState({ ...openCheckState, [name]: value });
   };
 
-  const handleTipMethodChange = event => {
+  const handleTipMethodChange = (event) => {
     const { name, value } = event.target;
     setTipMethodState({ [name]: value });
   };
@@ -168,13 +167,13 @@ const OrderContextProvider = props => {
   // viewing all past orders for user
   const viewAllOrdersClick = () => {
     return API.viewAllOrders()
-      .then(res => setPastOrderState(res.data))
-      .catch(err => alert(err));
+      .then((res) => setPastOrderState(res.data))
+      .catch((err) => alert(err));
   };
 
   // ANTHONY - added functions to calculate subTotal. These are to render state
   useEffect(() => {
-    const subTotal = array => {
+    const subTotal = (array) => {
       let itemTotal = 0;
       for (let i = 0; i < array.length; i++) {
         itemTotal = itemTotal + array[i].price * array[i].quantity;
@@ -182,16 +181,16 @@ const OrderContextProvider = props => {
       setOrderState({ ...orderState, total: itemTotal });
     };
     subTotal(orderState.items);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderState.items]);
 
   // ANTHONY - added functions to calculate grandTotal. These are to render state
   useEffect(() => {
     calculateGrandTotal(openCheckState);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openCheckState.gratuity]);
 
-  const calculateGrandTotal = state => {
+  const calculateGrandTotal = (state) => {
     let tipTotal = state.total * (state.gratuity / 100);
     let taxTotal = state.total * (state.tax / 100);
     let totalSum = state.total + (tipTotal + taxTotal);
@@ -222,7 +221,7 @@ const OrderContextProvider = props => {
         handleTipChange,
         setOpenCheckState,
         tipMethodState,
-        handleTipMethodChange
+        handleTipMethodChange,
       }}
     >
       {props.children}
