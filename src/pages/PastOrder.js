@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
-import { Container, Table, Popover, Button, OverlayTrigger } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Popover,
+  Button,
+  OverlayTrigger,
+} from "react-bootstrap";
 
 function PastOrder() {
   const { viewPastOrderState } = useContext(OrderContext);
@@ -9,8 +15,8 @@ function PastOrder() {
     <Popover id="popover-basic">
       <Popover.Title as="h3">Popover right</Popover.Title>
       <Popover.Content>
-        {viewPastOrderState.items.map(item => (
-         <p>{item.productName}</p>
+        {viewPastOrderState.items.map((item) => (
+          <p>{`${item.productName} (${item.quantity})`}</p>
         ))}
       </Popover.Content>
     </Popover>
@@ -18,12 +24,12 @@ function PastOrder() {
 
   const ItemPopOver = () => (
     <OverlayTrigger trigger="click" placement="top" overlay={popover}>
-      <Button size={"lg"} variant="link">{viewPastOrderState.items.length}</Button>
+      <Button size={"lg"} variant="link">
+        {viewPastOrderState.totalItems}
+      </Button>
     </OverlayTrigger>
   );
-  
 
-  console.log(viewPastOrderState);
   return (
     <Container>
       <h1>Past Order</h1>
@@ -39,7 +45,9 @@ function PastOrder() {
           </tr>
           <tr>
             <th>Items</th>
-            <td><ItemPopOver /></td>
+            <td>
+              <ItemPopOver />
+            </td>
           </tr>
           <tr>
             <th>Gratutity</th>

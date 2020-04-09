@@ -6,6 +6,7 @@ export const OrderContext = createContext();
 const OrderContextProvider = props => {
   const initialState = {
     items: [],
+    totalItems: 0,
     total: 0,
     tableNum: 0,
     gratuity: 0,
@@ -111,7 +112,6 @@ const OrderContextProvider = props => {
 
   // viewing current check
   const viewOrderToPayClick = () => {
-    console.log(openCheckState);
   };
 
   //  click event updating isPaid to true after payment
@@ -119,6 +119,7 @@ const OrderContextProvider = props => {
     return API.updateIsOrderPaid(
       openCheckState._id,
       openCheckState.items,
+      openCheckState.totalItems,
       openCheckState.tableNum,
       openCheckState.total,
       openCheckState.gratuity,
@@ -135,6 +136,7 @@ const OrderContextProvider = props => {
     return API.createOrder(
       orderState.items,
       orderState.tableNum,
+      orderState.totalItems,
       orderState.total,
       orderState.gratuity,
       orderState.tax,
@@ -151,13 +153,11 @@ const OrderContextProvider = props => {
   const handleInputChange = event => {
     const { name, value } = event.target;
     setOrderState({ ...orderState, [name]: value });
-    console.log(orderState.gratutity);
   };
 
   const handleTipChange = event => {
     const { name, value } = event.target;
     setOpenCheckState({ ...openCheckState, [name]: value });
-    console.log(openCheckState.gratutity);
   };
 
   const handleTipMethodChange = event => {

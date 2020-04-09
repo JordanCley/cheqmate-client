@@ -4,7 +4,6 @@ import { OrderContext } from "../../utils/context/OrderContext";
 
 function ConfirmPaymentCard() {
     const { orderState } = useContext(OrderContext);
-    console.log(orderState.grandTotal);
 
     return (
         <div>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function PastOrders() {
   const { pastOrderState, viewOnePastOrder } = useContext(OrderContext);
   let number = 0;
+
   return (
     <Container>
       <h1>Past Orders</h1>
@@ -28,8 +29,9 @@ function PastOrders() {
               >
                 <td>{(number += 1)}</td>
               </Link>
+              
               <td>{order.tableNum}</td>
-              <td>{order.items.length}</td>
+              <td>{order.totalItems}</td>
               <td>{order.gratuity}%</td>
               <td>${order.grandTotal.toFixed(2)}</td>
             </tr>

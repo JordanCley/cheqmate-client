@@ -8,10 +8,11 @@ export default {
   getProducts: () => {
     return axios.get("/api/products");
   },
-  createOrder: (items, tableNum, total, gratuity, tax, grandTotal) => {
+  createOrder: (items, totalItems, tableNum, total, gratuity, tax, grandTotal) => {
     return axios.post("/api/order/new", {
       items: items,
       tableNum: tableNum,
+      totalItems: totalItems,
       total: total,
       gratuity: gratuity,
       tax: tax,
@@ -19,10 +20,10 @@ export default {
     });
   },
   // updating isPaid to true after payment
-  updateIsOrderPaid: (id, items, tableNum, total, gratuity, tax, grandTotal) => {
-    console.log(id);
+  updateIsOrderPaid: (id, items, totalItems, tableNum, total, gratuity, tax, grandTotal) => {
     return axios.put(`/api/order/${id}`, {items: items,
     tableNum: tableNum,
+    totalItems: totalItems,
     total: total,
     gratuity: gratuity,
     tax: tax,
