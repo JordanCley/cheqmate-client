@@ -6,19 +6,28 @@ import { OrderContext } from "../utils/context/OrderContext";
 
 function ConfirmPay() {
   const history = useHistory();
-  const { openCheckState, updateIsOrderPaidClick, orderState } = useContext(
-    OrderContext
-  );
+  const {
+    openCheckState,
+    updateIsOrderPaidClick,
+    orderState,
+    initialState,
+    setOrderState
+  } = useContext(OrderContext);
   const [isLoading, setIsLoading] = useState(false);
   console.log(orderState);
+
   const handlePayClick = () => {
     setIsLoading(true);
-    updateIsOrderPaidClick().then(() => history.push("/thank-you"));
+    updateIsOrderPaidClick()
+    .then(() => setOrderState(initialState))
+    .then(() => history.push("/thank-you"));
     console.log(orderState);
   };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
   return (
     <Container fluid className="orderfield-container">
       {openCheckState.items.length ? (
@@ -53,9 +62,7 @@ function ConfirmPay() {
         <Button className="button">Cancel</Button>
       </Link>
       <Link>
-        <Button onClick={handlePayClick}>
-          Pay
-        </Button>
+        <Button onClick={handlePayClick}>Pay</Button>
       </Link>
     </Container>
   );

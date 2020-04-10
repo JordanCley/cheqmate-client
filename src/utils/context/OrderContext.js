@@ -20,8 +20,8 @@ const OrderContextProvider = (props) => {
   });
   const [pastOrderState, setPastOrderState] = useState([]);
   const [viewPastOrderState, setViewPastOrderState] = useState({});
-
-  const [products, setProducts] = useState([]);
+  const [isPaidState, setIsPaidState] = useState(false);
+  const [productsState, setProductsState] = useState([]);
   const [viewAppetizerState, setViewAppetizerState] = useState({});
   const [orderState, setOrderState] = useState(initialState);
 
@@ -29,13 +29,13 @@ const OrderContextProvider = (props) => {
   useEffect(() => {
     API.getProducts()
       .then((res) => {
-        setProducts(res.data);
+        setProductsState(res.data);
       })
       .catch((err) => alert(err));
-  }, []);
+  }, [isPaidState]);
 
   const viewOneAppetizer = (id) => {
-    let item = products.filter((product) => {
+    let item = productsState.filter((product) => {
       return product._id === id;
     });
     item = item[0];
@@ -56,19 +56,21 @@ const OrderContextProvider = (props) => {
 
   // Add item to cart or increment quantity of product
   const addItemToCart = (id) => {
-    let item = products.filter((product) => {
+    let item = productsState.filter((product) => {
       return product._id === id;
     });
+
     item = item[0];
+    // item.quantity++;
     if (!item.quantity) {
       item.quantity = 1;
     } else {
       item.quantity++;
     }
-    let arr = orderState.items.filter((listItem) => {
+    let orderItemsArray = orderState.items.filter((listItem) => {
       return listItem._id !== id;
     });
-    setOrderState({ ...orderState, items: [...arr, item] });
+    setOrderState({ ...orderState, items: [...orderItemsArray, item] });
   };
 
   // Remove item from cart
@@ -76,7 +78,7 @@ const OrderContextProvider = (props) => {
     if (!orderState.items.length) {
       alert("There are no items in cart");
     } else {
-      let item = products.filter((product) => {
+      let item = productsState.filter((product) => {
         return product._id === id;
       });
       item = item[0];
@@ -92,7 +94,7 @@ const OrderContextProvider = (props) => {
 
   // decrement item quantity
   const decrementQuantity = (id) => {
-    let item = products.filter((product) => {
+    let item = productsState.filter((product) => {
       return product._id === id;
     });
     item = item[0];
@@ -123,8 +125,8 @@ const OrderContextProvider = (props) => {
       openCheckState.tax,
       openCheckState.grandTotal
     )
+      .then(() => setIsPaidState(true))
       .then(() => setOpenCheckState({}))
-      .then(() => setOrderState({ items: [], ...initialState }))
       .catch((err) => alert(err));
   };
 
@@ -140,11 +142,8 @@ const OrderContextProvider = (props) => {
         orderState.tax,
         orderState.grandTotal
       )
-        .then((res) => {
-          // setting openCheckState with newly created order
-          setOpenCheckState(res.data);
-        })
-        // .then(() => setOrderState(initialState))
+        .then((res) => setOpenCheckState(res.data))
+        .then(() => setIsPaidState(false))
         .catch((err) => alert(err))
     );
   };
@@ -200,6 +199,7 @@ const OrderContextProvider = (props) => {
   return (
     <OrderContext.Provider
       value={{
+        initialState,
         orderState,
         pastOrderState,
         createOrderClick,
@@ -208,7 +208,7 @@ const OrderContextProvider = (props) => {
         updateIsOrderPaidClick,
         viewPastOrderState,
         viewOnePastOrder,
-        products,
+        productsState,
         addItemToCart,
         removeItemFromCart,
         decrementQuantity,
@@ -222,6 +222,7 @@ const OrderContextProvider = (props) => {
         setOpenCheckState,
         tipMethodState,
         handleTipMethodChange,
+        setOrderState,
       }}
     >
       {props.children}

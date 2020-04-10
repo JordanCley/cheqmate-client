@@ -8,7 +8,7 @@ import "../../index.css";
 
 function AppetizerCards(props) {
   const {
-    products,
+    productsState,
     addItemToCart,
     removeItemFromCart,
     viewOneAppetizer,
@@ -17,13 +17,13 @@ function AppetizerCards(props) {
   return (
     <div>
       {/* this is just a spinner for when the data is still loading */}
-      {products.length === 0 ? (
+      {productsState.length === 0 ? (
         <Spinner animation="border" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
       ) : (
         //mapping through the array of info I got from the API call
-        products.map((appetizer) => {
+        productsState.map((appetizer) => {
           return (
             // clicking on the card itself will make the page change to the
             // preview
