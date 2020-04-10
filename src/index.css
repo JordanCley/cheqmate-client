@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #2d3436; 
   color: whitesmoke; 
   margin: 0;
@@ -7,9 +7,9 @@ body {
   font-weight: 600;
   text-align: center;
   height: 100vh;
-}
+} */
 
-.cardBG {
+/* .cardBG {
   background-color: #2d3436;
   color: whitesmoke !important;
 }
@@ -47,25 +47,48 @@ body {
     font-size: medium;
   }
 }
-
+ */
 
 
 /* ==============================NAVBAR============================== */
 
-.nav-sign-up {
-  position: relative;
+ .nav {
   background-color: #e17055 !important;
-  width: 100vw;
 }
 
 .cheqmate-logo {
   position: relative;
   height: 3.5vh;
-  width: 30vw;
-  margin-left: -30%;
+  width: 25vw;
+  margin-right: -10px;
+  margin-left: -10px;
   z-index: 1;
 }
 
+/* IPad */
+@media only screen and (min-width: 768px) {
+  .cheqmate-logo {
+    position: relative;
+    height: 3.5vh;
+    width: 25vw;
+    margin-right: 500px;
+    margin-left: 0px;
+    z-index: 1;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1280px) {
+  .cheqmate-logo {
+    position: relative;
+    height: 3.5vh;
+    width: 25vw;
+    margin-right: 600px;
+    margin-left: -300px;
+    z-index: 1;
+  }
+}
+/*
 .inner-navbar {
   color: #e17055;
   background-color: #e17055;
@@ -118,10 +141,10 @@ body {
     margin: auto;
     color: #2d3436;
   }
-}
+} */
 
 /* ==============================BUTTONS============================== */
-.go-back-button {
+/* .go-back-button {
   background-color: #e17055;
   border: solid 1px #0984e3 !important;
   color: whitesmoke;
@@ -152,12 +175,12 @@ body {
     width: 7rem;
   }
 }
-
+ */
 
 
 /* ==============================APPETIZER-PREVIEW-PAGE==============================*/
 
-.appetizer-preview-page::after {
+/* .appetizer-preview-page::after {
   content: "";
   position: fixed;
   top: 0px;
@@ -183,11 +206,11 @@ body {
   .profile-page {
     margin-top: 25%;
   }
-}
+} */
 
 /* ==============================APPETIZER-PREVIEW-CARD-COMPONENT==============================*/
 
-.appetizer-preview-card {
+/* .appetizer-preview-card {
   margin-top: 12.5%;
 }
 
@@ -199,21 +222,14 @@ body {
   margin-top: 10%;
 }
 
-/* .appetizer-preview-add-to-cart-button {
-  margin-right: 1%;
-}
-
-.appetizer-preview-back-to-menu-button {
-  margin-left: 1%;
-} */
 
 .appetizer-preview-buttons-row {
   display: inline-block;
-}
+} */
 
 
 /*==============================PROFILE PAGE LAYOUT==============================x  */
-.profile-page {
+/* .profile-page {
   margin-top: 5%;
 }
 .profile-page-button-margin {
@@ -230,20 +246,20 @@ body {
   width: 10rem;
   color: whitesmoke;
   background-color: #e17055;
-}
+} */
 
 /* ==============================SIGN-UP && LOGIN-PAGE==============================*/
-.sign-up-page {
+/* .sign-up-page {
   margin-top: 20%;
 }
 .sign-up-page-component {
   margin-top: 10%;
-}
+} */
 
 /* ==============================APPETIZER-PREVIEW-PAGE==============================*/
 
 /* VIEWCHECK-PAGE-BUTTON */
-.view-check-page-button {
+/* .view-check-page-button {
   margin-top: 10%;
 }
 
@@ -269,3 +285,106 @@ body {
 .confirm-pay-buttons {
   margin-top: 20px;
 }
+
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+  margin-bottom: 5%;
+}
+
+.App-header {
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+  margin-top: 5%;
+}
+
+.go-to-profile-button {
+  background-color: #0984e3 !important;
+}
+
+.logout-button {
+  background-color: #e17055 !important;
+}
+
+.btn-primary {
+  background-color: #6bb556;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width: 650px) {
+
+  .App::after {
+    content: "";
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    opacity: 0.5;
+    z-index: -1;
+    background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: medium;
+  }
+
+  .App-header {
+    height: 50%;
+    width: 103%; 
+    padding: 20px;
+    color: white;
+  }
+
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+    margin-bottom: 15%;
+  }
+
+  .App-intro {
+    font-size: large;
+    margin-top: -12%; 
+  }
+
+  h2 {
+    font-size: x-large;
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+}
+
+.App::after {
+  content: "";
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  opacity: 0.5;
+  z-index: -1;
+  background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: medium;
+}
+
+.App::after {
+  background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
+}
+ */

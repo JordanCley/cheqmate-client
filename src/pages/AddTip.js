@@ -1,11 +1,11 @@
 import React from "react";
-import AddTipRadios from "../components/AddTipRadios/AddTipRadios";
+import AddTipComponent from "../components/AddTipComponent";
 import "../index.css";
 
 function AddTip() {
   return (
     <div className="add-tip-page bg-table-in-vintage-restaurant">
-      <AddTipRadios />
+      <AddTipComponent />
     </div>
   );
 }

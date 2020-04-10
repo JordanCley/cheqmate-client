@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { OrderContext } from "../../utils/context/OrderContext";
+import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
-import "./tablenumber.css";
 
-function TableNumberForm() {
+function TableInputComponent() {
   const { handleInputChange } = useContext(OrderContext);
 
   return (
@@ -34,4 +33,4 @@ function TableNumberForm() {
   );
 }
 
-export default TableNumberForm;
+export default TableInputComponent;

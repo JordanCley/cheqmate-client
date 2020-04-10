@@ -1,11 +1,11 @@
 import React from "react";
-import TableNumberForm from "../components/TableNumberForm.js";
+import TableInputComponent from "../components/TableInputComponent.js";
 import '../index.css';
 
 function TableNumber() {
     return(
         <div className="table-number-form-page bg-table-in-vintage-restaurant">
-            <TableNumberForm />
+            <TableInputComponent />
         </div>
     )
 }

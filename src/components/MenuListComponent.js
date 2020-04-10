@@ -1,11 +1,10 @@
 import React from "react";
 import { ListGroup, Tab, Row, Col } from "react-bootstrap";
-import AppetizerCards from "../AppetizerCards/AppetizerCards";
-import '../../index.css';
-import './MenuList.css';
+import AppetizerCardsComponent from "./AppetizerCardsComponent";
+import '../index.css';
 
 
-function MenuList() {
+function MenuListComponent() {
   // Setting the state of the page to be initially false
  
   return (
@@ -36,7 +35,7 @@ function MenuList() {
             <Tab.Content>
               <Tab.Pane id="appetizer-pane" eventKey="#Appetizers">
                 {/* this is where you put what you wish to populate the pane with */}
-                <AppetizerCards></AppetizerCards>
+                <AppetizerCardsComponent></AppetizerCardsComponent>
               </Tab.Pane>
               <Tab.Pane eventKey="#Drinks">{}</Tab.Pane>
               <Tab.Pane eventKey="#KidsMenu">{}</Tab.Pane>
@@ -49,4 +48,4 @@ function MenuList() {
   );
 }
 
-export default MenuList;
+export default MenuListComponent;

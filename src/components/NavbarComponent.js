@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-// import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
-import { OrderContext } from "../../utils/context/OrderContext";
-import logo from "../../assets/cheqmate-logo.svg";
-import "../../index.css";
+import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import { OrderContext } from "../utils/context/OrderContext";
+import logo from "../assets/cheqmate-logo.svg";
+import "../index.css";
 
 const createLink = ({ text, to, ...rest }) => {
   const className = "nav-link";
@@ -31,12 +31,39 @@ const createLink = ({ text, to, ...rest }) => {
 };
 
 function NavLinks() {
+  const { orderState, openCheckState } = useContext(OrderContext);
+  let sum = 0;
+
+  const addQuantity = () => {
+    orderState.items.filter((num) => {
+      sum += num.quantity;
+      return sum;
+    });
+  };
+
+  addQuantity();
+
   const { isLoggedIn, logout } = useAuth();
   let links = [];
   if (isLoggedIn) {
     links.push({ text: "Profile", to: "/profile" });
     links.push({ text: "Menu", to: "/menu" });
     links.push({ text: "Logout", onClick: () => logout() });
+    if (openCheckState.items) {
+      links.push({
+        text: <FontAwesomeIcon icon={faCreditCard} />,
+        to: "/card-input",
+      });
+    }
+
+    if (orderState.items.length !== 0) {
+      links.push({ text: `(${sum})`, to: "/view-cart" });
+    } else {
+      links.push({
+        text: <FontAwesomeIcon icon={faShoppingCart} />,
+        to: "/view-cart",
+      });
+    }
   } else {
     links.push({ text: "Signup", to: "/signup" });
     links.push({ text: "Login", to: "/login" });
@@ -56,45 +83,19 @@ const goBackBtn = () => {
   window.history.back();
 };
 
-function Navbar() {
-  const { orderState } = useContext(OrderContext);
-  let sum = 0;
-
-  const addQuantity = () => {
-    orderState.items.filter((num) => {
-      sum += num.quantity;
-      return sum;
-    });
-  };
-
-  addQuantity();
-
+function NavbarComponent() {
   return (
-    <nav className="navbar nav-sign-up navbar-expand navbar-dark bg-primary">
+    <nav className="navbar nav navbar-expand navbar-dark bg-primary" expand={"lg"}>
       <div className="container inner-nav-container">
-        <span id="left-arrow-icon" onClick={goBackBtn}>
-          <FontAwesomeIcon icon={faChevronCircleLeft} />
-        </span>
+       
 
         <Link className="navbar-brand" to="/">
           <img src={logo} className="cheqmate-logo" alt="cheqmate logo" />
         </Link>
 
-        {orderState.items.length !== 0 ? (
-            <div id={"numberCart"}>{`(${sum})`}</div>) : (``)}
-
-        <Link
-          className="navbar-brand icon"
-          id="shopping-cart-icon"
-          to="/my-orders"
-        >
-          <FontAwesomeIcon icon={faShoppingCart} />
-        </Link>
-
-       
-        {/* <Link className="navbar-brand icon creditcard-icon" to="/card-info">
-          <FontAwesomeIcon icon={faCreditCard} />
-        </Link> */}
+        <span id="left-arrow-icon" onClick={goBackBtn}>
+          <FontAwesomeIcon icon={faChevronCircleLeft} />
+        </span>
 
         <NavLinks />
       </div>
@@ -102,4 +103,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarComponent;

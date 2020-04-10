@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { OrderContext } from "../../utils/context/OrderContext.js";
+import { OrderContext } from "../utils/context/OrderContext.js";
 import { Container, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import "./OrderField.css";
 
-function OrderField() {
+function CartListComponent() {
   const { orderState, addItemToCart, decrementQuantity } = useContext(
     OrderContext
   );
@@ -40,4 +39,4 @@ function OrderField() {
   )
 }
 
-export default OrderField;
+export default CartListComponent;

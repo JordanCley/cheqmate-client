@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import '../index.css';
 
-function CardInfo() {
+function CardInput() {
   return (
     <div className="card-info-page bg-table-in-vintage-restaurant">
       <div>
@@ -52,4 +52,4 @@ function CardInfo() {
   );
 }
 
-export default CardInfo;
+export default CardInput;

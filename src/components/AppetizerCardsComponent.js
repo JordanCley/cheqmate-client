@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
-import { OrderContext } from "../../utils/context/OrderContext";
+import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import "../../index.css";
+import "../index.css";
 
-function AppetizerCards(props) {
+function AppetizerCardsComponent(props) {
   const {
     productsState,
     addItemToCart,
@@ -60,4 +60,4 @@ function AppetizerCards(props) {
     </div>
   );
 }
-export default AppetizerCards;
+export default AppetizerCardsComponent;

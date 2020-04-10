@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import OrderField from "../components/OrderField/OrderField";
+import CartListComponent from "../components/CartListComponent";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../index.css";
@@ -10,12 +10,12 @@ function ViewCart() {
 
   return (
     <div className="view-cart-page">
-      <OrderField />
+      <CartListComponent />
       <br />
       <Link to="/menu">
         <Button className={"button"}>Menu</Button>
       </Link>
-      <Link to="/view-check">
+      <Link to="/checkout">
         <Button onClick={createOrderClick}>
           Place Order
         </Button>

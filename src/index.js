@@ -20,20 +20,20 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import TableNumber from "./pages/TableNumber";
 import Menu from "./pages/Menu";
-import Checkout from "./pages/Checkout";
 import AppetizerPreview from "./pages/AppetizerPreview";
 import ViewCart from "./pages/ViewCart";
-import ViewCheck from "./pages/ViewCheck";
-import CardInfo from "./pages/CardInfo";
+import Checkout from "./pages/Checkout";
+import CardInput from "./pages/CardInput";
 import AddTip from "./pages/AddTip";
 import ConfirmPay from "./pages/ConfirmPay";
 import OrderContextProvider from "./utils/context/OrderContext";
 import ThankYou from "./pages/ThankYou"
-
-//Our Components
-import Navbar from "./components/Navbar";
 import PastOrders from "./pages/PastOrders";
 import PastOrder from "./pages/PastOrder";
+
+//Our Components
+import Navbar from "./components/NavbarComponent.js";
+
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem("id_token")) {
@@ -83,14 +83,11 @@ ReactDOM.render(
             <ProtectedRoute exact path="/app-preview">
               <AppetizerPreview />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/my-orders">
+            <ProtectedRoute exact path="/view-cart">
               <ViewCart />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/view-check">
-              <ViewCheck />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/card-info">
-              <CardInfo />
+            <ProtectedRoute exact path="/card-input">
+              <CardInput />
             </ProtectedRoute>
             <ProtectedRoute exact path="/add-tip">
               <AddTip />

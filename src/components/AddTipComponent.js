@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { OrderContext } from "../../utils/context/OrderContext";
+import { OrderContext } from "../utils/context/OrderContext";
 
-function AddTipRadios() {
-  const { openCheckState, resetTipMethod, handleTipChange, tipMethodState, handleTipMethodChange } = useContext(OrderContext);
+function AddTipComponent() {
+  const {
+    openCheckState,
+    resetTipMethod,
+    handleTipChange,
+    tipMethodState,
+    handleTipMethodChange,
+  } = useContext(OrderContext);
 
   return (
     <div>
@@ -101,4 +107,4 @@ function AddTipRadios() {
   );
 }
 
-export default AddTipRadios;
+export default AddTipComponent;

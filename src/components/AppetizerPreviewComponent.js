@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button, Row } from "react-bootstrap";
-import { OrderContext } from "../../utils/context/OrderContext";
+import { OrderContext } from "../utils/context/OrderContext";
 
-function AppPreviewCard() {
+function AppetizerPreviewComponent() {
   const { viewAppetizerState, addItemToCart } = useContext(OrderContext);
 
   return (
@@ -38,4 +38,4 @@ function AppPreviewCard() {
   );
 }
 
-export default AppPreviewCard;
+export default AppetizerPreviewComponent;
