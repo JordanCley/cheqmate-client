@@ -48,6 +48,8 @@ body {
   }
 }
 
+
+
 /* ==============================NAVBAR============================== */
 
 .nav-sign-up {
@@ -177,6 +179,10 @@ body {
   .appetizer-preview-page::after {
     background-size: 500px 900px;
   }
+
+  .profile-page {
+    margin-top: 25%;
+  }
 }
 
 /* ==============================APPETIZER-PREVIEW-CARD-COMPONENT==============================*/
@@ -208,7 +214,7 @@ body {
 
 /*==============================PROFILE PAGE LAYOUT==============================x  */
 .profile-page {
-  margin-top: 25%;
+  margin-top: 5%;
 }
 .profile-page-button-margin {
   margin-bottom: 18%;
