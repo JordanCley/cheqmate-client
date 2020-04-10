@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { OrderContext } from "../utils/context/OrderContext";
+import { Container, Button } from "react-bootstrap";
 
 function AddTipComponent() {
   const {
@@ -12,7 +13,7 @@ function AddTipComponent() {
   } = useContext(OrderContext);
 
   return (
-    <div>
+    <Container className={"main-Container"}>
       <div className="container">
         <div className="row mt-5">
           <div className="col-sm-12">
@@ -73,6 +74,7 @@ function AddTipComponent() {
               </form>
             ) : (
               <div>
+                <h3>Please enter a percentage.</h3>
                 <input
                   type="number"
                   onChange={handleTipChange}
@@ -84,26 +86,28 @@ function AddTipComponent() {
             )}
             <div className="form-group">
               <Link to="/card-info">
-                <button
+                <Button
+                  className={"success-Btn"}
                   onClick={resetTipMethod}
-                  className="btn mt-2 go-back-button"
+                  variant={"outline-danger mt-1"}
                 >
                   Back
-                </button>
+                </Button>
               </Link>
               <Link to="/confirm-pay">
-                <button
+                <Button
                   onClick={resetTipMethod}
-                  className="btn mt-2 go-forward-button"
+                  className={"success-Btn"}
+                  variant={"outline-success mt-1 ml-1"}
                 >
                   Continue
-                </button>
+                </Button>
               </Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

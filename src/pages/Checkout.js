@@ -1,32 +1,46 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext.js";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import CartListComponent from "../components/CartListComponent.js";
-import { Col } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import "../index.css";
 
 function Checkout() {
-  const { openCheckState } = useContext(OrderContext);
+  const { openCheckState, orderState } = useContext(OrderContext);
   let tax = openCheckState.total * (openCheckState.tax / 100);
   let subTotal = (openCheckState.total + tax).toFixed(2);
 
   return (
-    <div className="view-check-page bg-table-in-vintage-restaurant">
-      <CartListComponent />
-      <Col lg={4}>
-        <span>Tax: 9.9%</span>
-      </Col>
-      <Col lg={4}>
-        <span>Sub Total: ${subTotal}</span>
-      </Col>
-      <Link to="/my-orders">
-        <Button className="button">Go Back</Button>
+    <Container className={"main-Container"}>
+      {orderState.items.map((product) => (
+        <Table striped bordered hover variant="dark">
+          <tbody>
+            <tr key={product._id}>
+              <td>{product.productName}</td>
+
+              <td>{product.quantity}</td>
+
+              <td></td>
+              <td>${product.quantity * product.price}</td>
+            </tr>
+          </tbody>
+        </Table>
+      ))}
+
+      <h2>Tax: 9.9%</h2>
+
+      <h2>Sub Total: ${subTotal}</h2>
+
+      <Link to="/view-cart">
+        <Button className={"success-Btn"} variant="outline-danger">
+          Go Back
+        </Button>
       </Link>
       <Link to="/card-input">
-        <Button>Pay Now</Button>
+        <Button className={"success-Btn"} variant="outline-success ml-1">
+          Pay Now
+        </Button>
       </Link>
-    </div>
+    </Container>
   );
 }
 

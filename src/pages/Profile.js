@@ -3,6 +3,7 @@ import API from "./../utils/API/API";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import { OrderContext } from "../utils/context/OrderContext";
+import { Container, Button } from "react-bootstrap";
 import "../index.css";
 
 function Profile() {
@@ -23,22 +24,25 @@ function Profile() {
   }, [user]);
 
   return (
-    <div className="container Profile profile-page bg-table-in-vintage-restaurant">
+    <Container className="main-Container">
       <h1>Welcome!</h1>
       <span></span>
       <h1>{`${firstName} ${lastName}`}</h1>
       <Link to="past-orders">
-        <button
-          className="profile-page-button-containers"
+        <Button
+          className={"success-Btn"}
+          variant={"outline-success mx-2"}
           onClick={viewAllOrdersClick}
         >
           View All Past Orders
-        </button>
+        </Button>
       </Link>
       <Link to="/">
-        <button className="profile-page-button-containers">Go home</button>
+        <Button className={"success-Btn"} variant={"outline-success"}>
+          Go home
+        </Button>
       </Link>
-    </div>
+    </Container>
   );
 }
 

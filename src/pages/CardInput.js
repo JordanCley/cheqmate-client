@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import '../index.css';
+import "../index.css";
 
 function CardInput() {
   return (
-    <div className="card-info-page bg-table-in-vintage-restaurant">
+    <Container className={"main-Container"}>
       <div>
         <form>
           <div className="form-group">
@@ -31,6 +31,9 @@ function CardInput() {
               />
             </div>
           </div>
+
+          <br />
+
           <div className="form-group">
             <label htmlFor="formGroupExampleInput2">Name on Card</label>
             <input
@@ -42,13 +45,19 @@ function CardInput() {
           </div>
         </form>
       </div>
+
       <Link to="/view-check">
-        <Button className={"button"} >Back</Button>
+        <Button className={"success-Btn"} variant={"outline-danger mr-2"}>
+          Back
+        </Button>
       </Link>
+
       <Link to="/add-tip">
-        <Button >Continue</Button>
+        <Button className={"success-Btn"} variant={"outline-success"}>
+          Continue
+        </Button>
       </Link>
-    </div>
+    </Container>
   );
 }
 

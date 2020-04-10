@@ -1,39 +1,35 @@
 import React from "react";
-import { ListGroup, Tab, Row, Col } from "react-bootstrap";
+import { Container, ListGroup, Tab, Row, Col } from "react-bootstrap";
 import AppetizerCardsComponent from "./AppetizerCardsComponent";
-import '../index.css';
-
+import "../index.css";
 
 function MenuListComponent() {
   // Setting the state of the page to be initially false
- 
+
   return (
     //bootstrap react rendering for the menu tab and pane
-    <div>
-      <Tab.Container
-        id="list-group-tabs-example"
-        defaultActiveKey="#Appetizers"
-      >
+    <Container className={"mt-1"}>
+      <Tab.Container variant={"dark"} defaultActiveKey="#Appetizers">
         <Row>
-          <Col sm={4} >
+          <Col sm={4}>
             <ListGroup >
-              <ListGroup.Item action href="#Appetizers">
+              <ListGroup.Item variant={"dark"} action href="#Appetizers">
                 Appetizers
               </ListGroup.Item>
-              <ListGroup.Item action href="#Drinks">
+              <ListGroup.Item variant={"dark"} action href="#Drinks">
                 Drinks
               </ListGroup.Item>
-              <ListGroup.Item action href="#KidsMenu">
+              <ListGroup.Item variant={"dark"} action href="#KidsMenu">
                 Kid's Menu
               </ListGroup.Item>
-              <ListGroup.Item action href="#Deserts">
+              <ListGroup.Item variant={"dark"} action href="#Deserts">
                 Deserts
               </ListGroup.Item>
             </ListGroup>
           </Col>
           <Col sm={8}>
             <Tab.Content>
-              <Tab.Pane id="appetizer-pane" eventKey="#Appetizers">
+              <Tab.Pane className={"ml-3"} id="appetizer-pane" eventKey="#Appetizers">
                 {/* this is where you put what you wish to populate the pane with */}
                 <AppetizerCardsComponent></AppetizerCardsComponent>
               </Tab.Pane>
@@ -44,7 +40,7 @@ function MenuListComponent() {
           </Col>
         </Row>
       </Tab.Container>
-    </div>
+    </Container>
   );
 }
 

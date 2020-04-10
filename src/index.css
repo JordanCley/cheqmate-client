@@ -1,4 +1,4 @@
-/* body {
+body {
   background-color: #2d3436; 
   color: whitesmoke; 
   margin: 0;
@@ -7,14 +7,14 @@
   font-weight: 600;
   text-align: center;
   height: 100vh;
-} */
-
-/* .cardBG {
-  background-color: #2d3436;
-  color: whitesmoke !important;
 }
 
-.bg-table-in-vintage-restaurant::after {
+#appetizer-card {
+  width: 18rem;
+}
+
+
+/* .bg-table-in-vintage-restaurant::after {
   content: "";
   position: fixed;
   top: 0px;
@@ -28,10 +28,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   font-size: medium;
-}
+} */
 
 @media only screen and (max-width: 600px) {
-  .bg-table-in-vintage-restaurant::after {
+  /* .bg-table-in-vintage-restaurant::after {
     content: "";
     position: fixed;
     top: 0px;
@@ -45,18 +45,19 @@
     background-size: cover;
     background-repeat: no-repeat;
     font-size: medium;
-  }
+  } */
 }
- */
 
 
-/* ==============================NAVBAR============================== */
+.success-Btn {
+  background-color: #1f1e1e !important;
+}
 
  .nav {
-  background-color: #e17055 !important;
+  background-color: #ed5b37 !important;
 }
 
-.cheqmate-logo {
+.cheqmate-nav-logo {
   position: relative;
   height: 3.5vh;
   width: 25vw;
@@ -65,9 +66,21 @@
   z-index: 1;
 }
 
-/* IPad */
+  .appetizer-preview-image {
+    height: 100%;
+    width: 100%;
+  }
+  
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+  /* IPad */
 @media only screen and (min-width: 768px) {
-  .cheqmate-logo {
+  .cheqmate-nav-logo {
     position: relative;
     height: 3.5vh;
     width: 25vw;
@@ -79,7 +92,7 @@
 
 /* Desktop */
 @media only screen and (min-width: 1280px) {
-  .cheqmate-logo {
+  .cheqmate-nav-logo {
     position: relative;
     height: 3.5vh;
     width: 25vw;
@@ -87,247 +100,24 @@
     margin-left: -300px;
     z-index: 1;
   }
-}
-/*
-.inner-navbar {
-  color: #e17055;
-  background-color: #e17055;
-}
 
-.icon {
-  margin: auto;
-}
-
-#left-arrow-icon {
-  position: relative;
-  margin-left: -3%;
-  z-index: 3;
-}
-
-@media only screen and (max-width: 600px) {
-  .nav-sign-up {
-    background-color: #e17055 !important;
-    width: 103vw;
+  /* #app-Div {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  } */
+  #appetizer-card {
+    width: 50rem !important;
   }
 
-  .inner-nav-container {
-    width: 97vw;
-  }
-
-  .cheqmate-logo {
-    position: relative;
-    height: 3.5vh;
-    width: 30vw;
-    padding-left: 20%;
-    z-index: 1;
-  }
-
-  #left-arrow-icon {
-    position: relative;
-    margin-left: -3%;
-    z-index: 3;
-  }
-
-  #shopping-cart-icon {
-    margin-left: 1%;
-    padding-right: -3%;
-  }
-
-  #numberCart {
-    margin-left: -4%;
-  }
-
-  .card {
-    margin: auto;
-    color: #2d3436;
-  }
-} */
-
-/* ==============================BUTTONS============================== */
-/* .go-back-button {
-  background-color: #e17055;
-  border: solid 1px #0984e3 !important;
-  color: whitesmoke;
-  margin-right: 1rem;
-  width: 10rem;
-}
-
-.go-forward-button {
-  background-color: #6bb556;
-  border: solid 1px #0984e3;
-  color: whitesmoke;
-  margin-left: 1rem;
-  width: 10rem;
-}
-
-.button {
-  background-color: #e17055 !important;
-}
-
-@media only screen and (max-width: 600px) {
-  .go-back-button {
-    background-color: #e17055 !important;
-    border: solid 1px #d29ba5 !important;
-    width: 7rem;
-  }
-
-  .go-forward-button {
-    width: 7rem;
+  .app-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 200px;
+    margin-top: 0%;
+    margin-bottom: 10%;
   }
 }
- */
 
-
-/* ==============================APPETIZER-PREVIEW-PAGE==============================*/
-
-/* .appetizer-preview-page::after {
-  content: "";
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  opacity: 0.1;
-  z-index: -1;
-  background-image: url("./assets/selective-focus-photography-of-open-signage-1036857.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media only screen and (max-width: 600px) {
-  .appetizer-preview-image {
-    height: 100%;
-    width: 100%;
-  }
-  .appetizer-preview-page::after {
-    background-size: 500px 900px;
-  }
-
-  .profile-page {
-    margin-top: 25%;
-  }
-} */
-
-/* ==============================APPETIZER-PREVIEW-CARD-COMPONENT==============================*/
-
-/* .appetizer-preview-card {
-  margin-top: 12.5%;
-}
-
-.appetizer-preview-h1 {
-  margin-bottom: 12.5%;
-}
-
-.appetizer-preview-description {
-  margin-top: 10%;
-}
-
-
-.appetizer-preview-buttons-row {
-  display: inline-block;
-} */
-
-
-/*==============================PROFILE PAGE LAYOUT==============================x  */
-/* .profile-page {
-  margin-top: 5%;
-}
-.profile-page-button-margin {
-  margin-bottom: 18%;
-  margin-top: 18%;
-}
-.profile-page-button-containers {
-  margin-top: 10%;
-  border-radius: 10px;
-  border: solid 1px #d29ba5;
-  display: block;
-  margin: auto;
-  margin-bottom: 15%;
-  width: 10rem;
-  color: whitesmoke;
-  background-color: #e17055;
-} */
-
-/* ==============================SIGN-UP && LOGIN-PAGE==============================*/
-/* .sign-up-page {
-  margin-top: 20%;
-}
-.sign-up-page-component {
-  margin-top: 10%;
-} */
-
-/* ==============================APPETIZER-PREVIEW-PAGE==============================*/
-
-/* VIEWCHECK-PAGE-BUTTON */
-/* .view-check-page-button {
-  margin-top: 10%;
-}
-
-.receipt-items {
-  display: flex;
-  justify-content: space-around;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.confirm-pay {
-  margin-top: 35px;
-}
-
-.card-info-page {
-  margin-top: 35px;
-}
-
-.left-button {
-  margin-right: 20px;
-}
-
-.confirm-pay-buttons {
-  margin-top: 20px;
-}
-
-.App {
-  text-align: center;
-  height: 100vh;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-  margin-bottom: 5%;
-}
-
-.App-header {
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-  margin-top: 5%;
-}
-
-.go-to-profile-button {
-  background-color: #0984e3 !important;
-}
-
-.logout-button {
-  background-color: #e17055 !important;
-}
-
-.btn-primary {
-  background-color: #6bb556;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@media only screen and (max-width: 650px) {
-
-  .App::after {
+  #app-Container::after {
     content: "";
     position: fixed;
     top: 0px;
@@ -343,48 +133,21 @@
     font-size: medium;
   }
 
-  .App-header {
-    height: 50%;
-    width: 103%; 
-    padding: 20px;
-    color: white;
+  .main-Container {
+    margin-top: 5%;
   }
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+  
+  #app-Div {
+    margin-top: 10%;
     margin-bottom: 15%;
   }
 
-  .App-intro {
-    font-size: large;
-    margin-top: -12%; 
+  #app-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 100px;
   }
 
-  h2 {
-    font-size: x-large;
-    padding-right: 2%;
-    padding-left: 2%;
+  #app-Container {
+    text-align: center;
+    height: 100vh;
   }
-}
-
-.App::after {
-  content: "";
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  opacity: 0.5;
-  z-index: -1;
-  background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-size: medium;
-}
-
-.App::after {
-  background-image: url("./assets/table-in-vintage-restaurant-6267.jpg");
-}
- */

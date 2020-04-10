@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import Card from "react-bootstrap/Card";
+import { Button, Card, Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import "../index.css";
 
 function AppetizerCardsComponent(props) {
@@ -15,7 +14,7 @@ function AppetizerCardsComponent(props) {
   } = useContext(OrderContext);
 
   return (
-    <div>
+    <Container className={"mr-4 mt-1"}>
       {/* this is just a spinner for when the data is still loading */}
       {productsState.length === 0 ? (
         <Spinner animation="border" role="status">
@@ -28,9 +27,8 @@ function AppetizerCardsComponent(props) {
             // clicking on the card itself will make the page change to the
             // preview
             <Card
-              className={"cardBG"}
-              bg={"Secondary"}
-              style={{ width: "18rem" }}
+              bg={"dark"}
+              id={"appetizer-card"}
               onClick={() => viewOneAppetizer(appetizer._id)}
               key={appetizer._id}
             >
@@ -42,12 +40,15 @@ function AppetizerCardsComponent(props) {
                 <Link to="/app-preview"> View Item </Link>
                 <br />
                 <Button
+                  className={"success-Btn"}
+                  variant={"outline-success mb-1"}
                   onClick={() => addItemToCart(appetizer._id)}
                 >
                   Add to cart
                 </Button>
                 <Button
-                  className={"button"}
+                  className={"success-Btn"}
+                  variant={"outline-danger mb-1 ml-1"}
                   onClick={() => removeItemFromCart(appetizer._id)}
                 >
                   Remove from cart
@@ -57,7 +58,7 @@ function AppetizerCardsComponent(props) {
           );
         })
       )}
-    </div>
+    </Container>
   );
 }
 export default AppetizerCardsComponent;

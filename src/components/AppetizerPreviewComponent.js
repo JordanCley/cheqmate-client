@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Button, Row } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { OrderContext } from "../utils/context/OrderContext";
 
 function AppetizerPreviewComponent() {
   const { viewAppetizerState, addItemToCart } = useContext(OrderContext);
 
   return (
-    <div className="appetizer-preview-card">
+    <Container className={"mt-3"}>
       <h1 className="appetizer-preview-h1">{viewAppetizerState.productName}</h1>
       <img
         src={viewAppetizerState.imageURL}
@@ -18,23 +18,23 @@ function AppetizerPreviewComponent() {
         {viewAppetizerState.description}
       </p>
       <p className="appetizer-preview-price">${viewAppetizerState.price}</p>
-      <Row className="appetizer-preview-buttons-row">
-        <Link to="/menu">
-          <Button className="appetizer-preview-back-to-menu-button go-back-button">
-            Back
-          </Button>
-        </Link>
-        <Link to="/My-Orders">
-          <Button
-            className="appetizer-preview-add-to-cart-button go-forward-button"
-            onClick={() => addItemToCart(viewAppetizerState._id)}
-          >
-            Add
-          </Button>
-        </Link>
-        {/* makes the state back to false when pressing on the back button to redirect the page back to main menu */}
-      </Row>
-    </div>
+
+      <Link to="/menu">
+        <Button className={"success-Btn"} variant={"outline-danger mr-1"}>
+          Back
+        </Button>
+      </Link>
+      <Link to="/view-cart">
+        <Button
+          className={"success-Btn"}
+          variant={"outline-success"}
+          onClick={() => addItemToCart(viewAppetizerState._id)}
+        >
+          Add
+        </Button>
+      </Link>
+      {/* makes the state back to false when pressing on the back button to redirect the page back to main menu */}
+    </Container>
   );
 }
 

@@ -31,7 +31,7 @@ function PastOrder() {
   );
 
   return (
-    <Container>
+    <Container className={"main-Container"}>
       <h1>Past Order</h1>
       <Table striped bordered hover variant="dark">
         <tbody>

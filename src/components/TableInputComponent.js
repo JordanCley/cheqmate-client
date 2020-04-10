@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
+import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function TableInputComponent() {
   const { handleInputChange } = useContext(OrderContext);
 
   return (
-    <div>
+    <Container className={"main-Container mt-4"}>
       <div className="table-input">ENTER THE 4 - DIGIT CODE</div>
       <div>(Found below the QR Code on the Table)</div>
       <div>
@@ -22,14 +23,14 @@ function TableInputComponent() {
               // value={orderState.tableNum}
             ></input>
             <Link to="/menu">
-              <button className="btn btn-primary">
+              <Button className={"success-Btn"} variant={"outline-success mt-3"}>
                 Enter
-              </button>
+              </Button>
             </Link>
           </div>
         </form>
       </div>
-    </div>
+    </Container>
   );
 }
 

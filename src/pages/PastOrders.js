@@ -8,7 +8,7 @@ function PastOrders() {
   let number = 0;
 
   return (
-    <Container>
+    <Container className={"main-Container"}>
       <h1>Past Orders</h1>
       <Table striped bordered hover variant="dark">
         <thead>

@@ -90,7 +90,7 @@ function NavbarComponent() {
        
 
         <Link className="navbar-brand" to="/">
-          <img src={logo} className="cheqmate-logo" alt="cheqmate logo" />
+          <img src={logo} className="cheqmate-nav-logo" alt="Cheqmate Nav Logo" />
         </Link>
 
         <span id="left-arrow-icon" onClick={goBackBtn}>
