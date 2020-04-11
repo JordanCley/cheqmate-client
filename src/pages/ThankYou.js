@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../utils/auth";
 import { Container } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import logo from "../assets/cheqmate-logo.svg";
 
 const ThankYou = () => {
@@ -8,6 +9,9 @@ const ThankYou = () => {
 
   return (
     <Container className={"main-Container img-background"}>
+      <Alert key={1} variant={"success"}>
+        Your check has been paid.
+      </Alert>
       <br />
       <img src={logo} className={"app-logo mt-4 mb-2"} alt={"logo"} />
       <br />
