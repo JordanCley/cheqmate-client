@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext.js";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,25 +12,34 @@ function CartListComponent() {
   return (
     <Container fluid={true} className={"main-Component"}>
       {orderState.items.map((product) => (
-        <Table striped bordered hover variant="dark">
+        <Table
+          key={product._id}
+          striped={true}
+          bordered={true}
+          hover={true}
+          variant="dark"
+        >
           <tbody>
-            <tr key={product._id}>
+            <tr>
               <td>{product.productName}</td>
 
               <td>
-                <button onClick={() => decrementQuantity(product._id)}>
+                <Button
+                  onClick={() => decrementQuantity(product._id)}
+                  variant={"outline-light"}
+                >
                   <FontAwesomeIcon icon={faAngleDown} />
-                </button>
+                </Button>
               </td>
               <td>{product.quantity}</td>
-              
+
               <td>
-                <button
+                <Button
                   onClick={() => addItemToCart(product._id)}
-                  className="left-button"
+                  variant={"outline-light"}
                 >
                   <FontAwesomeIcon icon={faAngleUp} />
-                </button>
+                </Button>
               </td>
               <td>${product.quantity * product.price}</td>
             </tr>

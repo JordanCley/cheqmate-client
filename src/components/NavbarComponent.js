@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
+import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
-import { OrderContext } from "../utils/context/OrderContext";
 import logo from "../assets/cheqmate-logo.svg";
 import "../index.css";
 
@@ -85,15 +85,20 @@ const goBackBtn = () => {
 
 function NavbarComponent() {
   return (
-    <nav className="navbar nav navbar-expand navbar-dark bg-primary" expand={"lg"}>
+    <nav
+      className="navbar nav navbar-expand navbar-dark bg-primary"
+      expand={"lg"}
+    >
       <div className="container inner-nav-container">
-       
-
         <Link className="navbar-brand" to="/">
-          <img src={logo} className="cheqmate-nav-logo" alt="Cheqmate Nav Logo" />
+          <img
+            src={logo}
+            className="cheqmate-nav-logo"
+            alt="Cheqmate Nav Logo"
+          />
         </Link>
 
-        <span id="left-arrow-icon" onClick={goBackBtn}>
+        <span onClick={goBackBtn}>
           <FontAwesomeIcon icon={faChevronCircleLeft} />
         </span>
 

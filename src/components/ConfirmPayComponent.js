@@ -1,27 +1,24 @@
 import React, { useContext, useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
-import "../index.css";
 import { OrderContext } from "../utils/context/OrderContext";
+import { Link, useHistory } from "react-router-dom";
+import { Button, Container, Table } from "react-bootstrap";
+import "../index.css";
 
 function ConfirmPayComponent() {
   const history = useHistory();
   const {
     openCheckState,
     updateIsOrderPaidClick,
-    orderState,
     initialState,
     setOrderState,
   } = useContext(OrderContext);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(orderState);
 
   const handlePayClick = () => {
     setIsLoading(true);
     updateIsOrderPaidClick()
       .then(() => setOrderState(initialState))
       .then(() => history.push("/thank-you"));
-    console.log(orderState);
   };
 
   if (isLoading) {
@@ -32,7 +29,13 @@ function ConfirmPayComponent() {
     <Container className={"main-Container"}>
       {openCheckState.items.length ? (
         openCheckState.items.map((product) => (
-          <Table striped bordered hover variant="dark">
+          <Table
+            key={openCheckState._id}
+            striped={true}
+            borderedstriped={"true"}
+            hoverstriped={"true"}
+            variant="dark"
+          >
             <tbody>
               <tr key={product._id}>
                 <td>{product.productName}</td>
@@ -54,12 +57,12 @@ function ConfirmPayComponent() {
 
       <h2>Grand Total: ${openCheckState.grandTotal.toFixed(2)}</h2>
 
-      <Link to="/card-info">
+      <Link to={"/card-info"}>
         <Button className={"success-Btn"} variant={"outline-danger"}>
           Cancel
         </Button>
       </Link>
-      <Link>
+      <Link to={"/thank-you"}>
         <Button
           className={"success-Btn"}
           variant={"outline-success ml-1"}

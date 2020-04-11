@@ -4,7 +4,7 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ import { AuthProvider, useAuth } from "./utils/auth";
 
 import registerServiceWorker from "./registerServiceWorker";
 
-// Our Pages
+//Pages
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
@@ -27,18 +27,13 @@ import CardInput from "./pages/CardInput";
 import AddTip from "./pages/AddTip";
 import ConfirmPay from "./pages/ConfirmPay";
 import OrderContextProvider from "./utils/context/OrderContext";
-import ThankYou from "./pages/ThankYou"
+import ThankYou from "./pages/ThankYou";
 import PastOrders from "./pages/PastOrders";
 import PastOrder from "./pages/PastOrder";
 
-//Our Components
 import Navbar from "./components/NavbarComponent.js";
 
-
-// Here is if we have an id_token in localStorage
 if (localStorage.getItem("id_token")) {
-  // then we will attach it to the headers of each request from react
-  // application via axios
   axios.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${localStorage.getItem("id_token")}`;
@@ -49,63 +44,63 @@ function ProtectedRoute({ children, ...rest }) {
   if (isLoggedIn) {
     return children;
   }
-  return <Redirect to="/signup" />;
+  return <Redirect to={"/signup"} />;
 }
 
 ReactDOM.render(
   <AuthProvider>
     <OrderContextProvider>
       <Router>
-        <div>
+        <React.Fragment>
           <Navbar />
           <Switch>
-            <ProtectedRoute exact path="/">
+            <ProtectedRoute exact={true} path={"/"}>
               <App />
             </ProtectedRoute>
-            <Route exact path="/login">
+            <Route exact={true} path={"/login"}>
               <Login />
             </Route>
-            <Route exact path="/signup">
+            <Route exact={true} path={"/signup"}>
               <Signup />
             </Route>
-            <ProtectedRoute exact path="/profile">
+            <ProtectedRoute exact={true} path={"/profile"}>
               <Profile />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/table-input">
+            <ProtectedRoute exact={true} path={"/table-input"}>
               <TableNumber />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/menu">
+            <ProtectedRoute exact={true} path={"/menu"}>
               <Menu />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/checkout">
+            <ProtectedRoute exact={true} path={"/checkout"}>
               <Checkout />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/app-preview">
+            <ProtectedRoute exact={true} path={"/app-preview"}>
               <AppetizerPreview />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/view-cart">
+            <ProtectedRoute exact={true} path={"/view-cart"}>
               <ViewCart />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/card-input">
+            <ProtectedRoute exact={true} path={"/card-input"}>
               <CardInput />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/add-tip">
+            <ProtectedRoute exact={true} path={"/add-tip"}>
               <AddTip />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/confirm-pay">
+            <ProtectedRoute exact={true} path={"/confirm-pay"}>
               <ConfirmPay />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/thank-you">
+            <ProtectedRoute exact={true} path={"/thank-you"}>
               <ThankYou />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/past-orders">
+            <ProtectedRoute exact={true} path={"/past-orders"}>
               <PastOrders />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/past-order">
+            <ProtectedRoute exact={true} path={"/past-order"}>
               <PastOrder />
             </ProtectedRoute>
           </Switch>
-        </div>
+        </React.Fragment>
       </Router>
     </OrderContextProvider>
   </AuthProvider>,

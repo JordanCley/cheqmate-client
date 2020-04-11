@@ -1,6 +1,7 @@
 import React from "react";
-import AddTipComponent from "../components/AddTipComponent";
 import "../index.css";
+
+import AddTipComponent from "../components/AddTipComponent";
 
 function AddTip() {
   return (

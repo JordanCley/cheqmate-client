@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
-import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Button, Container } from "react-bootstrap";
 
 function TableInputComponent() {
   const { handleInputChange } = useContext(OrderContext);
@@ -23,7 +23,10 @@ function TableInputComponent() {
               // value={orderState.tableNum}
             ></input>
             <Link to="/menu">
-              <Button className={"success-Btn"} variant={"outline-success mt-3"}>
+              <Button
+                className={"success-Btn"}
+                variant={"outline-success mt-3"}
+              >
                 Enter
               </Button>
             </Link>

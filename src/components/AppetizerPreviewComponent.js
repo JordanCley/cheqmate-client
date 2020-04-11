@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
-import { OrderContext } from "../utils/context/OrderContext";
 
 function AppetizerPreviewComponent() {
   const { viewAppetizerState, addItemToCart } = useContext(OrderContext);

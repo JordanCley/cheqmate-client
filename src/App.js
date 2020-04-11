@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import logo from "./assets/cheqmate-logo-radial-white.svg";
-import { Container, Button } from "react-bootstrap";
-import "./index.css";
 import { useAuth } from "./utils/auth";
+import logo from "./assets/cheqmate-logo.svg";
+import { Button, Container } from "react-bootstrap";
+import "./index.css";
 
 function App() {
   const { user, logout } = useAuth();
@@ -11,26 +11,30 @@ function App() {
   const goToTableInput = () => history.push("/table-input");
 
   return (
-    <Container id="app-Container">
-      <div id={"app-Div"}>
-        <img src={logo} className="app-logo" alt="logo" />
-        <h2 className="welcome-text">Welcome {user.firstName}!</h2>
-        <p className="">
+    <Container className={"img-background"}>
+
+      <br />
+      
+      <div>
+        <img src={logo} className={"app-logo mt-5 mb-2"} alt={"logo"} />
+        <br />
+        <h2>Welcome {user.firstName}!</h2>
+        <div>
           <Button
             className={"success-Btn"}
-            variant="outline-danger mx-2"
+            variant={"outline-danger mx-2"}
             onClick={() => logout()}
           >
             Logout
           </Button>
           <Button
             className={"success-Btn"}
-            variant="outline-success"
+            variant={"outline-success"}
             onClick={goToTableInput}
           >
             Enter Table Number
           </Button>
-        </p>
+        </div>
       </div>
     </Container>
   );

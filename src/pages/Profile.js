@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import API from "./../utils/API/API";
+import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
-import { OrderContext } from "../utils/context/OrderContext";
-import { Container, Button } from "react-bootstrap";
+import API from "./../utils/API/API";
+import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
 function Profile() {
@@ -24,11 +24,11 @@ function Profile() {
   }, [user]);
 
   return (
-    <Container className="main-Container">
+    <Container className={"main-Container img-background"}>
       <h1>Welcome!</h1>
       <span></span>
       <h1>{`${firstName} ${lastName}`}</h1>
-      <Link to="past-orders">
+      <Link to={"past-orders"}>
         <Button
           className={"success-Btn"}
           variant={"outline-success mx-2"}
@@ -37,7 +37,7 @@ function Profile() {
           View All Past Orders
         </Button>
       </Link>
-      <Link to="/">
+      <Link to={"/"}>
         <Button className={"success-Btn"} variant={"outline-success"}>
           Go home
         </Button>

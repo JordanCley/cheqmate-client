@@ -1,13 +1,14 @@
 import React from "react";
+import "../index.css";
+
 import ConfirmPayComponent from "../components/ConfirmPayComponent.js";
-import '../index.css';
 
 function ConfirmPay() {
-    return(
-        <div className="table-number-form-page bg-table-in-vintage-restaurant">
-            <ConfirmPayComponent />
-        </div>
-    )
+  return (
+    <div>
+      <ConfirmPayComponent />
+    </div>
+  );
 }
 
 export default ConfirmPay;

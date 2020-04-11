@@ -25,7 +25,6 @@ const OrderContextProvider = (props) => {
   const [viewAppetizerState, setViewAppetizerState] = useState({});
   const [orderState, setOrderState] = useState(initialState);
 
-  // added another useEffect hook to grab appetizers from db
   useEffect(() => {
     API.getProducts()
       .then((res) => {
@@ -54,14 +53,12 @@ const OrderContextProvider = (props) => {
     setTipMethodState({ tipMethod: "radioTip" });
   };
 
-  // Add item to cart or increment quantity of product
   const addItemToCart = (id) => {
     let item = productsState.filter((product) => {
       return product._id === id;
     });
 
     item = item[0];
-    // item.quantity++;
     if (!item.quantity) {
       item.quantity = 1;
     } else {
@@ -73,7 +70,6 @@ const OrderContextProvider = (props) => {
     setOrderState({ ...orderState, items: [...orderItemsArray, item] });
   };
 
-  // Remove item from cart
   const removeItemFromCart = (id) => {
     if (!orderState.items.length) {
       alert("There are no items in cart");
@@ -92,7 +88,6 @@ const OrderContextProvider = (props) => {
     }
   };
 
-  // decrement item quantity
   const decrementQuantity = (id) => {
     let item = productsState.filter((product) => {
       return product._id === id;
@@ -110,10 +105,6 @@ const OrderContextProvider = (props) => {
     setOrderState({ ...orderState, items: [...arr, item] });
   };
 
-  // viewing current check
-  const viewOrderToPayClick = () => {};
-
-  //  click event updating isPaid to true after payment
   const updateIsOrderPaidClick = () => {
     return API.updateIsOrderPaid(
       openCheckState._id,
@@ -130,22 +121,19 @@ const OrderContextProvider = (props) => {
       .catch((err) => alert(err));
   };
 
-  // click event to create new order
   const createOrderClick = () => {
-    return (
-      API.createOrder(
-        orderState.items,
-        orderState.tableNum,
-        orderState.totalItems,
-        orderState.total,
-        orderState.gratuity,
-        orderState.tax,
-        orderState.grandTotal
-      )
-        .then((res) => setOpenCheckState(res.data))
-        .then(() => setIsPaidState(false))
-        .catch((err) => alert(err))
-    );
+    return API.createOrder(
+      orderState.items,
+      orderState.tableNum,
+      orderState.totalItems,
+      orderState.total,
+      orderState.gratuity,
+      orderState.tax,
+      orderState.grandTotal
+    )
+      .then((res) => setOpenCheckState(res.data))
+      .then(() => setIsPaidState(false))
+      .catch((err) => alert(err));
   };
 
   const handleInputChange = (event) => {
@@ -163,14 +151,12 @@ const OrderContextProvider = (props) => {
     setTipMethodState({ [name]: value });
   };
 
-  // viewing all past orders for user
   const viewAllOrdersClick = () => {
     return API.viewAllOrders()
       .then((res) => setPastOrderState(res.data))
       .catch((err) => alert(err));
   };
 
-  // ANTHONY - added functions to calculate subTotal. These are to render state
   useEffect(() => {
     const subTotal = (array) => {
       let itemTotal = 0;
@@ -180,13 +166,12 @@ const OrderContextProvider = (props) => {
       setOrderState({ ...orderState, total: itemTotal });
     };
     subTotal(orderState.items);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [orderState.items]);
 
-  // ANTHONY - added functions to calculate grandTotal. These are to render state
   useEffect(() => {
     calculateGrandTotal(openCheckState);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [openCheckState.gratuity]);
 
   const calculateGrandTotal = (state) => {
@@ -203,7 +188,6 @@ const OrderContextProvider = (props) => {
         orderState,
         pastOrderState,
         createOrderClick,
-        viewOrderToPayClick,
         viewAllOrdersClick,
         updateIsOrderPaidClick,
         viewPastOrderState,

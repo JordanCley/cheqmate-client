@@ -1,10 +1,11 @@
 import React from "react";
-import MenuListComponent from "../components/MenuListComponent";
 import "../index.css";
+
+import MenuListComponent from "../components/MenuListComponent";
 
 function Menu() {
   return (
-    <div className="menu-page bg-table-in-vintage-restaurant">
+    <div>
       <MenuListComponent />
     </div>
   );

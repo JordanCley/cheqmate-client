@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { Button, Card, Container } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
+import { Button, Card, Container } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 import "../index.css";
 
-function AppetizerCardsComponent(props) {
+function AppetizerCardsComponent() {
   const {
     productsState,
     addItemToCart,
@@ -15,24 +15,19 @@ function AppetizerCardsComponent(props) {
 
   return (
     <Container className={"mr-4 mt-1"}>
-      {/* this is just a spinner for when the data is still loading */}
       {productsState.length === 0 ? (
         <Spinner animation="border" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
       ) : (
-        //mapping through the array of info I got from the API call
         productsState.map((appetizer) => {
           return (
-            // clicking on the card itself will make the page change to the
-            // preview
             <Card
               bg={"dark"}
               id={"appetizer-card"}
               onClick={() => viewOneAppetizer(appetizer._id)}
               key={appetizer._id}
             >
-              {/* just basic bootstrap card */}
               <Card.Img variant="top" src={appetizer.imageURL} />
               <Card.Body>
                 <Card.Title>{appetizer.productName}</Card.Title>

@@ -12,9 +12,15 @@ function Checkout() {
   return (
     <Container className={"main-Container"}>
       {orderState.items.map((product) => (
-        <Table striped bordered hover variant="dark">
+        <Table
+          key={product._id}
+          striped={true}
+          bordered={true}
+          hover={true}
+          variant={"dark"}
+        >
           <tbody>
-            <tr key={product._id}>
+            <tr>
               <td>{product.productName}</td>
 
               <td>{product.quantity}</td>
@@ -31,12 +37,12 @@ function Checkout() {
       <h2>Sub Total: ${subTotal}</h2>
 
       <Link to="/view-cart">
-        <Button className={"success-Btn"} variant="outline-danger">
+        <Button className={"success-Btn"} variant={"outline-danger"}>
           Go Back
         </Button>
       </Link>
       <Link to="/card-input">
-        <Button className={"success-Btn"} variant="outline-success ml-1">
+        <Button className={"success-Btn"} variant={"outline-success ml-1"}>
           Pay Now
         </Button>
       </Link>

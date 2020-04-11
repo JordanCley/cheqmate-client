@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { OrderContext } from "../utils/context/OrderContext";
-import { Container, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Button, Container } from "react-bootstrap";
 
 function AddTipComponent() {
   const {

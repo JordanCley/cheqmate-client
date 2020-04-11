@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
 function CardInput() {
@@ -8,39 +8,45 @@ function CardInput() {
     <Container className={"main-Container"}>
       <div>
         <form>
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput">Credit Card Number:</label>
+          <div className={"form-group"}>
+            <label htmlFor={"cardNumberInput"}>Credit Card Number:</label>
             <input
-              type="text"
-              className="form-control"
-              id="formGroupExampleInput"
-              placeholder="0000-0000-0000-0000"
+              type={"text"}
+              className={"form-control"}
+              id={"cardNumberInput"}
+              placeholder={"0000-0000-0000-0000"}
             />
           </div>
-          <div className="row">
-            <div className="col">
-              <label>Exp. Date:</label>
-              <input type="text" className="form-control" placeholder="MM/YY" />
-            </div>
-            <div className="col">
-              <label>CVC:</label>
+          <div className={"row"}>
+            <div className={"col"}>
+              <label htmlFor={"cardExpInput"}>Exp. Date:</label>
               <input
-                type="text"
-                className="form-control"
-                placeholder="On back of Card"
+                id={"cardExpInput"}
+                className={"form-control"}
+                type={"text"}
+                placeholder={"MM/YY"}
+              />
+            </div>
+            <div className={"col"}>
+              <label htmlFor={"CVCInput"}>CVC:</label>
+              <input
+                type={"text"}
+                className={"form-control"}
+                id={"CVCInput"}
+                placeholder={"On back of Card"}
               />
             </div>
           </div>
 
           <br />
 
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput2">Name on Card</label>
+          <div className={"form-group"}>
+            <label htmlFor={"nameCardInput"}>Name on Card</label>
             <input
-              type="text"
-              className="form-control"
-              id="formGroupExampleInput2"
-              placeholder="Michael J. Fox"
+              type={"text"}
+              className={"form-control"}
+              id={"nameCardInput"}
+              placeholder={"Michael J. Fox"}
             />
           </div>
         </form>

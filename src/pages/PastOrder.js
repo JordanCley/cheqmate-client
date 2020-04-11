@@ -1,29 +1,29 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import {
-  Container,
-  Table,
-  Popover,
   Button,
+  Container,
   OverlayTrigger,
+  Popover,
+  Table,
 } from "react-bootstrap";
 
 function PastOrder() {
   const { viewPastOrderState } = useContext(OrderContext);
 
   const popover = (
-    <Popover id="popover-basic">
-      <Popover.Title as="h3">Popover right</Popover.Title>
+    <Popover id={"popover-basic"}>
+      <Popover.Title as={"h3"}>Popover right</Popover.Title>
       <Popover.Content>
         {viewPastOrderState.items.map((item) => (
-          <p>{`${item.productName} (${item.quantity})`}</p>
+          <p key={item._id}>{`${item.productName} (${item.quantity})`}</p>
         ))}
       </Popover.Content>
     </Popover>
   );
 
   const ItemPopOver = () => (
-    <OverlayTrigger trigger="click" placement="top" overlay={popover}>
+    <OverlayTrigger trigger={"click"} placement={"top"} overlay={popover}>
       <Button size={"lg"} variant="link">
         {viewPastOrderState.totalItems}
       </Button>
@@ -31,9 +31,9 @@ function PastOrder() {
   );
 
   return (
-    <Container className={"main-Container"}>
+    <Container className={"main-Container img-background"}>
       <h1>Past Order</h1>
-      <Table striped bordered hover variant="dark">
+      <Table striped={true} bordered={true} hover={true} variant="dark">
         <tbody>
           <tr key={viewPastOrderState._id}>
             <th>ID</th>

@@ -1,10 +1,11 @@
 import React from "react";
-import AppetizerPreviewComponent from "../components/AppetizerPreviewComponent";
 import "../index.css";
+
+import AppetizerPreviewComponent from "../components/AppetizerPreviewComponent";
 
 function AppetizerPreview() {
   return (
-    <div className="appetizer-preview-page">
+    <div>
       <AppetizerPreviewComponent />
     </div>
   );
