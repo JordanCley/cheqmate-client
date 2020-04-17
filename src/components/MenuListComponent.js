@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, ListGroup, Tab, Row } from "react-bootstrap";
+import { Alert, Col, ListGroup, Tab, Row } from "react-bootstrap";
 import "../index.css";
 
 import AppetizerCardsComponent from "./AppetizerCardsComponent";
@@ -12,16 +12,16 @@ function MenuListComponent() {
           <Col sm={4}>
             <ListGroup>
               <ListGroup.Item variant={"dark"} action={true} href="#Appetizers">
-                Appetizers
+                {`Appetizers`}
               </ListGroup.Item>
               <ListGroup.Item variant={"dark"} action={true} href="#Drinks">
-                Drinks
+                {`Drinks`}
               </ListGroup.Item>
               <ListGroup.Item variant={"dark"} action={true} href="#KidsMenu">
                 {`Kid's Menu`}
               </ListGroup.Item>
-              <ListGroup.Item variant={"dark"} action={true} href="#Deserts">
-                Deserts
+              <ListGroup.Item variant={"dark"} action={true} href="#Desserts">
+                {`Desserts`}
               </ListGroup.Item>
             </ListGroup>
           </Col>
@@ -29,14 +29,32 @@ function MenuListComponent() {
             <Tab.Content>
               <Tab.Pane
                 className={"ml-3"}
-                id="appetizer-pane"
-                eventKey="#Appetizers"
+                id={"appetizer-pane"}
+                eventKey={"#Appetizers"}
               >
                 <AppetizerCardsComponent></AppetizerCardsComponent>
               </Tab.Pane>
-              <Tab.Pane eventKey="#Drinks">{}</Tab.Pane>
-              <Tab.Pane eventKey="#KidsMenu">{}</Tab.Pane>
-              <Tab.Pane eventKey="#Deserts">{}</Tab.Pane>
+              <Tab.Pane eventKey={"#Drinks"}>
+                {
+                  <Alert className={"mt-2"} variant={"danger"}>
+                    {`👷 Under Construction: Drinks coming soon!`}
+                  </Alert>
+                }
+              </Tab.Pane>
+              <Tab.Pane eventKey={"#KidsMenu"}>
+                {
+                  <Alert className={"mt-2"} variant={"danger"}>
+                    {`👷 Under Construction: Kid's menu coming soon!`}
+                  </Alert>
+                }
+              </Tab.Pane>
+              <Tab.Pane eventKey={"#Desserts"}>
+                {
+                  <Alert className={"mt-2"} variant={"danger"}>
+                    {`👷 Under Construction: Desserts coming soon!`}
+                  </Alert>
+                }
+              </Tab.Pane>
             </Tab.Content>
           </Col>
         </Row>

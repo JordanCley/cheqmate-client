@@ -34,8 +34,6 @@ function Signup() {
       formState.password
     )
       .then(() => {
-        // once the user has signed up
-        // send them to the login page
         history.replace("/login");
       })
       .catch((err) => setErrorState(err.response.data.message));
@@ -70,7 +68,7 @@ function Signup() {
               <label htmlFor={"first_name"}>First Name:</label>
               <input
                 className={"form-control"}
-                placeholder={"John"}
+                placeholder={"Joe"}
                 name={"first_name"}
                 type={"text"}
                 id={"first_name"}
@@ -81,7 +79,7 @@ function Signup() {
               <label htmlFor={"last_name"}>Last Name:</label>
               <input
                 className={"form-control"}
-                placeholder={"Doe"}
+                placeholder={"Exotic"}
                 name={"last_name"}
                 type={"text"}
                 id={"last_name"}
@@ -92,7 +90,7 @@ function Signup() {
               <label htmlFor={"email"}>Email address:</label>
               <input
                 className={"form-control"}
-                placeholder={"JohnD@Bloomin.com"}
+                placeholder={"TigerKing@ItwasthatBCaroleBaskin.com"}
                 name={"email"}
                 type={"email"}
                 id={"email"}

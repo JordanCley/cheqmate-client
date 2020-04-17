@@ -48,7 +48,7 @@ function CardInput() {
               type={"text"}
               className={"form-control"}
               id={"nameCardInput"}
-              placeholder={"Michael J. Fox"}
+              placeholder={"Carole Baskin"}
             />
           </div>
         </form>
