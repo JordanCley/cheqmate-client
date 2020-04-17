@@ -79,7 +79,7 @@ function ConfirmPayComponent() {
               Cancel
             </Button>
           </Link>
-          <Link to={""}>
+          <Link to={"/thank-you"}>
             <Button
               className={"success-Btn"}
               variant={"outline-success ml-1"}

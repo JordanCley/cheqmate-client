@@ -5,13 +5,23 @@ import { Alert, Button, Container, Table } from "react-bootstrap";
 import "../index.css";
 
 import FooterComponent from "../components/FooterComponent";
+import LoadingComponent from "../components/LoadingComponent";
 
 function Checkout() {
-  const { openCheckState, orderState, errorState, setErrorState } = useContext(
-    OrderContext
-  );
+  const {
+    openCheckState,
+    orderState,
+    errorState,
+    setErrorState,
+    isLoading,
+  } = useContext(OrderContext);
+  
   let tax = openCheckState.total * (openCheckState.tax / 100);
   let subTotal = (openCheckState.total + tax).toFixed(2);
+
+  if (isLoading) {
+    return <LoadingComponent />;
+  }
 
   return (
     <Container className={"main-Container"}>
@@ -20,7 +30,7 @@ function Checkout() {
           <Alert key={2} variant={"danger"}>
             {errorState}
           </Alert>
-          <Link onClick={() => setErrorState(null)}to="/table-input">
+          <Link onClick={() => setErrorState(null)} to="/table-input">
             <Button className={"success-Btn"} variant={"outline-danger"}>
               Enter Table Number
             </Button>
