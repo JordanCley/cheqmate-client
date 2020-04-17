@@ -1,10 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
 
+import FooterComponent from "../components/FooterComponent";
+
 function PastOrders() {
+  const history = useHistory();
+
   const { pastOrderState, viewOnePastOrder } = useContext(OrderContext);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleViewOrderClick = (id) => {
+    setIsLoading(true);
+    viewOnePastOrder(id).then(() => history.push("/past-order"));
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   let number = 0;
 
   return (
@@ -15,30 +30,27 @@ function PastOrders() {
           <tr>
             <th>#</th>
             <th>Table Number</th>
-            <th>Items</th>
             <th>Gratuity</th>
             <th>Grand Total</th>
           </tr>
         </thead>
+
         {pastOrderState.map((order) => (
-          <tbody key={order._id}>
+          <tbody key={order.id}>
             <tr>
               <td>
-                <Link
-                  to={"/past-order"}
-                  onClick={() => viewOnePastOrder(order._id)}
-                >
+                <Link to={""} onClick={() => handleViewOrderClick(order.id)}>
                   <p>{(number += 1)}</p>
                 </Link>
               </td>
-              <td>{order.tableNum}</td>
-              <td>{order.totalItems}</td>
+              <td>{order.table_number}</td>
               <td>{order.gratuity}%</td>
-              <td>${order.grandTotal.toFixed(2)}</td>
+              <td>${order.grand_total.toFixed(2)}</td>
             </tr>
           </tbody>
         ))}
       </Table>
+      <FooterComponent />
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import "../index.css";
 
 function ConfirmPayComponent() {
@@ -25,37 +25,51 @@ function ConfirmPayComponent() {
     return <div>Loading...</div>;
   }
 
+  const tableHead = {
+    backgroundColor: "#2d3436",
+  };
+
   return (
-    <Container className={"main-Container"}>
-      {openCheckState.items.length ? (
-        openCheckState.items.map((product) => (
-          <Table
-            key={openCheckState._id}
-            striped={true}
-            borderedstriped={"true"}
-            hoverstriped={"true"}
-            variant="dark"
-          >
-            <tbody>
-              <tr key={product._id}>
-                <td>{product.productName}</td>
-                <td>{product.quantity}</td>
-                <td>{product.price}</td>
-              </tr>
-            </tbody>
-          </Table>
-        ))
-      ) : (
-        <p>No items in cart</p>
-      )}
+    <>
+      <h3>Final Sale</h3>
+      
+      <Table
+        key={openCheckState.id}
+        bordered={true}
+        hover={true}
+        variant={"dark"}
+      >
+        <tbody>
+          <tr>
+            <th style={tableHead}>
+              <h5>Tax</h5>
+            </th>
 
-      <h2>Tax: {openCheckState.tax}%</h2>
+            <td>{openCheckState.tax}%</td>
+          </tr>
 
-      <h2>Sub Total: ${openCheckState.total}</h2>
+          <tr>
+            <th style={tableHead}>
+              <h5>Gratuity</h5>
+            </th>
+            <td>{openCheckState.gratuity}%</td>
+          </tr>
 
-      <h2>Tip: {openCheckState.gratuity}%</h2>
+          <tr>
+            <th style={tableHead}>
+              <h5>Total</h5>
+            </th>
+            <td>${openCheckState.total}</td>
+          </tr>
 
-      <h2>Grand Total: ${openCheckState.grandTotal.toFixed(2)}</h2>
+          <tr>
+            <th style={tableHead}>
+              <h5>Grand Total</h5>
+            </th>
+            <td>${openCheckState.grand_total.toFixed(2)}</td>
+          </tr>
+        </tbody>
+      </Table>
 
       <Link to={"/card-info"}>
         <Button className={"success-Btn"} variant={"outline-danger"}>
@@ -71,7 +85,7 @@ function ConfirmPayComponent() {
           Pay
         </Button>
       </Link>
-    </Container>
+    </>
   );
 }
 

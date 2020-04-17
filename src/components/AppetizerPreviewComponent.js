@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function AppetizerPreviewComponent() {
   const { viewAppetizerState, addItemToCart } = useContext(OrderContext);
 
   return (
-    <Container className={"mt-3"}>
-      <h1 className="appetizer-preview-h1">{viewAppetizerState.productName}</h1>
+    <>
+      <h1 className="appetizer-preview-h1">{viewAppetizerState.product_name}</h1>
       <img
-        src={viewAppetizerState.imageURL}
+        src={viewAppetizerState.image_url}
         alt="Appetizer"
         className="appetizer-preview-image"
       ></img>
@@ -28,13 +28,13 @@ function AppetizerPreviewComponent() {
         <Button
           className={"success-Btn"}
           variant={"outline-success"}
-          onClick={() => addItemToCart(viewAppetizerState._id)}
+          onClick={() => addItemToCart(viewAppetizerState.id)}
         >
           Add
         </Button>
       </Link>
       {/* makes the state back to false when pressing on the back button to redirect the page back to main menu */}
-    </Container>
+    </>
   );
 }
 

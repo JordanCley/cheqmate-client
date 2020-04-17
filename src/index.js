@@ -69,9 +69,6 @@ ReactDOM.render(
             <ProtectedRoute exact={true} path={"/table-input"}>
               <TableNumber />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/menu"}>
-              <Menu />
-            </ProtectedRoute>
             <ProtectedRoute exact={true} path={"/checkout"}>
               <Checkout />
             </ProtectedRoute>
@@ -98,6 +95,9 @@ ReactDOM.render(
             </ProtectedRoute>
             <ProtectedRoute exact={true} path={"/past-order"}>
               <PastOrder />
+            </ProtectedRoute>
+            <ProtectedRoute exact={true} path={"/menu"}>
+              <Menu />
             </ProtectedRoute>
           </Switch>
         </React.Fragment>

@@ -7,6 +7,7 @@ import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/cheqmate-logo.svg";
+import { Navbar } from "react-bootstrap";
 import "../index.css";
 
 const createLink = ({ text, to, ...rest }) => {
@@ -35,7 +36,7 @@ function NavLinks() {
   let sum = 0;
 
   const addQuantity = () => {
-    orderState.items.filter((num) => {
+    orderState.order_items.filter((num) => {
       sum += num.quantity;
       return sum;
     });
@@ -49,14 +50,14 @@ function NavLinks() {
     links.push({ text: "Profile", to: "/profile" });
     links.push({ text: "Menu", to: "/menu" });
     links.push({ text: "Logout", onClick: () => logout() });
-    if (openCheckState.items) {
+    if (openCheckState.order_items) {
       links.push({
         text: <FontAwesomeIcon icon={faCreditCard} />,
         to: "/card-input",
       });
     }
 
-    if (orderState.items.length !== 0) {
+    if (orderState.order_items.length !== 0) {
       links.push({ text: `(${sum})`, to: "/view-cart" });
     } else {
       links.push({
@@ -85,8 +86,9 @@ const goBackBtn = () => {
 
 function NavbarComponent() {
   return (
-    <nav
+    <Navbar
       className="navbar nav navbar-expand navbar-dark bg-primary"
+      fixed={"top"}
       expand={"lg"}
     >
       <div className="container inner-nav-container">
@@ -104,7 +106,7 @@ function NavbarComponent() {
 
         <NavLinks />
       </div>
-    </nav>
+    </Navbar>
   );
 }
 

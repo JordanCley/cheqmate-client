@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
+import { OrderContext } from "../utils/context/OrderContext.js";
 import { useAuth } from "../utils/auth";
 import { Container } from "react-bootstrap";
-import { Alert } from "react-bootstrap";
 import logo from "../assets/cheqmate-logo.svg";
 
+import FooterComponent from "../components/FooterComponent";
+import ErrorAlertComponent from "../components/ErrorAlertComponent";
+
 const ThankYou = () => {
+  const { errorState } = useContext(OrderContext);
   const { user } = useAuth();
 
   return (
     <Container className={"main-Container img-background"}>
-      <Alert key={1} variant={"success"}>
-        Your check has been paid.
-      </Alert>
-      <br />
-      <img src={logo} className={"app-logo mt-4 mb-2"} alt={"logo"} />
-      <br />
-      <h1>Thank you for your visit, {user.firstName}.</h1>
-      <h2>See you next time!</h2>
+      {errorState !== null ? (
+        <ErrorAlertComponent
+          text={"Exit"}
+          variant={"success"}
+          to={"/"}
+          button={"outline-danger"}
+        />
+      ) : (
+        <>
+          <ErrorAlertComponent
+            message={"Your check has been paid."}
+            text={"Home"}
+            variant={"success"}
+            to={"/"}
+            button={"outline-success"}
+          />
+
+          <br />
+          <img src={logo} className={"app-logo mt-4 mb-2"} alt={"logo"} />
+          <br />
+
+          <h1>Thank you for your visit, {user.first_name}.</h1>
+          <h2>See you next time!</h2>
+          <FooterComponent />
+        </>
+      )}
     </Container>
   );
 };

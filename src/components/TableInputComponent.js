@@ -1,26 +1,25 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function TableInputComponent() {
   const { handleInputChange } = useContext(OrderContext);
 
   return (
-    <Container className={"main-Container mt-4"}>
+    <>
       <div className="table-input">ENTER THE 4 - DIGIT CODE</div>
       <div>(Found below the QR Code on the Table)</div>
       <div>
         <form>
           <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1"></label>
+            <label htmlFor="tableInputForm"></label>
             <input
               className="form-control"
               type="text"
               placeholder="A - 3 - T -2"
               onChange={handleInputChange}
-              name="tableNum"
-              // value={orderState.tableNum}
+              name="table_number"
             ></input>
             <Link to="/menu">
               <Button
@@ -33,7 +32,7 @@ function TableInputComponent() {
           </div>
         </form>
       </div>
-    </Container>
+    </>
   );
 }
 

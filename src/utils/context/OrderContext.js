@@ -5,19 +5,23 @@ export const OrderContext = createContext();
 
 const OrderContextProvider = (props) => {
   const initialState = {
-    items: [],
-    totalItems: 0,
+    order_items: [],
+    total_items: 0,
     total: 0,
-    tableNum: 0,
+    table_number: null,
     gratuity: 0,
-    tax: 9.9,
-    grandTotal: 0,
+    tax: 7.25,
+    grand_total: 0,
   };
 
-  const [openCheckState, setOpenCheckState] = useState({});
   const [tipMethodState, setTipMethodState] = useState({
     tipMethod: "radioTip",
   });
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [openCheckState, setOpenCheckState] = useState({});
+  const [errorState, setErrorState] = useState(null);
   const [pastOrderState, setPastOrderState] = useState([]);
   const [viewPastOrderState, setViewPastOrderState] = useState({});
   const [isPaidState, setIsPaidState] = useState(false);
@@ -30,23 +34,45 @@ const OrderContextProvider = (props) => {
       .then((res) => {
         setProductsState(res.data);
       })
-      .catch((err) => alert(err));
+      .catch((err) =>
+        setErrorState(`Request failed with status code: ${err.response.status}`)
+      );
   }, [isPaidState]);
+
+  useEffect(() => {
+    const subTotal = (array) => {
+      let itemCount = 0;
+      for (let i = 0; i < array.length; i++) {
+        itemCount = itemCount + array[i].price * array[i].quantity;
+      }
+      setOrderState({
+        ...orderState,
+        total: itemCount,
+      });
+    };
+    subTotal(orderState.order_items);
+    // eslint-disable-next-line
+  }, [orderState.order_items]);
+
+  useEffect(() => {
+    calculateGrandTotal(openCheckState);
+    // eslint-disable-next-line
+  }, [openCheckState.gratuity]);
 
   const viewOneAppetizer = (id) => {
     let item = productsState.filter((product) => {
-      return product._id === id;
+      return product.id === id;
     });
     item = item[0];
     setViewAppetizerState(item);
   };
 
   const viewOnePastOrder = (id) => {
-    let item = pastOrderState.filter((order) => {
-      return order._id === id;
-    });
-    item = item[0];
-    setViewPastOrderState(item);
+    return API.viewPastOrder(id)
+      .then((pastOrder) => setViewPastOrderState(pastOrder.data))
+      .catch((err) =>
+        setErrorState(`Request failed with status code: ${err.response.status}`)
+      );
   };
 
   const resetTipMethod = () => {
@@ -55,85 +81,108 @@ const OrderContextProvider = (props) => {
 
   const addItemToCart = (id) => {
     let item = productsState.filter((product) => {
-      return product._id === id;
+      return product.id === id;
     });
 
     item = item[0];
+
     if (!item.quantity) {
       item.quantity = 1;
     } else {
       item.quantity++;
     }
-    let orderItemsArray = orderState.items.filter((listItem) => {
-      return listItem._id !== id;
+
+    let orderItemsArray = orderState.order_items.filter((listItem) => {
+      return listItem.product_id !== id;
     });
-    setOrderState({ ...orderState, items: [...orderItemsArray, item] });
+    setOrderState({
+      ...orderState,
+      order_items: [
+        ...orderItemsArray,
+        {
+          product_id: item.id,
+          quantity: item.quantity,
+          price: item.price,
+          product_name: item.product_name,
+        },
+      ],
+    });
   };
 
   const removeItemFromCart = (id) => {
-    if (!orderState.items.length) {
-      alert("There are no items in cart");
+    if (!orderState.order_items.length) {
+      setErrorState("Error: There are no items in cart");
     } else {
       let item = productsState.filter((product) => {
-        return product._id === id;
+        return product.id === id;
       });
       item = item[0];
 
       item.quantity = 0;
 
-      let arr = orderState.items.filter((listItem) => {
-        return listItem._id !== id;
+      let arr = orderState.order_items.filter((listItem) => {
+        return listItem.product_id !== id;
       });
-      setOrderState({ ...orderState, items: [...arr] });
+      setOrderState({ ...orderState, order_items: [...arr] });
     }
   };
 
   const decrementQuantity = (id) => {
-    let item = productsState.filter((product) => {
-      return product._id === id;
+    let item = orderState.order_items.filter((product) => {
+      return product.product_id === id;
     });
     item = item[0];
     if (item.quantity === 1) {
-      alert("If you would lke to remove the item, please use delete button");
+      return removeItemFromCart(id);
     } else {
       item.quantity--;
     }
 
-    let arr = orderState.items.filter((listItem) => {
-      return listItem._id !== id;
+    let arr = orderState.order_items.filter((listItem) => {
+      return listItem.product_id !== id;
     });
-    setOrderState({ ...orderState, items: [...arr, item] });
+    setOrderState({ ...orderState, order_items: [...arr, item] });
   };
 
   const updateIsOrderPaidClick = () => {
     return API.updateIsOrderPaid(
-      openCheckState._id,
-      openCheckState.items,
-      openCheckState.totalItems,
-      openCheckState.tableNum,
+      openCheckState.id,
+      openCheckState.order_items,
+      openCheckState.total_items,
+      openCheckState.table_number,
       openCheckState.total,
       openCheckState.gratuity,
       openCheckState.tax,
-      openCheckState.grandTotal
+      openCheckState.grand_total
     )
       .then(() => setIsPaidState(true))
       .then(() => setOpenCheckState({}))
-      .catch((err) => alert(err));
+      .catch((err) =>
+        setErrorState(`Request failed with status code: ${err.response.status}`)
+      );
   };
 
   const createOrderClick = () => {
-    return API.createOrder(
-      orderState.items,
-      orderState.tableNum,
-      orderState.totalItems,
-      orderState.total,
-      orderState.gratuity,
-      orderState.tax,
-      orderState.grandTotal
-    )
-      .then((res) => setOpenCheckState(res.data))
-      .then(() => setIsPaidState(false))
-      .catch((err) => alert(err));
+    if (orderState.table_number === null) {
+      return setErrorState("Error: You must input a table number!");
+    } else {
+      return API.createOrder(
+        orderState.order_items,
+        orderState.total_items,
+        orderState.total,
+        orderState.table_number,
+        orderState.gratuity,
+        orderState.tax,
+        orderState.grand_total
+      )
+        .then((res) => setOpenCheckState(res.data))
+        .then(() => setIsPaidState(false))
+        .catch((err) =>
+          setErrorState(
+            `Request failed with status code: ${err.response.status}`
+          )
+        );
+    }
   };
 
   const handleInputChange = (event) => {
@@ -154,31 +203,16 @@ const OrderContextProvider = (props) => {
   const viewAllOrdersClick = () => {
     return API.viewAllOrders()
       .then((res) => setPastOrderState(res.data))
-      .catch((err) => alert(err));
+      .catch((err) =>
+        setErrorState(`Request failed with status code: ${err.response.status}`)
+      );
   };
-
-  useEffect(() => {
-    const subTotal = (array) => {
-      let itemTotal = 0;
-      for (let i = 0; i < array.length; i++) {
-        itemTotal = itemTotal + array[i].price * array[i].quantity;
-      }
-      setOrderState({ ...orderState, total: itemTotal });
-    };
-    subTotal(orderState.items);
-    // eslint-disable-next-line
-  }, [orderState.items]);
-
-  useEffect(() => {
-    calculateGrandTotal(openCheckState);
-    // eslint-disable-next-line
-  }, [openCheckState.gratuity]);
 
   const calculateGrandTotal = (state) => {
     let tipTotal = state.total * (state.gratuity / 100);
     let taxTotal = state.total * (state.tax / 100);
     let totalSum = state.total + (tipTotal + taxTotal);
-    setOpenCheckState({ ...openCheckState, grandTotal: totalSum });
+    setOpenCheckState({ ...openCheckState, grand_total: totalSum });
   };
 
   return (
@@ -207,6 +241,12 @@ const OrderContextProvider = (props) => {
         tipMethodState,
         handleTipMethodChange,
         setOrderState,
+        errorState,
+        setErrorState,
+        email,
+        setEmail,
+        password,
+        setPassword,
       }}
     >
       {props.children}

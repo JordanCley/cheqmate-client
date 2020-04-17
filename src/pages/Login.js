@@ -1,33 +1,36 @@
-import React, { useState } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { OrderContext } from "../utils/context/OrderContext.js";
 import { useAuth } from "../utils/auth";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
+import FooterComponent from "../components/FooterComponent";
+
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { isLoggedIn, login } = useAuth();
   const history = useHistory();
+  const { isLoggedIn, login } = useAuth();
+  const { errorState, setErrorState, email, setEmail, password, setPassword } = useContext(
+    OrderContext
+  );
 
-  if (isLoggedIn) {
-    return <Redirect to="/" />;
-  }
-
-  const handleFormSubmit = (event) => {
+  const handleLoginFormSubmit = (event) => {
     event.preventDefault();
-
     login(email, password)
       .then(() => history.push("/"))
       .catch((err) => {
-        alert(err.response.data.message);
+        setErrorState(err.response.data.message);
       });
   };
+
+  if (isLoggedIn || errorState !== null ) {
+    return <Redirect to="/" />;
+  } 
 
   return (
     <Container className={"main-Container img-background"}>
       <h1>Login</h1>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleLoginFormSubmit}>
         <div className={"form-group"}>
           <label htmlFor={"email"}>Email address:</label>
           <input
@@ -68,6 +71,8 @@ function Login() {
           </Button>
         </Link>
       </div>
+
+      <FooterComponent />
     </Container>
   );
 }

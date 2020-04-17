@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function AddTipComponent() {
   const {
@@ -13,7 +13,7 @@ function AddTipComponent() {
   } = useContext(OrderContext);
 
   return (
-    <Container className={"main-Container"}>
+    <>
       <div className="container">
         <div className="row mt-5">
           <div className="col-sm-12">
@@ -29,7 +29,6 @@ function AddTipComponent() {
                       className="form-check-input"
                     />
                     10%
-                    {/* Thinking of adding the tip percentage somewhere in this div form */}
                   </label>
                 </div>
 
@@ -74,7 +73,7 @@ function AddTipComponent() {
               </form>
             ) : (
               <div>
-                <h3>Please enter a percentage.</h3>
+                <h3>Please enter a percentage. (e.g., 20, 30)</h3>
                 <input
                   type="number"
                   onChange={handleTipChange}
@@ -107,7 +106,7 @@ function AddTipComponent() {
           </div>
         </div>
       </div>
-    </Container>
+    </>
   );
 }
 

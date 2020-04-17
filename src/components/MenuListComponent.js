@@ -1,12 +1,12 @@
 import React from "react";
-import { Col, Container, ListGroup, Tab, Row } from "react-bootstrap";
+import { Col, ListGroup, Tab, Row } from "react-bootstrap";
 import "../index.css";
 
 import AppetizerCardsComponent from "./AppetizerCardsComponent";
 
 function MenuListComponent() {
   return (
-    <Container className={"mt-1 img-background2"}>
+    <div className={"mt-1 img-background2"}>
       <Tab.Container variant={"dark"} defaultActiveKey="#Appetizers">
         <Row>
           <Col sm={4}>
@@ -41,7 +41,7 @@ function MenuListComponent() {
           </Col>
         </Row>
       </Tab.Container>
-    </Container>
+    </div>
   );
 }
 

@@ -13,8 +13,9 @@ function AppetizerCardsComponent() {
     viewOneAppetizer,
   } = useContext(OrderContext);
 
+  // className={"mr-4 mt-1"}
   return (
-    <Container className={"mr-4 mt-1"}>
+    <Container className={"mt-1 mb-5"}>
       {productsState.length === 0 ? (
         <Spinner animation="border" role="status">
           <span className="sr-only">Loading...</span>
@@ -24,27 +25,28 @@ function AppetizerCardsComponent() {
           return (
             <Card
               bg={"dark"}
+              className={"mt-1"}
               id={"appetizer-card"}
-              onClick={() => viewOneAppetizer(appetizer._id)}
-              key={appetizer._id}
+              onClick={() => viewOneAppetizer(appetizer.id)}
+              key={appetizer.id}
             >
-              <Card.Img variant="top" src={appetizer.imageURL} />
+              <Card.Img variant="top" src={appetizer.image_url} />
               <Card.Body>
-                <Card.Title>{appetizer.productName}</Card.Title>
+                <Card.Title>{appetizer.product_name}</Card.Title>
                 <Card.Text>${appetizer.price}</Card.Text>
                 <Link to="/app-preview"> View Item </Link>
                 <br />
                 <Button
                   className={"success-Btn"}
                   variant={"outline-success mb-1"}
-                  onClick={() => addItemToCart(appetizer._id)}
+                  onClick={() => addItemToCart(appetizer.id)}
                 >
                   Add to cart
                 </Button>
                 <Button
                   className={"success-Btn"}
                   variant={"outline-danger mb-1 ml-1"}
-                  onClick={() => removeItemFromCart(appetizer._id)}
+                  onClick={() => removeItemFromCart(appetizer.id)}
                 >
                   Remove from cart
                 </Button>
@@ -53,7 +55,7 @@ function AppetizerCardsComponent() {
           );
         })
       )}
-    </Container>
+    </Container >
   );
 }
 export default AppetizerCardsComponent;

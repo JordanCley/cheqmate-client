@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
+import FooterComponent from "../components/FooterComponent";
+
 function CardInput() {
   return (
     <Container className={"main-Container"}>
@@ -63,6 +65,8 @@ function CardInput() {
           Continue
         </Button>
       </Link>
+
+      <FooterComponent/>
     </Container>
   );
 }

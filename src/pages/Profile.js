@@ -3,31 +3,37 @@ import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import API from "./../utils/API/API";
-import { Button, Container } from "react-bootstrap";
+import { Alert, Button, Container } from "react-bootstrap";
 import "../index.css";
 
+import FooterComponent from "../components/FooterComponent";
+
 function Profile() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [, setEmail] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
   const { user } = useAuth();
-  const { viewAllOrdersClick } = useContext(OrderContext);
+  const { viewAllOrdersClick, setErrorState, errorState } = useContext(OrderContext);
 
   useEffect(() => {
     API.getUser(user.id)
       .then((res) => {
-        setFirstName(res.data.firstName);
-        setLastName(res.data.lastName);
-        setEmail(res.data.email);
+        setCurrentUser(res.data);
       })
-      .catch((err) => alert(err));
-  }, [user]);
+      .catch((err) => {setErrorState(err)});
+  // eslint-disable-next-line
+  },[user]);
 
   return (
     <Container className={"main-Container img-background"}>
+      {errorState ? (
+          <Alert key={2} variant={"danger"}>
+            {errorState}
+          </Alert>
+        ) : (
+          ""
+        )}
       <h1>Welcome!</h1>
       <span></span>
-      <h1>{`${firstName} ${lastName}`}</h1>
+      <h1>{`${currentUser.first_name} ${currentUser.last_name}`}</h1>
       <Link to={"past-orders"}>
         <Button
           className={"success-Btn"}
@@ -42,6 +48,7 @@ function Profile() {
           Go home
         </Button>
       </Link>
+      <FooterComponent />
     </Container>
   );
 }

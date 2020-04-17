@@ -5,6 +5,7 @@ import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
 import CartListComponent from "../components/CartListComponent";
+import FooterComponent from "../components/FooterComponent";
 
 function ViewCart() {
   const { createOrderClick } = useContext(OrderContext);
@@ -27,6 +28,7 @@ function ViewCart() {
           Place Order
         </Button>
       </Link>
+      <FooterComponent />
     </Container>
   );
 }

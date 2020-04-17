@@ -1,51 +1,111 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext.js";
 import { Link } from "react-router-dom";
-import { Button, Container, Table } from "react-bootstrap";
+import { Alert, Button, Container, Table } from "react-bootstrap";
 import "../index.css";
 
+import FooterComponent from "../components/FooterComponent";
+
 function Checkout() {
-  const { openCheckState, orderState } = useContext(OrderContext);
+  const { openCheckState, orderState, errorState, setErrorState } = useContext(
+    OrderContext
+  );
   let tax = openCheckState.total * (openCheckState.tax / 100);
   let subTotal = (openCheckState.total + tax).toFixed(2);
 
   return (
     <Container className={"main-Container"}>
-      {orderState.items.map((product) => (
-        <Table
-          key={product._id}
-          striped={true}
-          bordered={true}
-          hover={true}
-          variant={"dark"}
-        >
-          <tbody>
-            <tr>
-              <td>{product.productName}</td>
+      {errorState !== null ? (
+        <>
+          <Alert key={2} variant={"danger"}>
+            {errorState}
+          </Alert>
+          <Link onClick={() => setErrorState(null)}to="/table-input">
+            <Button className={"success-Btn"} variant={"outline-danger"}>
+              Enter Table Number
+            </Button>
+          </Link>
+        </>
+      ) : (
+        <>
+          <Table
+            key={orderState.id}
+            striped={true}
+            bordered={true}
+            hover={true}
+            variant={"dark"}
+          >
+            <thead>
+              <tr>
+                <th>
+                  <h5>Product</h5>
+                </th>
+                <th>
+                  <h5>Quantity</h5>
+                </th>
+                <th>
+                  <h5>Price</h5>
+                </th>
+              </tr>
+            </thead>
+            {orderState.order_items.map((orderItem) => (
+              <>
+                <tbody key={orderItem.id}>
+                  <tr>
+                    <td>{orderItem.product_name}</td>
+                    <td>{orderItem.quantity}</td>
+                    <td>${orderItem.quantity * orderItem.price}</td>
+                  </tr>
+                </tbody>
+              </>
+            ))}
+          </Table>
 
-              <td>{product.quantity}</td>
+          <div>
+            <Table
+              key={orderState.id++}
+              striped={true}
+              bordered={true}
+              hover={true}
+              variant={"dark"}
+            >
+              <thead>
+                <tr>
+                  <th>
+                    <h5>Total</h5>
+                  </th>
+                  <th>
+                    <h5>Tax</h5>
+                  </th>
+                  <th>
+                    <h5>Sub Total</h5>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{orderState.total}</td>
+                  <td>{orderState.tax}%</td>
+                  <td>${subTotal}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
 
-              <td></td>
-              <td>${product.quantity * product.price}</td>
-            </tr>
-          </tbody>
-        </Table>
-      ))}
+          <Link to="/view-cart">
+            <Button className={"success-Btn"} variant={"outline-danger"}>
+              Go Back
+            </Button>
+          </Link>
+          <Link to="/card-input">
+            <Button className={"success-Btn"} variant={"outline-success ml-1"}>
+              Pay Now
+            </Button>
+          </Link>
+        </>
+      )}
 
-      <h2>Tax: 9.9%</h2>
-
-      <h2>Sub Total: ${subTotal}</h2>
-
-      <Link to="/view-cart">
-        <Button className={"success-Btn"} variant={"outline-danger"}>
-          Go Back
-        </Button>
-      </Link>
-      <Link to="/card-input">
-        <Button className={"success-Btn"} variant={"outline-success ml-1"}>
-          Pay Now
-        </Button>
-      </Link>
+      <FooterComponent />
     </Container>
   );
 }
