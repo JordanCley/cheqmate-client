@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
-// import { Redirect } from "react-router-dom";
+
 import {
   Button,
   Container,
@@ -11,13 +11,16 @@ import {
 
 import FooterComponent from "../components/FooterComponent";
 import ErrorAlertComponent from "../components/ErrorAlertComponent";
+import LoadingComponent from "../components/LoadingComponent";
 
 function PastOrder() {
-  const { errorState, viewPastOrderState } = useContext(OrderContext);
+  const { errorState, viewPastOrderState, isLoading } = useContext(
+    OrderContext
+  );
 
-  // if (errorState !== null) {
-  //   return <Redirect to="/past-orders" />;
-  // }
+  if (isLoading) {
+    return <LoadingComponent className={"mt-5"} />;
+  }
 
   const popover = (
     <Popover id={"popover-basic"}>

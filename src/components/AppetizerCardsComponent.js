@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { Button, Card, Container } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
 import "../index.css";
+
+import LoadingComponent from "../components/LoadingComponent";
 
 function AppetizerCardsComponent() {
   const {
@@ -13,13 +14,10 @@ function AppetizerCardsComponent() {
     viewOneAppetizer,
   } = useContext(OrderContext);
 
-  // className={"mr-4 mt-1"}
   return (
     <Container className={"mt-1 mb-5"}>
       {productsState.length === 0 ? (
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <LoadingComponent />
       ) : (
         productsState.map((appetizer) => {
           return (
@@ -55,7 +53,7 @@ function AppetizerCardsComponent() {
           );
         })
       )}
-    </Container >
+    </Container>
   );
 }
 export default AppetizerCardsComponent;

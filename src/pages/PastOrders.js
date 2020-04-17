@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link, useHistory } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
@@ -8,17 +8,16 @@ import FooterComponent from "../components/FooterComponent";
 function PastOrders() {
   const history = useHistory();
 
-  const { pastOrderState, viewOnePastOrder } = useContext(OrderContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const { pastOrderState, viewOnePastOrder, setIsLoading } = useContext(
+    OrderContext
+  );
 
   const handleViewOrderClick = (id) => {
     setIsLoading(true);
-    viewOnePastOrder(id).then(() => history.push("/past-order"));
+    viewOnePastOrder(id)
+      .then(() => history.push("/past-order"))
+      .then(() => setIsLoading(false));
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   let number = 0;
 
@@ -39,7 +38,10 @@ function PastOrders() {
           <tbody key={order.id}>
             <tr>
               <td>
-                <Link to={""} onClick={() => handleViewOrderClick(order.id)}>
+                <Link
+                  to={"/past-order"}
+                  onClick={() => handleViewOrderClick(order.id)}
+                >
                   <p>{(number += 1)}</p>
                 </Link>
               </td>

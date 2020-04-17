@@ -18,6 +18,7 @@ const OrderContextProvider = (props) => {
     tipMethod: "radioTip",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [openCheckState, setOpenCheckState] = useState({});
@@ -37,6 +38,7 @@ const OrderContextProvider = (props) => {
       .catch((err) =>
         setErrorState(`Request failed with status code: ${err.response.status}`)
       );
+    setIsLoading(false);
   }, [isPaidState]);
 
   useEffect(() => {
@@ -247,6 +249,8 @@ const OrderContextProvider = (props) => {
         setEmail,
         password,
         setPassword,
+        isLoading,
+        setIsLoading,
       }}
     >
       {props.children}
