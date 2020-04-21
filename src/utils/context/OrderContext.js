@@ -165,26 +165,20 @@ const OrderContextProvider = (props) => {
   };
 
   const createOrderClick = () => {
-    if (orderState.table_number === null) {
-      return setErrorState("Error: You must input a table number!");
-    } else {
-      return API.createOrder(
-        orderState.order_items,
-        orderState.total_items,
-        orderState.total,
-        orderState.table_number,
-        orderState.gratuity,
-        orderState.tax,
-        orderState.grand_total
-      )
-        .then((res) => setOpenCheckState(res.data))
-        .then(() => setIsPaidState(false))
-        .catch((err) =>
-          setErrorState(
-            `Request failed with status code: ${err.response.status}`
-          )
-        );
-    }
+    return API.createOrder(
+      orderState.order_items,
+      orderState.total_items,
+      orderState.total,
+      orderState.table_number,
+      orderState.gratuity,
+      orderState.tax,
+      orderState.grand_total
+    )
+      .then((res) => setOpenCheckState(res.data))
+      .then(() => setIsPaidState(false))
+      .catch((err) =>
+        setErrorState(`Request failed with status code: ${err.response.status}`)
+      );
   };
 
   const handleInputChange = (event) => {

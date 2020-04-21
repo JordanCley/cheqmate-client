@@ -8,14 +8,27 @@ import CartListComponent from "../components/CartListComponent";
 import FooterComponent from "../components/FooterComponent";
 
 function ViewCart() {
-  const { createOrderClick, setIsLoading } = useContext(OrderContext);
+  const {
+    createOrderClick,
+    setIsLoading,
+    orderState,
+    setErrorState,
+  } = useContext(OrderContext);
   const history = useHistory();
 
   const loadingCreate = () => {
-    setIsLoading(true);
-    createOrderClick()
-      .then(() => history.push("/checkout"))
-      .then(() => setIsLoading(false));
+    if (orderState.table_number === null) {
+      setErrorState("Error: You must input a table number!");
+      history.push("/checkout");
+    } else {
+      setIsLoading(true);
+      createOrderClick()
+        .then(() => history.push("/checkout"))
+        .then(() => setIsLoading(false))
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (

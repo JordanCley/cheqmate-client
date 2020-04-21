@@ -23,7 +23,7 @@ import Menu from "./pages/Menu";
 import AppetizerPreview from "./pages/AppetizerPreview";
 import ViewCart from "./pages/ViewCart";
 import Checkout from "./pages/Checkout";
-import CardInput from "./pages/CardInput";
+import Card from "./pages/card";
 import AddTip from "./pages/AddTip";
 import ConfirmPay from "./pages/ConfirmPay";
 import OrderContextProvider from "./utils/context/OrderContext";
@@ -78,8 +78,8 @@ ReactDOM.render(
             <ProtectedRoute exact={true} path={"/view-cart"}>
               <ViewCart />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/card-input"}>
-              <CardInput />
+            <ProtectedRoute exact={true} path={"/card"}>
+              <Card />
             </ProtectedRoute>
             <ProtectedRoute exact={true} path={"/add-tip"}>
               <AddTip />

@@ -107,7 +107,7 @@ function Checkout() {
               Go Back
             </Button>
           </Link>
-          <Link to="/card-input">
+          <Link to="/card">
             <Button className={"success-Btn"} variant={"outline-success ml-1"}>
               Pay Now
             </Button>

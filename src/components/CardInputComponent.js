@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
-import FooterComponent from "../components/FooterComponent";
-
-function CardInput() {
+function CardInputComponent() {
   return (
-    <Container className={"main-Container"}>
+    <Container>
       <div>
         <form>
           <div className={"form-group"}>
@@ -65,10 +63,8 @@ function CardInput() {
           Continue
         </Button>
       </Link>
-
-      <FooterComponent/>
     </Container>
   );
 }
 
-export default CardInput;
+export default CardInputComponent;

@@ -53,7 +53,7 @@ function NavLinks() {
     if (openCheckState.order_items) {
       links.push({
         text: <FontAwesomeIcon icon={faCreditCard} />,
-        to: "/card-input",
+        to: "/card",
       });
     }
 
