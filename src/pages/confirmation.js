@@ -5,7 +5,7 @@ import "../index.css";
 import ConfirmPayComponent from "../components/ConfirmPayComponent.js";
 import FooterComponent from "../components/FooterComponent";
 
-function ConfirmPay() {
+function Confirmation() {
   return (
     <Container className={"main-Container"}>
       <ConfirmPayComponent />
@@ -14,4 +14,4 @@ function ConfirmPay() {
   );
 }
 
-export default ConfirmPay;
+export default Confirmation;

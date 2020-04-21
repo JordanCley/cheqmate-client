@@ -1,11 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import "../index.css";
 
 import AppetizerPreviewComponent from "../components/AppetizerPreviewComponent";
 import FooterComponent from "../components/FooterComponent";
 
-function AppetizerPreview() {
+function Appetizer() {
   return (
     <Container className={"main-Container"}>
       <AppetizerPreviewComponent />
@@ -14,4 +13,4 @@ function AppetizerPreview() {
   );
 }
 
-export default AppetizerPreview;
+export default Appetizer;

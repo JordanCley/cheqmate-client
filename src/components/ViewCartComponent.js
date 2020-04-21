@@ -5,7 +5,6 @@ import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
 import CartListComponent from "../components/CartListComponent";
-import FooterComponent from "../components/FooterComponent";
 
 function ViewCart() {
   const {
@@ -24,10 +23,7 @@ function ViewCart() {
       setIsLoading(true);
       createOrderClick()
         .then(() => history.push("/checkout"))
-        .then(() => setIsLoading(false))
-        .catch((err) => {
-          console.log(err);
-        });
+        .then(() => setIsLoading(false));
     }
   };
 
@@ -49,7 +45,6 @@ function ViewCart() {
           Place Order
         </Button>
       </Link>
-      <FooterComponent />
     </Container>
   );
 }

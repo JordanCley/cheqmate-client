@@ -32,7 +32,7 @@ function AppetizerCardsComponent() {
               <Card.Body>
                 <Card.Title>{appetizer.product_name}</Card.Title>
                 <Card.Text>${appetizer.price}</Card.Text>
-                <Link to="/app-preview"> View Item </Link>
+                <Link to="/appetizer"> View Item </Link>
                 <br />
                 <Button
                   className={"success-Btn"}

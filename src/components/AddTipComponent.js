@@ -93,7 +93,7 @@ function AddTipComponent() {
                   Back
                 </Button>
               </Link>
-              <Link to="/confirm-pay">
+              <Link to="/confirmation">
                 <Button
                   onClick={resetTipMethod}
                   className={"success-Btn"}

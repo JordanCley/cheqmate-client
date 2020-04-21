@@ -2,15 +2,15 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 import FooterComponent from "../components/FooterComponent";
-import ProfileComponent from "../components/ProfileComponent";
+import PastOrdersComponent from "../components/PastOrdersComponent";
 
-function Profile() {
+function Orders() {
   return (
     <Container className={"main-Container img-background"}>
-      <ProfileComponent />
+      <PastOrdersComponent />
       <FooterComponent />
     </Container>
   );
 }
 
-export default Profile;
+export default Orders;

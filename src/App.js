@@ -13,7 +13,7 @@ function App() {
   const { errorState } = useContext(OrderContext);
   const { user, logout } = useAuth();
   const history = useHistory();
-  const goToTableInput = () => history.push("/table-input");
+  const goToTableInput = () => history.push("/table");
 
   return (
     <Container className={"main-Container img-background"}>

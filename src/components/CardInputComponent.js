@@ -58,7 +58,7 @@ function CardInputComponent() {
         </Button>
       </Link>
 
-      <Link to="/add-tip">
+      <Link to="/tip">
         <Button className={"success-Btn"} variant={"outline-success"}>
           Continue
         </Button>

@@ -1,17 +1,16 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import "../index.css";
 
-import TableInputComponent from "../components/TableInputComponent.js";
 import FooterComponent from "../components/FooterComponent";
+import ViewCartComponent from "../components/ViewCartComponent";
 
-function TableInput() {
+function Cart() {
   return (
     <Container className={"main-Container"}>
-      <TableInputComponent />
-      <FooterComponent/>
+      <ViewCartComponent />
+      <FooterComponent />
     </Container>
   );
 }
 
-export default TableInput;
+export default Cart;
