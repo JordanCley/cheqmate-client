@@ -4,7 +4,6 @@ import { useAuth } from "../utils/auth";
 import { Container } from "react-bootstrap";
 import logo from "../assets/cheqmate-logo.svg";
 
-import FooterComponent from "../components/FooterComponent";
 import ErrorAlertComponent from "../components/ErrorAlertComponent";
 import LoadingComponent from "../components/LoadingComponent";
 
@@ -17,7 +16,7 @@ const ThankYou = () => {
   }
 
   return (
-    <Container className={"main-Container img-background"}>
+    <Container>
       {errorState !== null ? (
         <ErrorAlertComponent
           text={"Exit"}
@@ -41,7 +40,6 @@ const ThankYou = () => {
 
           <h1>Thank you for your visit, {user.first_name}.</h1>
           <h2>See you next time!</h2>
-          <FooterComponent />
         </>
       )}
     </Container>

@@ -21,7 +21,7 @@ function ConfirmPayComponent() {
     setIsLoading(true);
     updateIsOrderPaidClick()
       .then(() => setOrderState(initialState))
-      .then(() => history.push("/thank-you"));
+      .then(() => history.push("/final"));
   };
 
   const tableHead = {
@@ -79,7 +79,7 @@ function ConfirmPayComponent() {
               Cancel
             </Button>
           </Link>
-          <Link to={"/thank-you"}>
+          <Link to={"/final"}>
             <Button
               className={"success-Btn"}
               variant={"outline-success ml-1"}

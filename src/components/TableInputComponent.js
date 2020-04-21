@@ -8,7 +8,7 @@ function TableInputComponent() {
 
   return (
     <>
-      <div className="table-input">ENTER THE 4 - DIGIT CODE</div>
+      <div className="table">ENTER THE 4 - DIGIT CODE</div>
       <div>(Found below the QR Code on the Table)</div>
       <div>
         <form>

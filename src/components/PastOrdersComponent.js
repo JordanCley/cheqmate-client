@@ -3,8 +3,6 @@ import { OrderContext } from "../utils/context/OrderContext";
 import { Link, useHistory } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
 
-import FooterComponent from "../components/FooterComponent";
-
 function PastOrders() {
   const history = useHistory();
 
@@ -15,14 +13,14 @@ function PastOrders() {
   const handleViewOrderClick = (id) => {
     setIsLoading(true);
     viewOnePastOrder(id)
-      .then(() => history.push("/past-order"))
+      .then(() => history.push("/order"))
       .then(() => setIsLoading(false));
   };
 
   let number = 0;
 
   return (
-    <Container className={"main-Container img-background"}>
+    <Container>
       <h1>Past Orders</h1>
       <Table striped bordered hover variant="dark">
         <thead>
@@ -39,7 +37,7 @@ function PastOrders() {
             <tr>
               <td>
                 <Link
-                  to={"/past-order"}
+                  to={"/order"}
                   onClick={() => handleViewOrderClick(order.id)}
                 >
                   <p>{(number += 1)}</p>
@@ -52,7 +50,6 @@ function PastOrders() {
           </tbody>
         ))}
       </Table>
-      <FooterComponent />
     </Container>
   );
 }

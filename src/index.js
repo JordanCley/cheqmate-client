@@ -11,25 +11,24 @@ import axios from "axios";
 import "./index.css";
 import App from "./App";
 import { AuthProvider, useAuth } from "./utils/auth";
-
+import OrderContextProvider from "./utils/context/OrderContext";
 import registerServiceWorker from "./registerServiceWorker";
 
 //Pages
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
-import TableNumber from "./pages/TableNumber";
-import Menu from "./pages/Menu";
-import AppetizerPreview from "./pages/AppetizerPreview";
-import ViewCart from "./pages/ViewCart";
-import Checkout from "./pages/Checkout";
+import Login from "./pages/login";
+import Profile from "./pages/profile";
+import Signup from "./pages/signup";
+import Table from "./pages/table";
+import Menu from "./pages/menu";
+import Appetizer from "./pages/appetizer";
+import Cart from "./pages/cart";
+import Checkout from "./pages/checkout";
 import Card from "./pages/card";
-import AddTip from "./pages/AddTip";
-import ConfirmPay from "./pages/ConfirmPay";
-import OrderContextProvider from "./utils/context/OrderContext";
-import ThankYou from "./pages/ThankYou";
-import PastOrders from "./pages/PastOrders";
-import PastOrder from "./pages/PastOrder";
+import Tip from "./pages/tip";
+import Confirmation from "./pages/confirmation";
+import Final from "./pages/final";
+import Orders from "./pages/Orders";
+import Order from "./pages/Order";
 
 import Navbar from "./components/NavbarComponent.js";
 
@@ -66,35 +65,35 @@ ReactDOM.render(
             <ProtectedRoute exact={true} path={"/profile"}>
               <Profile />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/table-input"}>
-              <TableNumber />
+            <ProtectedRoute exact={true} path={"/table"}>
+              <Table />
             </ProtectedRoute>
             <ProtectedRoute exact={true} path={"/checkout"}>
               <Checkout />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/app-preview"}>
-              <AppetizerPreview />
+            <ProtectedRoute exact={true} path={"/appetizer"}>
+              <Appetizer />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/view-cart"}>
-              <ViewCart />
+            <ProtectedRoute exact={true} path={"/cart"}>
+              <Cart />
             </ProtectedRoute>
             <ProtectedRoute exact={true} path={"/card"}>
               <Card />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/add-tip"}>
-              <AddTip />
+            <ProtectedRoute exact={true} path={"/tip"}>
+              <Tip />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/confirm-pay"}>
-              <ConfirmPay />
+            <ProtectedRoute exact={true} path={"/confirmation"}>
+              <Confirmation />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/thank-you"}>
-              <ThankYou />
+            <ProtectedRoute exact={true} path={"/final"}>
+              <Final />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/past-orders"}>
-              <PastOrders />
+            <ProtectedRoute exact={true} path={"/orders"}>
+              <Orders />
             </ProtectedRoute>
-            <ProtectedRoute exact={true} path={"/past-order"}>
-              <PastOrder />
+            <ProtectedRoute exact={true} path={"/order"}>
+              <Order />
             </ProtectedRoute>
             <ProtectedRoute exact={true} path={"/menu"}>
               <Menu />

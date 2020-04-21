@@ -58,11 +58,11 @@ function NavLinks() {
     }
 
     if (orderState.order_items.length !== 0) {
-      links.push({ text: `(${sum})`, to: "/view-cart" });
+      links.push({ text: `(${sum})`, to: "/cart" });
     } else {
       links.push({
         text: <FontAwesomeIcon icon={faShoppingCart} />,
-        to: "/view-cart",
+        to: "/cart",
       });
     }
   } else {

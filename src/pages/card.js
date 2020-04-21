@@ -1,11 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import "../index.css";
 
 import FooterComponent from "../components/FooterComponent";
 import CardInputComponent from "../components/CardInputComponent";
 
-function card() {
+function Card() {
   return (
     <Container className={"main-Container"}>
       <CardInputComponent />
@@ -14,4 +13,4 @@ function card() {
   );
 }
 
-export default card;
+export default Card;

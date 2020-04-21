@@ -9,9 +9,8 @@ import {
   Table,
 } from "react-bootstrap";
 
-import FooterComponent from "../components/FooterComponent";
-import ErrorAlertComponent from "../components/ErrorAlertComponent";
-import LoadingComponent from "../components/LoadingComponent";
+import ErrorAlertComponent from "./ErrorAlertComponent";
+import LoadingComponent from "./LoadingComponent";
 
 function PastOrder() {
   const { errorState, viewPastOrderState, isLoading } = useContext(
@@ -44,12 +43,12 @@ function PastOrder() {
   );
 
   return (
-    <Container className={"main-Container img-background"}>
+    <Container>
       {errorState !== null ? (
         <ErrorAlertComponent
           text={"Exit"}
           variant={"danger"}
-          to={"/past-orders"}
+          to={"/orders"}
           button={"outline-danger"}
         />
       ) : (
@@ -87,7 +86,6 @@ function PastOrder() {
           </Table>
         </>
       )}
-      <FooterComponent />
     </Container>
   );
 }

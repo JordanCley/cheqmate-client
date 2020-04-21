@@ -2,15 +2,15 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 import FooterComponent from "../components/FooterComponent";
-import ProfileComponent from "../components/ProfileComponent";
+import ThankYouComponent from "../components/ThankYouComponent";
 
-function Profile() {
+const Final = () => {
   return (
     <Container className={"main-Container img-background"}>
-      <ProfileComponent />
+      <ThankYouComponent />
       <FooterComponent />
     </Container>
   );
-}
+};
 
-export default Profile;
+export default Final;
