@@ -74,7 +74,7 @@ function ConfirmPayComponent() {
             </tbody>
           </Table>
 
-          <Link to={"/card-info"}>
+          <Link to={"/tip"}>
             <Button className={"success-Btn"} variant={"outline-danger"}>
               Cancel
             </Button>

@@ -40,6 +40,10 @@ body {
   width: 25px;
 }
 
+.loading {
+  margin-top: 70%;
+}
+
 #footer {
   position: relative;
   margin-top: 20%;

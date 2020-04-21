@@ -52,7 +52,7 @@ function CardInputComponent() {
         </form>
       </div>
 
-      <Link to="/view-check">
+      <Link to="/checkout">
         <Button className={"success-Btn"} variant={"outline-danger mr-2"}>
           Back
         </Button>

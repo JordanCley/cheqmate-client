@@ -1,4 +1,7 @@
 import axios from "axios";
+
+// const production = "http://ec2-54-151-62-58.us-west-1.compute.amazonaws.com";
+
 export default {
 
   // Gets a single user by id
@@ -8,7 +11,7 @@ export default {
 
   // getting products/app items
   getProducts: () => {
-    return axios.get("/api/products");
+    return axios.get(`/api/products`);
   },
 
   getOpenCheck: (id) => {
@@ -24,7 +27,7 @@ export default {
     tax,
     grand_total
   ) => {
-    return axios.post("/api/order/new", {
+    return axios.post(`/api/order/new`, {
       order_items: order_items,
       total_items: total_items,
       total: total,
@@ -59,7 +62,7 @@ export default {
 
   // view all past orders
   viewAllOrders: () => {
-    return axios.get("/api/order/view_all_past_orders");
+    return axios.get(`/api/order/view_all_past_orders`);
   },
 
   viewPastOrder: (id) => {
@@ -68,7 +71,7 @@ export default {
 
   // sign up a user to our service
   signUpUser: (first_name, last_name, email, password) => {
-    return axios.post("/api/signup", {
+    return axios.post(`/api/signup`, {
       first_name: first_name,
       last_name: last_name,
       email: email,

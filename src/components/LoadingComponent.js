@@ -1,8 +1,13 @@
 import React from "react";
-import { Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
+import "../index.css";
 
 const LoadingComponent = () => {
-  return <Spinner animation="grow" />;
+  return (
+    <Container className={"loading"}>
+      <Spinner animation="grow" />
+    </Container>
+  );
 };
 
 export default LoadingComponent;

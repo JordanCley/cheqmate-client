@@ -5,7 +5,7 @@ export default class AuthService {
   login(email, password) {
     // Get a token
     return axios
-      .post("api/login", { email: email, password: password })
+      .post("/api/login", { email: email, password: password })
       .then((res) => {
         // set the token once the user logs in
         this.setToken(res.data.token);

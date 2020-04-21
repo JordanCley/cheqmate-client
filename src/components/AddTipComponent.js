@@ -84,7 +84,7 @@ function AddTipComponent() {
               </div>
             )}
             <div className="form-group">
-              <Link to="/card-info">
+              <Link to="/card">
                 <Button
                   className={"success-Btn"}
                   onClick={resetTipMethod}

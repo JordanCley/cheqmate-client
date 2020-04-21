@@ -27,8 +27,8 @@ import Card from "./pages/card";
 import Tip from "./pages/tip";
 import Confirmation from "./pages/confirmation";
 import Final from "./pages/final";
-import Orders from "./pages/Orders";
-import Order from "./pages/Order";
+import Orders from "./pages/orders";
+import Order from "./pages/order";
 
 import Navbar from "./components/NavbarComponent.js";
 
