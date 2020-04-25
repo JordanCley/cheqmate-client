@@ -31,7 +31,7 @@ function AddTipComponent() {
                       value={10}
                       className="form-check-input"
                     />
-                    10% - ${(openCheckState.total * .10).toFixed(2)}
+                    10% - ${(openCheckState.subtotal * .10).toFixed(2)}
                   </label>
                   
                 </div>
@@ -45,7 +45,7 @@ function AddTipComponent() {
                       value={15}
                       className="form-check-input"
                     />
-                    15% - ${(openCheckState.total * .15).toFixed(2)}
+                    15% - ${(openCheckState.subtotal * .15).toFixed(2)}
                   </label>
                 </div>
 
@@ -58,7 +58,7 @@ function AddTipComponent() {
                       value={20}
                       className="form-check-input"
                     />
-                    20% - ${(openCheckState.total * .20).toFixed(2)}
+                    20% - ${(openCheckState.subtotal * .20).toFixed(2)}
                   </label>
                 </div>
                 <div className="form-check">

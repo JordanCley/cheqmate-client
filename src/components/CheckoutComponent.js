@@ -15,8 +15,8 @@ function Checkout() {
     isLoading,
   } = useContext(OrderContext);
 
-  let tax = openCheckState.total * (openCheckState.tax / 100);
-  let subTotal = (openCheckState.total + tax).toFixed(2);
+  let tax = openCheckState.subtotal * (openCheckState.tax / 100);
+  let Total = (openCheckState.subtotal + tax).toFixed(2);
 
   if (isLoading) {
     return <LoadingComponent />;
@@ -81,21 +81,21 @@ function Checkout() {
               <thead>
                 <tr>
                   <th>
-                    <h5>Total</h5>
+                    <h5>Subtotal</h5>
                   </th>
                   <th>
                     <h5>Tax</h5>
                   </th>
                   <th>
-                    <h5>Subtotal</h5>
+                    <h5>Total</h5>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>${orderState.total}</td>
+                  <td>${orderState.subtotal}</td>
                   <td>{orderState.tax}%</td>
-                  <td>${subTotal}</td>
+                  <td>${Total}</td>
                 </tr>
               </tbody>
             </Table>

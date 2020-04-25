@@ -28,6 +28,8 @@ function ConfirmPayComponent() {
     backgroundColor: "#2d3436",
   };
 
+  const dollarAmount = ((openCheckState.gratuity / 100) * openCheckState.subtotal).toFixed(2)
+
   return (
     <>
       {isLoading ? (
@@ -55,14 +57,14 @@ function ConfirmPayComponent() {
                 <th style={tableHead}>
                   <h5>Gratuity</h5>
                 </th>
-                <td>{openCheckState.gratuity}%</td>
+                <td>{`${openCheckState.gratuity}% - $${dollarAmount}`}</td>
               </tr>
 
               <tr>
                 <th style={tableHead}>
-                  <h5>Total</h5>
+                  <h5>Subtotal</h5>
                 </th>
-                <td>${openCheckState.total}</td>
+                <td>${openCheckState.subtotal}</td>
               </tr>
 
               <tr>

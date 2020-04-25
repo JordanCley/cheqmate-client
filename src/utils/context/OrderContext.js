@@ -7,7 +7,7 @@ const OrderContextProvider = (props) => {
   const initialState = {
     order_items: [],
     total_items: 0,
-    total: 0,
+    subtotal: 0,
     table_number: null,
     gratuity: 0,
     tax: 7.25,
@@ -50,7 +50,7 @@ const OrderContextProvider = (props) => {
       }
       setOrderState({
         ...orderState,
-        total: itemCount,
+        subtotal: itemCount,
       });
     };
     subTotal(orderState.order_items);
@@ -153,7 +153,7 @@ const OrderContextProvider = (props) => {
       openCheckState.order_items,
       openCheckState.total_items,
       openCheckState.table_number,
-      openCheckState.total,
+      openCheckState.subtotal,
       openCheckState.gratuity,
       openCheckState.tax,
       openCheckState.grand_total
@@ -169,7 +169,7 @@ const OrderContextProvider = (props) => {
     return API.createOrder(
       orderState.order_items,
       orderState.total_items,
-      orderState.total,
+      orderState.subtotal,
       orderState.table_number,
       orderState.gratuity,
       orderState.tax,
@@ -211,9 +211,9 @@ const OrderContextProvider = (props) => {
   };
 
   const calculateGrandTotal = (state) => {
-    let tipTotal = state.total * (state.gratuity / 100);
-    let taxTotal = state.total * (state.tax / 100);
-    let totalSum = state.total + (tipTotal + taxTotal);
+    let tipTotal = state.subtotal * (state.gratuity / 100);
+    let taxTotal = state.subtotal * (state.tax / 100);
+    let totalSum = state.subtotal + (tipTotal + taxTotal);
     setOpenCheckState({ ...openCheckState, grand_total: totalSum });
   };
 

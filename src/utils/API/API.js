@@ -21,7 +21,7 @@ export default {
   createOrder: (
     order_items,
     total_items,
-    total,
+    subtotal,
     table_number,
     gratuity,
     tax,
@@ -30,7 +30,7 @@ export default {
     return axios.post(`${BaseURL}/api/order/new`, {
       order_items: order_items,
       total_items: total_items,
-      total: total,
+      subtotal: subtotal,
       table_number: table_number,
       gratuity: gratuity,
       tax: tax,
@@ -44,7 +44,7 @@ export default {
     order_items,
     total_items,
     table_number,
-    total,
+    subtotal,
     gratuity,
     tax,
     grand_total
@@ -53,7 +53,7 @@ export default {
       order_items: order_items,
       total_items: total_items,
       table_number: table_number,
-      total: total,
+      subtotal: subtotal,
       gratuity: gratuity,
       tax: tax,
       grand_total: grand_total,
