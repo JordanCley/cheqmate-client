@@ -2,8 +2,6 @@
 import axios from "axios";
 import BaseURL from "../env-config"
 
-
-
 export default {
 
   // Gets a single user by id
