@@ -29,6 +29,7 @@ const OrderContextProvider = (props) => {
   const [productsState, setProductsState] = useState([]);
   const [viewAppetizerState, setViewAppetizerState] = useState({});
   const [orderState, setOrderState] = useState(initialState);
+  // const [dollarTipState, setDollarTipState] = useState(0);
 
   useEffect(() => {
     API.getProducts()
@@ -190,6 +191,11 @@ const OrderContextProvider = (props) => {
     const { name, value } = event.target;
     setOpenCheckState({ ...openCheckState, [name]: value });
   };
+
+  // const handleDollarTipChange = (event) => {
+  //   const { value } = event.target;
+  //   setDollarTipState(value);
+  // };
 
   const handleTipMethodChange = (event) => {
     const { name, value } = event.target;

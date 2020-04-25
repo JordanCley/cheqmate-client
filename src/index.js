@@ -31,7 +31,7 @@ import Orders from "./pages/orders";
 import Order from "./pages/order";
 
 import Navbar from "./components/NavbarComponent.js";
-
+import ScrollToTopComponent from "./components/ScrollToTopComponent.js";
 
 if (localStorage.getItem("id_token")) {
   axios.defaults.headers.common[
@@ -51,6 +51,7 @@ ReactDOM.render(
   <AuthProvider>
     <OrderContextProvider>
       <Router>
+        <ScrollToTopComponent />
         <React.Fragment>
           <Navbar />
           <Switch>

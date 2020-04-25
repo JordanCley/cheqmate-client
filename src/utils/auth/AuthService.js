@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import decode from "jwt-decode";
 import axios from "axios";
-import BaseURL from "../env-config"
+import BaseURL from "../env-config";
 
 export default class AuthService {
   login(email, password) {
@@ -54,5 +54,7 @@ export default class AuthService {
     localStorage.removeItem("id_token");
     // this will reload the page and reset the state of the application
     window.location.reload("/");
+    // window.location.href("/");
+    
   }
 }

@@ -87,13 +87,13 @@ function Checkout() {
                     <h5>Tax</h5>
                   </th>
                   <th>
-                    <h5>Sub Total</h5>
+                    <h5>Subtotal</h5>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{orderState.total}</td>
+                  <td>${orderState.total}</td>
                   <td>{orderState.tax}%</td>
                   <td>${subTotal}</td>
                 </tr>

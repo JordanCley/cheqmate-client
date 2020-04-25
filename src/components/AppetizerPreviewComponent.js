@@ -24,7 +24,7 @@ function AppetizerPreviewComponent() {
           Back
         </Button>
       </Link>
-      <Link to="/cart">
+      <Link to="/menu">
         <Button
           className={"success-Btn"}
           variant={"outline-success"}
