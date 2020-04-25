@@ -12,7 +12,7 @@ import "./index.css";
 import App from "./App";
 import { AuthProvider, useAuth } from "./utils/auth";
 import OrderContextProvider from "./utils/context/OrderContext";
-import registerServiceWorker from "./registerServiceWorker";
+// import registerServiceWorker from "./registerServiceWorker";
 
 //Pages
 import Login from "./pages/login";
@@ -31,6 +31,7 @@ import Orders from "./pages/orders";
 import Order from "./pages/order";
 
 import Navbar from "./components/NavbarComponent.js";
+
 
 if (localStorage.getItem("id_token")) {
   axios.defaults.headers.common[
@@ -105,4 +106,4 @@ ReactDOM.render(
   </AuthProvider>,
   document.getElementById("root")
 );
-registerServiceWorker();
+// registerServiceWorker();

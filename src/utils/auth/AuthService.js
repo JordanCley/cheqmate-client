@@ -1,11 +1,13 @@
+/* eslint-disable no-undef */
 import decode from "jwt-decode";
 import axios from "axios";
+import BaseURL from "../env-config"
 
 export default class AuthService {
   login(email, password) {
     // Get a token
     return axios
-      .post("/api/login", { email: email, password: password })
+      .post(`${BaseURL}/api/login`, { email: email, password: password })
       .then((res) => {
         // set the token once the user logs in
         this.setToken(res.data.token);

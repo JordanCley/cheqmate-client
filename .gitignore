@@ -9,6 +9,9 @@
 # production
 /build
 
+.env
+
+
 # Debugger
 .vscode/
 

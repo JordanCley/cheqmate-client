@@ -1,21 +1,23 @@
+/* eslint-disable no-undef */
 import axios from "axios";
+import BaseURL from "../env-config"
 
-// const production = "http://ec2-54-151-62-58.us-west-1.compute.amazonaws.com";
+
 
 export default {
 
   // Gets a single user by id
   getUser: (id) => {
-    return axios.get(`/api/user/${id}`);
+    return axios.get(`${BaseURL}/api/user/${id}`);
   },
 
   // getting products/app items
   getProducts: () => {
-    return axios.get(`/api/products`);
+    return axios.get(`${BaseURL}/api/products`);
   },
 
   getOpenCheck: (id) => {
-    return axios.get(`/api/order/open_order/${id}`);
+    return axios.get(`${BaseURL}/api/order/open_order/${id}`);
   },
 
   createOrder: (
@@ -27,7 +29,7 @@ export default {
     tax,
     grand_total
   ) => {
-    return axios.post(`/api/order/new`, {
+    return axios.post(`${BaseURL}/api/order/new`, {
       order_items: order_items,
       total_items: total_items,
       total: total,
@@ -49,7 +51,7 @@ export default {
     tax,
     grand_total
   ) => {
-    return axios.put(`/api/update_order_paid/${id}`, {
+    return axios.put(`${BaseURL}/api/update_order_paid/${id}`, {
       order_items: order_items,
       total_items: total_items,
       table_number: table_number,
@@ -62,16 +64,16 @@ export default {
 
   // view all past orders
   viewAllOrders: () => {
-    return axios.get(`/api/order/view_all_past_orders`);
+    return axios.get(`${BaseURL}/api/order/view_all_past_orders`);
   },
 
   viewPastOrder: (id) => {
-    return axios.get(`/api/order/view_past_order/${id}`);
+    return axios.get(`${BaseURL}/api/order/view_past_order/${id}`);
   },
 
   // sign up a user to our service
   signUpUser: (first_name, last_name, email, password) => {
-    return axios.post(`/api/signup`, {
+    return axios.post(`${BaseURL}/api/signup`, {
       first_name: first_name,
       last_name: last_name,
       email: email,
