@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { OrderContext } from "../utils/context/OrderContext.js";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import API from "./../utils/API/API";
 import { Alert, Button, Container } from "react-bootstrap";
@@ -15,9 +15,7 @@ function Signup() {
     password: "",
   });
 
-  const { isLoggedIn } = useAuth();
-
-  const history = useHistory();
+  const { isLoggedIn, login } = useAuth();
 
   if (isLoggedIn) {
     return <Redirect to={"/"} />;
@@ -32,7 +30,7 @@ function Signup() {
       formState.password
     )
       .then(() => {
-        history.replace("/login");
+        login(formState.email, formState.password);
       })
       .catch((err) => setErrorState(err.response.data.message));
   };
