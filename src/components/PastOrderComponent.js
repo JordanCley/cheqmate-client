@@ -76,7 +76,7 @@ function PastOrder() {
                   {`${(
                   (viewPastOrderState.gratuity / viewPastOrderState.subtotal) *
                   100
-                ).toFixed(2)}% - $${viewPastOrderState.gratutity}`}
+                ).toFixed(2)}% - $${viewPastOrderState.gratuity}`}
                 </td>
               </tr>
               <tr>

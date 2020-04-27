@@ -80,7 +80,7 @@ function AddTipComponent() {
                   pattern="[0-9]{0,5}"
                   name="gratuity"
                   value={openCheckState.gratuity || ""}
-                  // placeholder="e.g. 5.00"
+                  placeholder="e.g. 5.00"
                 ></input>
               </div>
             )}
