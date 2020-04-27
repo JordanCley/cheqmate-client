@@ -42,7 +42,7 @@ function CartListComponent() {
 
                 <td>
                   <Button
-                    onClick={() => decrementQuantity(orderItem.id)}
+                    onClick={() => decrementQuantity(orderItem.product_id)}
                     variant={
                       orderItem.quantity === 1
                         ? "outline-danger"
@@ -55,7 +55,7 @@ function CartListComponent() {
 
                 <td>
                   <Button
-                    onClick={() => addItemToCart(orderItem.id)}
+                    onClick={() => addItemToCart(orderItem.product_id)}
                     variant={"outline-light"}
                   >
                     <FontAwesomeIcon icon={faPlus} />

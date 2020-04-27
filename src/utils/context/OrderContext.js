@@ -93,17 +93,33 @@ const OrderContextProvider = (props) => {
     } else {
       item.quantity++;
       itemIndex = orderState.order_items.findIndex((listItem) => {
-        return listItem.id === id;
+        return listItem.product_id === id;
       });
     }
     let arr = orderState.order_items.filter((listItem) => {
-      return listItem.id !== id;
+      return listItem.product_id !== id;
     });
 
     if (itemIndex === -1) {
-      setOrderState({ ...orderState, order_items: [...arr, item] });
+      setOrderState({
+        ...orderState,
+        order_items: [
+          ...arr,
+          {
+            quantity: item.quantity,
+            product_id: item.id,
+            product_name: item.product_name,
+            price: item.price,
+          },
+        ],
+      });
     } else {
-      arr.splice(itemIndex, 0, item);
+      arr.splice(itemIndex, 0, {
+        quantity: item.quantity,
+        product_id: item.id,
+        product_name: item.product_name,
+        price: item.price,
+      });
 
       setOrderState({ ...orderState, order_items: [...arr] });
     }
@@ -121,33 +137,42 @@ const OrderContextProvider = (props) => {
       item.quantity = 0;
 
       let arr = orderState.order_items.filter((listItem) => {
-        return listItem.id !== id;
+        return listItem.product_id !== id;
       });
       setOrderState({ ...orderState, order_items: [...arr] });
     }
   };
 
   const decrementQuantity = (id) => {
-    let itemIndex = -1;
+    let itemIndex;
     let item = productsState.filter((product) => {
       return product.id === id;
     });
     item = item[0];
     if (item.quantity === 1) {
-      alert("If you would lke to remove item, please use delete button");
+      let arr = orderState.order_items.filter((listItem) => {
+        return listItem.product_id !== id;
+      });
+      setOrderState({ ...orderState, order_items: [...arr] });
     } else {
       item.quantity--;
       itemIndex = orderState.order_items.findIndex((listItem) => {
-        return listItem.id === id;
+        return listItem.product_id === id;
       });
+
+      let arr = orderState.order_items.filter((listItem) => {
+        return listItem.product_id !== id;
+      });
+
+      arr.splice(itemIndex, 0, {
+        quantity: item.quantity,
+        product_id: item.id,
+        product_name: item.product_name,
+        price: item.price,
+      });
+      console.log(arr);
+      setOrderState({ ...orderState, order_items: [...arr] });
     }
-
-    let arr = orderState.order_items.filter((listItem) => {
-      return listItem.id !== id;
-    });
-
-    arr.splice(itemIndex, 0, item);
-    setOrderState({ ...orderState, items: [...arr] });
   };
 
   const updateIsOrderPaidClick = () => {
