@@ -3,7 +3,14 @@ import { OrderContext } from "../utils/context/OrderContext";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import API from "./../utils/API/API";
-import { Alert, Button, Container } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Card,
+  Container,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 import "../index.css";
 
 function Profile() {
@@ -33,23 +40,39 @@ function Profile() {
       ) : (
         ""
       )}
-      <h1>Welcome!</h1>
-      <span></span>
-      <h1>{`${currentUser.first_name} ${currentUser.last_name}`}</h1>
-      <Link to={"orders"}>
-        <Button
-          className={"success-Btn"}
-          variant={"outline-success mx-2"}
-          onClick={viewAllOrdersClick}
-        >
-          View All Past Orders
-        </Button>
-      </Link>
-      <Link to={"/"}>
-        <Button className={"success-Btn"} variant={"outline-success"}>
-          Go home
-        </Button>
-      </Link>
+
+      <Card bg={"dark"}>
+        <Card.Body>
+          <Card.Title>{`${currentUser.first_name} ${currentUser.last_name}`}</Card.Title>
+          <Card.Text>Welcome to your profile!</Card.Text>
+        </Card.Body>
+        <ListGroup bg={"dark"}>
+          <ListGroupItem variant={"success"}>{`email: ${currentUser.email}`}</ListGroupItem>
+        </ListGroup>
+        <Card.Body>
+          <Link to={"orders"}>
+            <Button
+              className={"success-Btn"}
+              variant={"outline-success mx-2"}
+              onClick={viewAllOrdersClick}
+            >
+              View All Past Orders
+            </Button>
+          </Link>
+          <Link to={"/"}>
+            <Button className={"success-Btn"} variant={"outline-success"}>
+              Go home
+            </Button>
+          </Link>
+          {/* <Card.Link href="">Card Link</Card.Link>
+          <Card.Link href="#">Another Link</Card.Link> */}
+        </Card.Body>
+      </Card>
+
+      {/* <h1>Welcome to your profile!</h1>
+      <br />
+      <h3>{`Name: ${currentUser.first_name} ${currentUser.last_name}`}</h3>
+      <h3>{`Email: ${currentUser.email}`}</h3> */}
     </Container>
   );
 }
