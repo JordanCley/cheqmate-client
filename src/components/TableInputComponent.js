@@ -8,8 +8,8 @@ function TableInputComponent() {
 
   return (
     <>
-      <div className="table">ENTER THE 4 - DIGIT CODE</div>
-      <div>(Found below the QR Code on the Table)</div>
+      <h5>ENTER TABLE NUMBER</h5>
+      <h6>(Found below the QR Code on the Table)</h6>
       <div>
         <form>
           <div className="form-group">
@@ -17,7 +17,7 @@ function TableInputComponent() {
             <input
               className="form-control"
               type="text"
-              placeholder="A - 3 - T -2"
+              placeholder="e.g., A323"
               onChange={handleInputChange}
               name="table_number"
             ></input>
