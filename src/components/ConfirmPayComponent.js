@@ -70,7 +70,7 @@ function ConfirmPayComponent() {
                 <th style={tableHead}>
                   <h5>Subtotal</h5>
                 </th>
-                <td>${openCheckState.subtotal}</td>
+                <td>${(openCheckState.subtotal).toFixed(2)}</td>
               </tr>
 
               <tr>

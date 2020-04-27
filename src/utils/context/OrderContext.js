@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import API from "../API/API";
+import { Redirect } from "react-router-dom";
 
 export const OrderContext = createContext();
 
@@ -67,6 +68,7 @@ const OrderContextProvider = (props) => {
     });
     item = item[0];
     setViewAppetizerState(item);
+    return <Redirect to={"/appetizer"} />;
   };
 
   const viewOnePastOrder = (id) => {

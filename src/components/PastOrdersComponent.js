@@ -44,7 +44,7 @@ function PastOrders() {
                 </Link>
               </td>
               <td>{order.table_number}</td>
-              <td>{order.gratuity}%</td>
+              <td>${order.gratuity}</td>
               <td>${order.grand_total.toFixed(2)}</td>
             </tr>
           </tbody>
