@@ -9,9 +9,7 @@ function AddTipComponent() {
     resetTipMethod,
     handleTipChange,
     tipMethodState,
-    dollarTipState,
     handleTipMethodChange,
-    handleDollarTipChange,
   } = useContext(OrderContext);
 
   return (
@@ -27,7 +25,7 @@ function AddTipComponent() {
                       onChange={handleTipChange}
                       type="radio"
                       name="gratuity"
-                      value={10}
+                      value={(openCheckState.subtotal * 0.1).toFixed(2)}
                       className="form-check-input"
                     />
                     10% - ${(openCheckState.subtotal * 0.1).toFixed(2)}
@@ -40,7 +38,7 @@ function AddTipComponent() {
                       onChange={handleTipChange}
                       type="radio"
                       name="gratuity"
-                      value={15}
+                      value={(openCheckState.subtotal * 0.15).toFixed(2)}
                       className="form-check-input"
                     />
                     15% - ${(openCheckState.subtotal * 0.15).toFixed(2)}
@@ -53,7 +51,7 @@ function AddTipComponent() {
                       onChange={handleTipChange}
                       type="radio"
                       name="gratuity"
-                      value={20}
+                      value={(openCheckState.subtotal * 0.2).toFixed(2)}
                       className="form-check-input"
                     />
                     20% - ${(openCheckState.subtotal * 0.2).toFixed(2)}
@@ -78,11 +76,11 @@ function AddTipComponent() {
                 <h3>Please enter a dollar amount.</h3>
                 <input
                   type="number"
-                  onInput={handleDollarTipChange}
+                  onChange={handleTipChange}
                   pattern="[0-9]{0,5}"
                   name="gratuity"
-                  value={dollarTipState || ""}
-                  placeholder="e.g. 5.00"
+                  value={openCheckState.gratuity || ""}
+                  // placeholder="e.g. 5.00"
                 ></input>
               </div>
             )}

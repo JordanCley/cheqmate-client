@@ -19,9 +19,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build $(date +%Y%m%d_%H%M%S)",
+    "build": "react-scripts build && mv build build-versions && npm run rename",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "rename": "mv build-versions/build build-versions/$(date +%Y%m%d_%H%M%S)"
   },
   "eslintConfig": {
     "extends": "react-app"

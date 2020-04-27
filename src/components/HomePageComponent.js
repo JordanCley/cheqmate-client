@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-import { OrderContext } from "./utils/context/OrderContext.js";
+import { OrderContext } from "../utils/context/OrderContext.js";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "./utils/auth";
-import logo from "./assets/cheqmate-logo.svg";
+import { useAuth } from "../utils/auth";
+import logo from "../assets/cheqmate-logo.svg";
 import { Button, Container } from "react-bootstrap";
-import "./index.css";
+import "../index.css";
 
-import FooterComponent from "./components/FooterComponent";
-import ErrorAlertComponent from "./components/ErrorAlertComponent";
+import ErrorAlertComponent from "./ErrorAlertComponent";
 
 function App() {
   const { errorState } = useContext(OrderContext);
@@ -16,7 +15,7 @@ function App() {
   const goToTableInput = () => history.push("/table");
 
   return (
-    <Container className={"main-Container img-background"}>
+    <Container>
       {errorState !== null ? (
         <ErrorAlertComponent
           text={"Exit"}
@@ -51,7 +50,6 @@ function App() {
           </div>
         </>
       )}
-      <FooterComponent />
     </Container>
   );
 }

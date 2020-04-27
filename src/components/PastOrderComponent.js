@@ -73,10 +73,10 @@ function PastOrder() {
               <tr>
                 <th>Gratutity</th>
                 <td>
-                  {`${viewPastOrderState.gratuity}% - $${(
-                    (viewPastOrderState.gratuity / 100) *
-                    viewPastOrderState.subtotal
-                  ).toFixed(2)}`}
+                  {`${(
+                  (viewPastOrderState.gratuity / viewPastOrderState.subtotal) *
+                  100
+                ).toFixed(2)}% - $${viewPastOrderState.gratutity}`}
                 </td>
               </tr>
               <tr>

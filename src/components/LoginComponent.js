@@ -31,7 +31,7 @@ function LoginComponent() {
   }
 
   return (
-    <Container className={"main-Container img-background"}>
+    <Container>
       <h1>Login</h1>
       <form onSubmit={handleLoginFormSubmit}>
         <div className={"form-group"}>

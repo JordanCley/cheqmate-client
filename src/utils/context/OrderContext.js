@@ -29,7 +29,6 @@ const OrderContextProvider = (props) => {
   const [productsState, setProductsState] = useState([]);
   const [viewAppetizerState, setViewAppetizerState] = useState({});
   const [orderState, setOrderState] = useState(initialState);
-  const [dollarTipState, setDollarTipState] = useState(0);
 
   useEffect(() => {
     API.getProducts()
@@ -170,7 +169,7 @@ const OrderContextProvider = (props) => {
         product_name: item.product_name,
         price: item.price,
       });
-      console.log(arr);
+
       setOrderState({ ...orderState, order_items: [...arr] });
     }
   };
@@ -220,15 +219,6 @@ const OrderContextProvider = (props) => {
     setOpenCheckState({ ...openCheckState, [name]: value });
   };
 
-  const handleDollarTipChange = (event) => {
-    const { value } = event.target;
-    setDollarTipState(value);
-    const gratuity = ((dollarTipState / openCheckState.subtotal) * 100).toFixed(
-      0
-    );
-    setOpenCheckState({ ...openCheckState, gratuity: gratuity });
-  };
-
   const handleTipMethodChange = (event) => {
     const { name, value } = event.target;
     setTipMethodState({ [name]: value });
@@ -274,8 +264,6 @@ const OrderContextProvider = (props) => {
         setOpenCheckState,
         tipMethodState,
         handleTipMethodChange,
-        handleDollarTipChange,
-        dollarTipState,
         setOrderState,
         errorState,
         setErrorState,

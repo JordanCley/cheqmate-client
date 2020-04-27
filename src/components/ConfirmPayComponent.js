@@ -60,10 +60,10 @@ function ConfirmPayComponent() {
                 <th style={tableHead}>
                   <h5>Gratuity</h5>
                 </th>
-                <td>{`${openCheckState.gratuity}% - $${(
-                  (openCheckState.gratuity / 100) *
-                  openCheckState.subtotal
-                ).toFixed(2)}`}</td>
+                <td>{`${(
+                  (openCheckState.gratuity / openCheckState.subtotal) *
+                  100
+                ).toFixed(0)}% - $${openCheckState.gratuity}`}</td>
               </tr>
 
               <tr>

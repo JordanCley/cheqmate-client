@@ -9,12 +9,13 @@ import {
 import axios from "axios";
 
 import "./index.css";
-import App from "./App";
+
 import { AuthProvider, useAuth } from "./utils/auth";
 import OrderContextProvider from "./utils/context/OrderContext";
 // import registerServiceWorker from "./registerServiceWorker";
 
 //Pages
+import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Signup from "./pages/signup";
@@ -56,7 +57,7 @@ ReactDOM.render(
           <Navbar />
           <Switch>
             <ProtectedRoute exact={true} path={"/"}>
-              <App />
+              <Home />
             </ProtectedRoute>
             <Route exact={true} path={"/login"}>
               <Login />
