@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext.js";
 import { Button, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 function CartListComponent() {
   const { orderState, addItemToCart, decrementQuantity } = useContext(
@@ -24,10 +24,10 @@ function CartListComponent() {
               <h5>Product</h5>
             </th>
             <th>
-              <h5>⬇</h5>
+              <h5>-</h5>
             </th>
             <th>
-              <h5>⬆</h5>
+              <h5>+</h5>
             </th>
             <th>
               <h5>Price</h5>
@@ -42,23 +42,23 @@ function CartListComponent() {
 
                 <td>
                   <Button
-                    onClick={() => decrementQuantity(orderItem.product_id)}
+                    onClick={() => decrementQuantity(orderItem.id)}
                     variant={
                       orderItem.quantity === 1
                         ? "outline-danger"
                         : "outline-light"
                     }
                   >
-                    <FontAwesomeIcon icon={faAngleDown} />
+                    <FontAwesomeIcon icon={faMinus} />
                   </Button>
                 </td>
 
                 <td>
                   <Button
-                    onClick={() => addItemToCart(orderItem.product_id)}
+                    onClick={() => addItemToCart(orderItem.id)}
                     variant={"outline-light"}
                   >
-                    <FontAwesomeIcon icon={faAngleUp} />
+                    <FontAwesomeIcon icon={faPlus} />
                   </Button>
                 </td>
                 <td>${orderItem.quantity * orderItem.price}</td>

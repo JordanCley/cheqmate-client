@@ -9,11 +9,10 @@ function AddTipComponent() {
     resetTipMethod,
     handleTipChange,
     tipMethodState,
+    dollarTipState,
     handleTipMethodChange,
+    handleDollarTipChange,
   } = useContext(OrderContext);
-
-  // const dollarTip;
-  console.log(openCheckState.total)
 
   return (
     <>
@@ -31,9 +30,8 @@ function AddTipComponent() {
                       value={10}
                       className="form-check-input"
                     />
-                    10% - ${(openCheckState.subtotal * .10).toFixed(2)}
+                    10% - ${(openCheckState.subtotal * 0.1).toFixed(2)}
                   </label>
-                  
                 </div>
 
                 <div className="form-check">
@@ -45,7 +43,7 @@ function AddTipComponent() {
                       value={15}
                       className="form-check-input"
                     />
-                    15% - ${(openCheckState.subtotal * .15).toFixed(2)}
+                    15% - ${(openCheckState.subtotal * 0.15).toFixed(2)}
                   </label>
                 </div>
 
@@ -58,7 +56,7 @@ function AddTipComponent() {
                       value={20}
                       className="form-check-input"
                     />
-                    20% - ${(openCheckState.subtotal * .20).toFixed(2)}
+                    20% - ${(openCheckState.subtotal * 0.2).toFixed(2)}
                   </label>
                 </div>
                 <div className="form-check">
@@ -77,13 +75,14 @@ function AddTipComponent() {
               </form>
             ) : (
               <div>
-                <h3>Please enter a percentage. (e.g., 20, 30)</h3>
+                <h3>Please enter a dollar amount.</h3>
                 <input
                   type="number"
-                  onChange={handleTipChange}
+                  onInput={handleDollarTipChange}
+                  pattern="[0-9]{0,5}"
                   name="gratuity"
-                  value={openCheckState.gratuity || ""}
-                  // placeholder="please enter a percentage"
+                  value={dollarTipState || ""}
+                  placeholder="e.g. 5.00"
                 ></input>
               </div>
             )}

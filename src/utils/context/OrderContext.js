@@ -29,7 +29,7 @@ const OrderContextProvider = (props) => {
   const [productsState, setProductsState] = useState([]);
   const [viewAppetizerState, setViewAppetizerState] = useState({});
   const [orderState, setOrderState] = useState(initialState);
-  // const [dollarTipState, setDollarTipState] = useState(0);
+  const [dollarTipState, setDollarTipState] = useState(0);
 
   useEffect(() => {
     API.getProducts()
@@ -83,33 +83,30 @@ const OrderContextProvider = (props) => {
   };
 
   const addItemToCart = (id) => {
+    let itemIndex = -1;
     let item = productsState.filter((product) => {
       return product.id === id;
     });
-
     item = item[0];
-
     if (!item.quantity) {
       item.quantity = 1;
     } else {
       item.quantity++;
+      itemIndex = orderState.order_items.findIndex((listItem) => {
+        return listItem.id === id;
+      });
     }
+    let arr = orderState.order_items.filter((listItem) => {
+      return listItem.id !== id;
+    });
 
-    let orderItemsArray = orderState.order_items.filter((listItem) => {
-      return listItem.product_id !== id;
-    });
-    setOrderState({
-      ...orderState,
-      order_items: [
-        ...orderItemsArray,
-        {
-          product_id: item.id,
-          quantity: item.quantity,
-          price: item.price,
-          product_name: item.product_name,
-        },
-      ],
-    });
+    if (itemIndex === -1) {
+      setOrderState({ ...orderState, order_items: [...arr, item] });
+    } else {
+      arr.splice(itemIndex, 0, item);
+
+      setOrderState({ ...orderState, order_items: [...arr] });
+    }
   };
 
   const removeItemFromCart = (id) => {
@@ -124,27 +121,33 @@ const OrderContextProvider = (props) => {
       item.quantity = 0;
 
       let arr = orderState.order_items.filter((listItem) => {
-        return listItem.product_id !== id;
+        return listItem.id !== id;
       });
       setOrderState({ ...orderState, order_items: [...arr] });
     }
   };
 
   const decrementQuantity = (id) => {
-    let item = orderState.order_items.filter((product) => {
-      return product.product_id === id;
+    let itemIndex = -1;
+    let item = productsState.filter((product) => {
+      return product.id === id;
     });
     item = item[0];
     if (item.quantity === 1) {
-      return removeItemFromCart(id);
+      alert("If you would lke to remove item, please use delete button");
     } else {
       item.quantity--;
+      itemIndex = orderState.order_items.findIndex((listItem) => {
+        return listItem.id === id;
+      });
     }
 
     let arr = orderState.order_items.filter((listItem) => {
-      return listItem.product_id !== id;
+      return listItem.id !== id;
     });
-    setOrderState({ ...orderState, order_items: [...arr, item] });
+
+    arr.splice(itemIndex, 0, item);
+    setOrderState({ ...orderState, items: [...arr] });
   };
 
   const updateIsOrderPaidClick = () => {
@@ -192,10 +195,14 @@ const OrderContextProvider = (props) => {
     setOpenCheckState({ ...openCheckState, [name]: value });
   };
 
-  // const handleDollarTipChange = (event) => {
-  //   const { value } = event.target;
-  //   setDollarTipState(value);
-  // };
+  const handleDollarTipChange = (event) => {
+    const { value } = event.target;
+    setDollarTipState(value);
+    const gratuity = ((dollarTipState / openCheckState.subtotal) * 100).toFixed(
+      0
+    );
+    setOpenCheckState({ ...openCheckState, gratuity: gratuity });
+  };
 
   const handleTipMethodChange = (event) => {
     const { name, value } = event.target;
@@ -242,6 +249,8 @@ const OrderContextProvider = (props) => {
         setOpenCheckState,
         tipMethodState,
         handleTipMethodChange,
+        handleDollarTipChange,
+        dollarTipState,
         setOrderState,
         errorState,
         setErrorState,

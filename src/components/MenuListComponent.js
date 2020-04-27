@@ -11,7 +11,7 @@ function MenuListComponent() {
   const { errorState } = useContext(OrderContext);
 
   return (
-    <div className={"mt-1 img-background2"}>
+    <div className={"ml-1 mt-1 img-background2"}>
       {errorState !== null ? (
         <ErrorAlertComponent
           text={"Exit"}
@@ -43,7 +43,7 @@ function MenuListComponent() {
               </ListGroup>
             </Col>
             <Col sm={8}>
-              <Tab.Content>
+              <Tab.Content className={""}>
                 <Tab.Pane
                   className={"ml-3"}
                   id={"appetizer-pane"}
