@@ -16,7 +16,6 @@ function ViewCart() {
   const history = useHistory();
 
   const loadingCreate = () => {
-    console.log(orderState)
     if (orderState.table_number === null) {
       setErrorState("Error: You must input a table number!");
       history.push("/checkout");

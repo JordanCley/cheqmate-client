@@ -58,15 +58,15 @@ function Checkout() {
               </tr>
             </thead>
             {orderState.order_items.map((orderItem) => (
-              <>
-                <tbody key={orderItem.id}>
+              <React.Fragment key={orderItem.product_id}>
+                <tbody>
                   <tr>
                     <td>{orderItem.product_name}</td>
                     <td>{orderItem.quantity}</td>
-                    <td>${orderItem.quantity * orderItem.price}</td>
+                    <td>${(orderItem.quantity * orderItem.price).toFixed(2)}</td>
                   </tr>
                 </tbody>
-              </>
+              </React.Fragment>
             ))}
           </Table>
 
@@ -93,7 +93,7 @@ function Checkout() {
               </thead>
               <tbody>
                 <tr>
-                  <td>${orderState.subtotal}</td>
+                  <td>${orderState.subtotal.toFixed(2)}</td>
                   <td>{orderState.tax}%</td>
                   <td>${Total.toFixed(2)}</td>
                 </tr>

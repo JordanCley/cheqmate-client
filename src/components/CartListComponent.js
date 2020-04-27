@@ -24,10 +24,10 @@ function CartListComponent() {
               <h5>Product</h5>
             </th>
             <th>
-              <h5>-</h5>
+              <FontAwesomeIcon icon={faMinus} />
             </th>
             <th>
-              <h5>+</h5>
+              <FontAwesomeIcon icon={faPlus} />
             </th>
             <th>
               <h5>Price</h5>
@@ -35,13 +35,14 @@ function CartListComponent() {
           </tr>
         </thead>
         {orderState.order_items.map((orderItem) => (
-          <>
-            <tbody key={orderItem.id}>
+          <React.Fragment key={orderItem.product_id}>
+            <tbody>
               <tr>
                 <td>{`${orderItem.product_name} (${orderItem.quantity})`}</td>
 
                 <td>
                   <Button
+                    size={"sm"}
                     onClick={() => decrementQuantity(orderItem.product_id)}
                     variant={
                       orderItem.quantity === 1
@@ -55,16 +56,17 @@ function CartListComponent() {
 
                 <td>
                   <Button
+                    size={"sm"}
                     onClick={() => addItemToCart(orderItem.product_id)}
                     variant={"outline-light"}
                   >
                     <FontAwesomeIcon icon={faPlus} />
                   </Button>
                 </td>
-                <td>${orderItem.quantity * orderItem.price}</td>
+                <td>${(orderItem.quantity * orderItem.price).toFixed(2)}</td>
               </tr>
             </tbody>
-          </>
+          </React.Fragment>
         ))}
       </Table>
     </>

@@ -124,53 +124,40 @@ const OrderContextProvider = (props) => {
     }
   };
 
-  const removeItemFromCart = (id) => {
+  const decrementQuantity = (id) => {
     if (!orderState.order_items.length) {
       setErrorState("Error: There are no items in cart");
     } else {
+      let itemIndex;
       let item = productsState.filter((product) => {
         return product.id === id;
       });
       item = item[0];
+      if (item.quantity === 1) {
+        item.quantity = 0;
+        let arr = orderState.order_items.filter((listItem) => {
+          return listItem.product_id !== id;
+        });
+        setOrderState({ ...orderState, order_items: [...arr] });
+      } else {
+        item.quantity--;
+        itemIndex = orderState.order_items.findIndex((listItem) => {
+          return listItem.product_id === id;
+        });
 
-      item.quantity = 0;
+        let arr = orderState.order_items.filter((listItem) => {
+          return listItem.product_id !== id;
+        });
 
-      let arr = orderState.order_items.filter((listItem) => {
-        return listItem.product_id !== id;
-      });
-      setOrderState({ ...orderState, order_items: [...arr] });
-    }
-  };
+        arr.splice(itemIndex, 0, {
+          quantity: item.quantity,
+          product_id: item.id,
+          product_name: item.product_name,
+          price: item.price,
+        });
 
-  const decrementQuantity = (id) => {
-    let itemIndex;
-    let item = productsState.filter((product) => {
-      return product.id === id;
-    });
-    item = item[0];
-    if (item.quantity === 1) {
-      let arr = orderState.order_items.filter((listItem) => {
-        return listItem.product_id !== id;
-      });
-      setOrderState({ ...orderState, order_items: [...arr] });
-    } else {
-      item.quantity--;
-      itemIndex = orderState.order_items.findIndex((listItem) => {
-        return listItem.product_id === id;
-      });
-
-      let arr = orderState.order_items.filter((listItem) => {
-        return listItem.product_id !== id;
-      });
-
-      arr.splice(itemIndex, 0, {
-        quantity: item.quantity,
-        product_id: item.id,
-        product_name: item.product_name,
-        price: item.price,
-      });
-
-      setOrderState({ ...orderState, order_items: [...arr] });
+        setOrderState({ ...orderState, order_items: [...arr] });
+      }
     }
   };
 
@@ -252,7 +239,6 @@ const OrderContextProvider = (props) => {
         viewOnePastOrder,
         productsState,
         addItemToCart,
-        removeItemFromCart,
         decrementQuantity,
         handleInputChange,
         viewOneAppetizer,
