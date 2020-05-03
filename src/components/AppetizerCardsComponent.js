@@ -56,7 +56,7 @@ function AppetizerCardsComponent() {
                       className={"success-Btn"}
                       variant={"outline-primary"}
                     >
-                      View Cart
+                      View Order
                     </Button>
                   </Link>
                   <Button

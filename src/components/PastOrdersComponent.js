@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
 
 function PastOrders() {
-  const history = useHistory();
 
   const { pastOrderState, viewOnePastOrder, setIsLoading } = useContext(
     OrderContext
@@ -13,7 +12,6 @@ function PastOrders() {
   const handleViewOrderClick = (id) => {
     setIsLoading(true);
     viewOnePastOrder(id)
-      .then(() => history.push("/order"))
       .then(() => setIsLoading(false));
   };
 

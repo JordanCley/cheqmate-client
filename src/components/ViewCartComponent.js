@@ -28,7 +28,7 @@ function ViewCart() {
   };
 
   return (
-    <Container className={"main-Container"}>
+    <Container >
       <CartListComponent />
       <br />
       <Link to={"/menu"}>

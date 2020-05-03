@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 function TableInputComponent() {
-  const { handleInputChange } = useContext(OrderContext);
+  const { handleInputChange, orderState } = useContext(OrderContext);
 
   return (
     <>
@@ -21,14 +21,25 @@ function TableInputComponent() {
               onChange={handleInputChange}
               name="table_number"
             ></input>
-            <Link to="/menu">
-              <Button
-                className={"success-Btn"}
-                variant={"outline-success mt-3"}
-              >
-                Enter
-              </Button>
-            </Link>
+            {orderState.order_items.length !== 0 ? (
+              <Link to="/cart">
+                <Button
+                  className={"success-Btn"}
+                  variant={"outline-success mt-3"}
+                >
+                  Enter
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/menu">
+                <Button
+                  className={"success-Btn"}
+                  variant={"outline-success mt-3"}
+                >
+                  Enter
+                </Button>
+              </Link>
+            )}
           </div>
         </form>
       </div>
