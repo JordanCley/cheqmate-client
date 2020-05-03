@@ -11,6 +11,8 @@ function CartListComponent() {
 
   return (
     <>
+      <h3>Cart</h3>
+
       <Table
         key={orderState.id}
         striped={true}

@@ -14,6 +14,8 @@ function AddTipComponent() {
 
   return (
     <>
+      <h3>Add Tip?</h3>
+
       <div className="container">
         <div className="row mt-5">
           <div className="col-sm-12">

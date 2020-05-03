@@ -16,7 +16,7 @@ function Checkout() {
   } = useContext(OrderContext);
 
   let tax = openCheckState.subtotal * (openCheckState.tax / 100);
-  let Total = (openCheckState.subtotal + tax);
+  let Total = openCheckState.subtotal + tax;
 
   if (isLoading) {
     return <LoadingComponent />;
@@ -37,6 +37,8 @@ function Checkout() {
         </>
       ) : (
         <>
+          <h3>Checkout</h3>
+          
           <Table
             key={orderState.id}
             striped={true}
@@ -63,7 +65,9 @@ function Checkout() {
                   <tr>
                     <td>{orderItem.product_name}</td>
                     <td>{orderItem.quantity}</td>
-                    <td>${(orderItem.quantity * orderItem.price).toFixed(2)}</td>
+                    <td>
+                      ${(orderItem.quantity * orderItem.price).toFixed(2)}
+                    </td>
                   </tr>
                 </tbody>
               </React.Fragment>

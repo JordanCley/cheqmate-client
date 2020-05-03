@@ -6,6 +6,7 @@ import "../index.css";
 function CardInputComponent() {
   return (
     <Container>
+      <h3>Payment Info</h3>
       <div>
         <form>
           <div className={"form-group"}>
