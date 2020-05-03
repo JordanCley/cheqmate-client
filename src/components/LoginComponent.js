@@ -5,6 +5,8 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import "../index.css";
 
+// import ErrorAlertComponent from "../components/ErrorAlertComponent";
+
 function LoginComponent() {
   const history = useHistory();
   const { isLoggedIn, login } = useAuth();
@@ -26,12 +28,23 @@ function LoginComponent() {
       });
   };
 
+  const isEnabled = email.length > 0 && password.length > 0;
+
   if (isLoggedIn || errorState !== null) {
     return <Redirect to="/" />;
   }
 
   return (
     <Container>
+      {/* {errorState !== null ? (
+        <ErrorAlertComponent
+          text={"Exit"}
+          variant={"danger"}
+          to={"/login"}
+          button={"outline-danger"}
+        />
+      ) : (
+        <> */}
       <h1>Login</h1>
       <form onSubmit={handleLoginFormSubmit}>
         <div className={"form-group"}>
@@ -59,6 +72,7 @@ function LoginComponent() {
           />
         </div>
         <Button
+          disabled={!isEnabled}
           type={"submit"}
           className={"success-Btn"}
           variant={"outline-success mb-4"}
@@ -74,6 +88,8 @@ function LoginComponent() {
           </Button>
         </Link>
       </div>
+      {/* </>
+      )} */}
     </Container>
   );
 }

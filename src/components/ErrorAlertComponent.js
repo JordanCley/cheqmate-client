@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import { OrderContext } from "../utils/context/OrderContext.js";
 import { Alert, Button } from "react-bootstrap";

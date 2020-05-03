@@ -3,8 +3,10 @@ import { OrderContext } from "../utils/context/OrderContext.js";
 import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import API from "./../utils/API/API";
-import { Alert, Button, Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import "../index.css";
+
+import ErrorAlertComponent from "./ErrorAlertComponent";
 
 function Signup() {
   const { errorState, setErrorState } = useContext(OrderContext);
@@ -35,6 +37,12 @@ function Signup() {
       .catch((err) => setErrorState(err.response.data.message));
   };
 
+  const isEnabled =
+    formState.first_name.length > 0 &&
+    formState.last_name.length > 0 &&
+    formState.email.length > 0 &&
+    formState.password.length > 0;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -47,14 +55,12 @@ function Signup() {
     <Container>
       {errorState !== null ? (
         <>
-          <Alert key={2} variant={"danger"}>
-            {errorState}
-          </Alert>
-          <Link onClick={() => setErrorState(null)} to="/signup">
-            <Button className={"success-Btn"} variant={"outline-danger"}>
-              Exit
-            </Button>
-          </Link>
+          <ErrorAlertComponent
+            text={"Exit"}
+            variant={"danger"}
+            to={"/signup"}
+            button={"outline-danger"}
+          />
         </>
       ) : (
         <>
@@ -105,6 +111,7 @@ function Signup() {
               />
             </div>
             <Button
+              disabled={!isEnabled}
               type={"submit"}
               className={"success-Btn"}
               variant={"outline-success mb-4"}

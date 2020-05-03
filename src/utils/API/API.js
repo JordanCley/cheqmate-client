@@ -6,16 +6,16 @@ export default {
 
   // Gets a single user by id
   getUser: (id) => {
-    return axios.get(`${BaseURL}/api/user/${id}`);
+    return axios.get(`${BaseURL}/user/${id}`);
   },
 
   // getting products/app items
   getProducts: () => {
-    return axios.get(`${BaseURL}/api/products`);
+    return axios.get(`${BaseURL}/products`);
   },
 
   getOpenCheck: (id) => {
-    return axios.get(`${BaseURL}/api/order/open_order/${id}`);
+    return axios.get(`${BaseURL}/order/open_order/${id}`);
   },
 
   createOrder: (
@@ -27,7 +27,7 @@ export default {
     tax,
     grand_total
   ) => {
-    return axios.post(`${BaseURL}/api/order/new`, {
+    return axios.post(`${BaseURL}/order/new`, {
       order_items: order_items,
       total_items: total_items,
       subtotal: subtotal,
@@ -49,7 +49,7 @@ export default {
     tax,
     grand_total
   ) => {
-    return axios.put(`${BaseURL}/api/update_order_paid/${id}`, {
+    return axios.put(`${BaseURL}/update_order_paid/${id}`, {
       order_items: order_items,
       total_items: total_items,
       table_number: table_number,
@@ -62,16 +62,16 @@ export default {
 
   // view all past orders
   viewAllOrders: () => {
-    return axios.get(`${BaseURL}/api/order/view_all_past_orders`);
+    return axios.get(`${BaseURL}/order/view_all_past_orders`);
   },
 
   viewPastOrder: (id) => {
-    return axios.get(`${BaseURL}/api/order/view_past_order/${id}`);
+    return axios.get(`${BaseURL}/order/view_past_order/${id}`);
   },
 
   // sign up a user to our service
   signUpUser: (first_name, last_name, email, password) => {
-    return axios.post(`${BaseURL}/api/signup`, {
+    return axios.post(`${BaseURL}/signup`, {
       first_name: first_name,
       last_name: last_name,
       email: email,
