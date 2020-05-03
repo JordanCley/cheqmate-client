@@ -9,8 +9,12 @@ body {
   height: 100vh;
 }
 
+div.tab-content {
+  padding: 0px 0px 0px 12px;
+}
+
 div.container {
-  padding-left: 12px;
+  padding: 2px 10px 0px 5px;
 }
 
 .success-Btn {
@@ -127,6 +131,12 @@ div.container {
     margin-right: 500px;
     margin-left: 0px;
     z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 411px) {
+  div.tab-content {
+    padding: 0px 0px 0px 28px;
   }
 }
 
