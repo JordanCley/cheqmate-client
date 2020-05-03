@@ -9,6 +9,10 @@ body {
   height: 100vh;
 }
 
+div.container {
+  padding-left: 12px;
+}
+
 .success-Btn {
   background-color: #1f1e1e !important;
 }
