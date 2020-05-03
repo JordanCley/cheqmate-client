@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { OrderContext } from "../utils/context/OrderContext";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
@@ -11,11 +11,17 @@ function ConfirmPayComponent() {
   const {
     openCheckState,
     updateIsOrderPaidClick,
+    calculateGrandTotal,
     initialState,
     setOrderState,
     isLoading,
     setIsLoading,
   } = useContext(OrderContext);
+
+  useEffect(() => {
+    calculateGrandTotal(openCheckState);
+    // eslint-disable-next-line
+  }, [openCheckState.gratuity]);
 
   const handlePayClick = () => {
     setIsLoading(true);
@@ -70,13 +76,14 @@ function ConfirmPayComponent() {
                 <th style={tableHead}>
                   <h5>Subtotal</h5>
                 </th>
-                <td>${(openCheckState.subtotal).toFixed(2)}</td>
+                <td>${openCheckState.subtotal.toFixed(2)}</td>
               </tr>
 
               <tr>
                 <th style={tableHead}>
                   <h5>Grand Total</h5>
                 </th>
+
                 <td>${openCheckState.grand_total.toFixed(2)}</td>
               </tr>
             </tbody>

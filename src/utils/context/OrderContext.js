@@ -57,10 +57,6 @@ const OrderContextProvider = (props) => {
     // eslint-disable-next-line
   }, [orderState.order_items]);
 
-  useEffect(() => {
-    calculateGrandTotal(openCheckState);
-    // eslint-disable-next-line
-  }, [openCheckState.gratuity]);
 
   const viewOneAppetizer = (id) => {
     let item = productsState.filter((product) => {
@@ -210,6 +206,7 @@ const OrderContextProvider = (props) => {
 
   const handleTipMethodChange = (event) => {
     const { name, value } = event.target;
+
     setTipMethodState({ [name]: value });
   };
 
@@ -222,9 +219,9 @@ const OrderContextProvider = (props) => {
   };
 
   const calculateGrandTotal = (state) => {
-    let tipTotal = state.subtotal * (state.gratuity / 100);
-    let taxTotal = state.subtotal * (state.tax / 100);
-    let totalSum = state.subtotal + (tipTotal + taxTotal);
+    const gratuity = parseFloat(state.gratuity);
+    const taxTotal = state.subtotal * (state.tax / 100);
+    const totalSum = state.subtotal + gratuity + taxTotal;
     setOpenCheckState({ ...openCheckState, grand_total: totalSum });
   };
 
