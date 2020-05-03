@@ -51,7 +51,7 @@ function LoginComponent() {
           <label htmlFor={"email"}>Email address:</label>
           <input
             className={"form-control"}
-            placeholder={"JohnD@Bloomin.com"}
+            placeholder={"Dundee@Bloomin.com"}
             name={"email"}
             type={"email"}
             id={"email"}
