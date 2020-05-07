@@ -17,7 +17,7 @@ function AddTipComponent() {
       <h3>Add Tip?</h3>
 
       <div className="container">
-        <div className="row mt-5">
+        <div className="row mt-4">
           <div className="col-sm-12">
             {tipMethodState.tipMethod === "radioTip" ? (
               <form>
