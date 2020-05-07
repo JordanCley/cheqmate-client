@@ -129,7 +129,7 @@ div.container {
     position: relative;
     height: 3.5vh;
     width: 25vw;
-    margin-right: 500px;
+    margin-right: 300px;
     margin-left: 0px;
     z-index: 1;
   }
@@ -149,7 +149,7 @@ div.container {
     height: 3.5vh;
     width: 25vw;
     margin-right: 600px;
-    margin-left: -300px;
+    margin-left:-100px;
     z-index: 1;
   }
 
