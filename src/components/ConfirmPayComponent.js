@@ -16,6 +16,7 @@ function ConfirmPayComponent() {
     setOrderState,
     isLoading,
     setIsLoading,
+    numberWithCommas
   } = useContext(OrderContext);
 
   useEffect(() => {
@@ -55,10 +56,10 @@ function ConfirmPayComponent() {
                 </th>
 
                 <td>
-                  {`${openCheckState.tax}% - $${(
+                  {`${openCheckState.tax}% - $${numberWithCommas((
                     (openCheckState.tax / 100) *
                     openCheckState.subtotal
-                  ).toFixed(2)}`}
+                  ).toFixed(2))}`}
                 </td>
               </tr>
 
@@ -66,17 +67,17 @@ function ConfirmPayComponent() {
                 <th style={tableHead}>
                   <h5>Gratuity</h5>
                 </th>
-                <td>{`${(
+                <td>{`${numberWithCommas((
                   (openCheckState.gratuity / openCheckState.subtotal) *
                   100
-                ).toFixed(0)}% - $${openCheckState.gratuity}`}</td>
+                ).toFixed(0))}% - $${numberWithCommas(openCheckState.gratuity)}`}</td>
               </tr>
 
               <tr>
                 <th style={tableHead}>
                   <h5>Subtotal</h5>
                 </th>
-                <td>${openCheckState.subtotal.toFixed(2)}</td>
+                <td>${numberWithCommas(openCheckState.subtotal.toFixed(2))}</td>
               </tr>
 
               <tr>
@@ -84,7 +85,7 @@ function ConfirmPayComponent() {
                   <h5>Grand Total</h5>
                 </th>
 
-                <td>${openCheckState.grand_total.toFixed(2)}</td>
+                <td>${numberWithCommas(openCheckState.grand_total.toFixed(2))}</td>
               </tr>
             </tbody>
           </Table>

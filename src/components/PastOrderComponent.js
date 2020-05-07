@@ -13,7 +13,7 @@ import ErrorAlertComponent from "./ErrorAlertComponent";
 import LoadingComponent from "./LoadingComponent";
 
 function PastOrder() {
-  const { errorState, viewPastOrderState, isLoading } = useContext(
+  const { errorState, viewPastOrderState, isLoading, numberWithCommas } = useContext(
     OrderContext
   );
 
@@ -73,10 +73,10 @@ function PastOrder() {
               <tr>
                 <th>Gratutity</th>
                 <td>
-                  {`${(
+                  {`${numberWithCommas((
                   (viewPastOrderState.gratuity / viewPastOrderState.subtotal) *
                   100
-                ).toFixed(2)}% - $${(viewPastOrderState.gratuity).toFixed(2)}`}
+                ).toFixed(2))}% - $${numberWithCommas((viewPastOrderState.gratuity).toFixed(2))}`}
                 </td>
               </tr>
               <tr>
@@ -88,7 +88,7 @@ function PastOrder() {
               </tr>
               <tr>
                 <th>Grand Total</th>
-                <td>${viewPastOrderState.grand_total.toFixed(2)}</td>
+                <td>${numberWithCommas(viewPastOrderState.grand_total.toFixed(2))}</td>
               </tr>
             </tbody>
           </Table>

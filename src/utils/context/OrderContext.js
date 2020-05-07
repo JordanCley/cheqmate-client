@@ -225,6 +225,10 @@ const OrderContextProvider = (props) => {
     setOpenCheckState({ ...openCheckState, grand_total: totalSum });
   };
 
+  const numberWithCommas = (number) => {
+    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
   return (
     <OrderContext.Provider
       value={{
@@ -233,6 +237,7 @@ const OrderContextProvider = (props) => {
         pastOrderState,
         createOrderClick,
         viewAllOrdersClick,
+        numberWithCommas,
         updateIsOrderPaidClick,
         viewPastOrderState,
         viewOnePastOrder,

@@ -5,7 +5,7 @@ import { Container, Table } from "react-bootstrap";
 
 function PastOrders() {
 
-  const { pastOrderState, viewOnePastOrder, setIsLoading } = useContext(
+  const { pastOrderState, viewOnePastOrder, setIsLoading, numberWithCommas } = useContext(
     OrderContext
   );
 
@@ -42,8 +42,8 @@ function PastOrders() {
                 </Link>
               </td>
               <td>{order.table_number}</td>
-              <td>${order.gratuity.toFixed(2)}</td>
-              <td>${order.grand_total.toFixed(2)}</td>
+              <td>${numberWithCommas(order.gratuity.toFixed(2))}</td>
+              <td>${numberWithCommas(order.grand_total.toFixed(2))}</td>
             </tr>
           </tbody>
         ))}

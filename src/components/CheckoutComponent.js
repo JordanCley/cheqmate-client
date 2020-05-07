@@ -13,6 +13,7 @@ function Checkout() {
     errorState,
     setErrorState,
     isLoading,
+    numberWithCommas,
   } = useContext(OrderContext);
 
   let tax = openCheckState.subtotal * (openCheckState.tax / 100);
@@ -66,7 +67,7 @@ function Checkout() {
                     <td>{orderItem.product_name}</td>
                     <td>{orderItem.quantity}</td>
                     <td>
-                      ${(orderItem.quantity * orderItem.price).toFixed(2)}
+                      ${numberWithCommas((orderItem.quantity * orderItem.price).toFixed(2))}
                     </td>
                   </tr>
                 </tbody>
@@ -97,9 +98,9 @@ function Checkout() {
               </thead>
               <tbody>
                 <tr>
-                  <td>${orderState.subtotal.toFixed(2)}</td>
+                  <td>${numberWithCommas(orderState.subtotal.toFixed(2))}</td>
                   <td>{orderState.tax}%</td>
-                  <td>${Total.toFixed(2)}</td>
+                  <td>${numberWithCommas(Total.toFixed(2))}</td>
                 </tr>
               </tbody>
             </Table>

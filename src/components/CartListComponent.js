@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 function CartListComponent() {
-  const { orderState, addItemToCart, decrementQuantity } = useContext(
+  const { orderState, addItemToCart, decrementQuantity, numberWithCommas } = useContext(
     OrderContext
   );
 
@@ -69,7 +69,7 @@ function CartListComponent() {
                     <FontAwesomeIcon icon={faPlus} />
                   </Button>
                 </td>
-                <td>${(orderItem.quantity * orderItem.price).toFixed(2)}</td>
+                <td>${numberWithCommas((orderItem.quantity * orderItem.price).toFixed(2))}</td>
               </tr>
             </tbody>
           </React.Fragment>
