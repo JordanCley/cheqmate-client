@@ -16,6 +16,7 @@ import OrderContextProvider from "./utils/context/OrderContext";
 
 //Pages
 import Home from "./pages/home";
+import Landing from "./pages/landing";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Signup from "./pages/signup";
@@ -45,7 +46,7 @@ function ProtectedRoute({ children, ...rest }) {
   if (isLoggedIn) {
     return children;
   }
-  return <Redirect to={"/signup"} />;
+  return <Redirect to={"/landing"} />;
 }
 
 ReactDOM.render(
@@ -59,6 +60,9 @@ ReactDOM.render(
             <ProtectedRoute exact={true} path={"/"}>
               <Home />
             </ProtectedRoute>
+            <Route exact={true} path={"/landing"}>
+              <Landing />
+            </Route>
             <Route exact={true} path={"/login"}>
               <Login />
             </Route>
